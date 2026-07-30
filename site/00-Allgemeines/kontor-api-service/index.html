@@ -6,29 +6,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Zugriff auf die Kontor Datenbank über eine DAB-Instanz (REST + GraphQL).">
       
       
       
       
-        <link rel="next" href="log/">
+        <link rel="prev" href="../datenbank-ueberblick/">
+      
+      
+        <link rel="next" href="../../10-Tabellen/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Kontor Datenbank Wiki</title>
+        <title>Kontor API Service - Kontor Datenbank Wiki</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kontor-datenbank-wiki" class="md-skip">
+        <a href="#schema" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -86,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
-    <a href="." title="Kontor Datenbank Wiki" class="md-header__button md-logo" aria-label="Kontor Datenbank Wiki" data-md-component="logo">
+    <a href="../.." title="Kontor Datenbank Wiki" class="md-header__button md-logo" aria-label="Kontor Datenbank Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kontor Datenbank Wiki
+              Kontor API Service
             
           </span>
         </div>
@@ -205,11 +209,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -228,7 +230,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="log/" class="md-tabs__link">
+      <a href="../../log/" class="md-tabs__link">
         
   
   
@@ -245,11 +247,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="00-Allgemeines/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -269,7 +273,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="10-Tabellen/" class="md-tabs__link">
+        <a href="../../10-Tabellen/" class="md-tabs__link">
           
   
   
@@ -289,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="20-Views/" class="md-tabs__link">
+        <a href="../../20-Views/" class="md-tabs__link">
           
   
   
@@ -309,7 +313,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="90-Glossar/" class="md-tabs__link">
+        <a href="../../90-Glossar/" class="md-tabs__link">
           
   
   
@@ -343,7 +347,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Kontor Datenbank Wiki" class="md-nav__button md-logo" aria-label="Kontor Datenbank Wiki" data-md-component="logo">
+    <a href="../.." title="Kontor Datenbank Wiki" class="md-nav__button md-logo" aria-label="Kontor Datenbank Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -358,19 +362,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -386,7 +381,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -398,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="log/" class="md-nav__link">
+      <a href="../../log/" class="md-nav__link">
         
   
   
@@ -422,28 +416,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -461,7 +458,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -479,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="00-Allgemeines/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -507,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
+      <a href="../datenbank-ueberblick/" class="md-nav__link">
         
   
   
@@ -532,10 +529,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="00-Allgemeines/kontor-api-service/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kontor API Service
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -551,6 +575,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registrierte-entitaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registrierte Entitäten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zwei-schnittstellen-rest-und-graphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zwei Schnittstellen: REST und GraphQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beziehungen-sind-registry-konfiguration-nicht-db-fremdschlussel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beziehungen sind Registry-Konfiguration, nicht DB-Fremdschlüssel
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -624,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10-Tabellen/" class="md-nav__link">
+      <a href="../../10-Tabellen/" class="md-nav__link">
         
   
   
@@ -652,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10-Tabellen/ADRESSEN/" class="md-nav__link">
+      <a href="../../10-Tabellen/ADRESSEN/" class="md-nav__link">
         
   
   
@@ -680,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10-Tabellen/ARTIK/" class="md-nav__link">
+      <a href="../../10-Tabellen/ARTIK/" class="md-nav__link">
         
   
   
@@ -708,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10-Tabellen/BUCH_UMSATZ/" class="md-nav__link">
+      <a href="../../10-Tabellen/BUCH_UMSATZ/" class="md-nav__link">
         
   
   
@@ -736,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10-Tabellen/KUNDE/" class="md-nav__link">
+      <a href="../../10-Tabellen/KUNDE/" class="md-nav__link">
         
   
   
@@ -825,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="20-Views/" class="md-nav__link">
+      <a href="../../20-Views/" class="md-nav__link">
         
   
   
@@ -914,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="90-Glossar/" class="md-nav__link">
+      <a href="../../90-Glossar/" class="md-nav__link">
         
   
   
@@ -962,6 +1039,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registrierte-entitaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registrierte Entitäten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zwei-schnittstellen-rest-und-graphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zwei Schnittstellen: REST und GraphQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beziehungen-sind-registry-konfiguration-nicht-db-fremdschlussel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beziehungen sind Registry-Konfiguration, nicht DB-Fremdschlüssel
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -977,56 +1095,35 @@
 
 
 
-<h1 id="kontor-datenbank-wiki">Kontor Datenbank Wiki</h1>
-<p>Persönliches Wissens-Wiki zur <strong>Kontor Datenbank</strong> — der SQL-Datenbank hinter dem ERP
-<strong>Kontor.MED</strong> (Hersteller: codegarden software GmbH). Beschreibt die Datenbank aus
-Entwickler- und Integrationssicht: Tabellen, Views und der Zugriff über den
-<strong>Kontor API Service</strong>.</p>
-<p>Für die Anwendersicht auf das ERP siehe das Schwesterwiki <code>Kontor MED v1</code>.</p>
-<h1 id="bereiche">Bereiche</h1>
-<table>
-<thead>
-<tr>
-<th>Bereich</th>
-<th>Inhalt</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="00-Allgemeines/">00 · Allgemeines</a></td>
-<td>Datenbank-Überblick, Kontor API Service, Authentifizierung, Namenskonventionen</td>
-</tr>
-<tr>
-<td><a href="10-Tabellen/">10 · Tabellen</a></td>
-<td>Ein Konzeptdokument je Tabelle der Kontor Datenbank</td>
-</tr>
-<tr>
-<td><a href="20-Views/">20 · Views</a></td>
-<td>Ein Konzeptdokument je View der Kontor Datenbank</td>
-</tr>
-<tr>
-<td><a href="90-Glossar/">90 · Glossar</a></td>
-<td>Begriffe und Abkürzungen rund um DB und API</td>
-</tr>
-</tbody>
-</table>
-<h1 id="einstieg">Einstieg</h1>
-<p><a href="00-Allgemeines/datenbank-ueberblick/">Datenbank-Überblick</a> erklärt, was aktuell
-dokumentiert ist. <a href="00-Allgemeines/kontor-api-service/">Kontor API Service</a> beschreibt
-den HTTP-Zugriff (REST + GraphQL).</p>
-<h1 id="dokumentierter-ausschnitt">Dokumentierter Ausschnitt</h1>
-<p>Vier über den Kontor API Service exponierte Tabellen mit <code>BUCH_UMSATZ</code> als
-zentralem Bewegungsdatensatz:</p>
-<pre><code>ARTIK ──&lt; BUCH_UMSATZ &gt;── KUNDE ──&lt; ADRESSEN
-                                  (Rgadrid, Lieferadrid)
-</code></pre>
-<p>Siehe <a href="10-Tabellen/ADRESSEN/">ADRESSEN</a>, <a href="10-Tabellen/ARTIK/">ARTIK</a>,
-<a href="10-Tabellen/BUCH_UMSATZ/">BUCH_UMSATZ</a>, <a href="10-Tabellen/KUNDE/">KUNDE</a>.</p>
-<h1 id="verwaltung">Verwaltung</h1>
+<p>Der <strong>Kontor API Service</strong> stellt lesenden und schreibenden Zugriff auf ausgewählte
+Objekte der <a href="../datenbank-ueberblick/">Kontor Datenbank</a> über HTTP bereit. Er ist auf
+Basis des Microsoft <strong>Data API Builder</strong> (DAB) umgesetzt.</p>
+<h1 id="schema">Schema</h1>
+<h2 id="registrierte-entitaten">Registrierte Entitäten</h2>
+<p>Welche Tabellen und Views durch den Service exponiert werden, steht in der
+DAB-Registry. Aktuell registriert sind vier Tabellen aus dem Schema <code>dbo</code>:
+<code>ADRESSEN</code>, <code>ARTIK</code>, <code>BUCH_UMSATZ</code>, <code>KUNDE</code>. Der aktuelle Stand liegt als Rohquelle
+unter <code>../../raw/dab_registry.md</code>.</p>
+<h2 id="zwei-schnittstellen-rest-und-graphql">Zwei Schnittstellen: REST und GraphQL</h2>
+<p>DAB bietet je Entität sowohl einen REST- als auch einen GraphQL-Endpunkt.
+Für die Praxis relevant:</p>
 <ul>
-<li><a href="log/">Log</a> — Chronologisches Änderungsprotokoll des Wikis</li>
-<li><a href="../struktur.md">struktur.md</a> — Verbindliche Zielstruktur</li>
-<li><a href="../CLAUDE.md">CLAUDE.md</a> — Konventionen und Workflows</li>
+<li><strong>REST</strong> liefert immer nur die Felder <em>einer</em> Entität. Beziehungen werden nicht
+  aufgelöst; verwandte Datensätze müssen in separaten Requests geholt werden.</li>
+<li><strong>GraphQL</strong> löst die in der Registry deklarierten Beziehungen auf. Wer z. B. Kunde
+  samt Rechnungsadresse in einer Abfrage braucht, muss GraphQL nutzen.</li>
+</ul>
+<h2 id="beziehungen-sind-registry-konfiguration-nicht-db-fremdschlussel">Beziehungen sind Registry-Konfiguration, nicht DB-Fremdschlüssel</h2>
+<p>Die Kardinalitäten (<code>one</code>/<code>many</code>) und Feld-Mappings stehen in der DAB-Registry. Ob es
+in der Datenbank selbst passende Fremdschlüssel-Constraints gibt, sagt die Registry
+nicht aus.</p>
+<h1 id="verwendung">Verwendung</h1>
+<p>Der Service ist die empfohlene Zugriffsschicht für alle Integrationen, die nicht
+direkt am SQL-Server hängen.</p>
+<h1 id="citations">Citations</h1>
+<ul>
+<li><code>../../raw/dab_registry.md</code></li>
+<li><a href="https://learn.microsoft.com/azure/data-api-builder/">Microsoft Data API Builder</a> — Herstellerdoku (extern)</li>
 </ul>
 
 
@@ -1065,15 +1162,31 @@ zentralem Bewegungsdatensatz:</p>
       
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
+          
+          <a href="../datenbank-ueberblick/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Datenbank-Überblick">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Datenbank-Überblick
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="log/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Log">
+          <a href="../../10-Tabellen/" class="md-footer__link md-footer__link--next" aria-label="Weiter: 10 · Tabellen">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                Log
+                10 · Tabellen
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1110,10 +1223,10 @@ zentralem Bewegungsdatensatz:</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
