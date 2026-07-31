@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Umsatzbuchungen — je Belegposition ein Datensatz mit Bezug auf Artikel, Kunde, Beleg und Bearbeiter.">
+        <meta name="description" content="Warengruppe Ebene 2 — Codetabelle für ARTIK.Wg2, mit Rückverweis auf Ebene 1.">
       
       
       
       
-        <link rel="prev" href="../ARTIK_WG2/">
+        <link rel="prev" href="../ARTIK_WG1/">
       
       
-        <link rel="next" href="../KUNDE/">
+        <link rel="next" href="../BUCH_UMSATZ/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>BUCH_UMSATZ - Kontor Datenbank Wiki</title>
+        <title>ARTIK_WG2 - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BUCH_UMSATZ
+              ARTIK_WG2
             
           </span>
         </div>
@@ -758,34 +758,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../ARTIK_WG2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ARTIK_WG2
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -805,7 +777,7 @@
   <span class="md-ellipsis">
     
   
-    BUCH_UMSATZ
+    ARTIK_WG2
   
 
     
@@ -815,6 +787,34 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUCH_UMSATZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BUCH_UMSATZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1152,12 +1152,12 @@
 
 
 
-<p>Tabelle <code>dbo.BUCH_UMSATZ</code> — Bewegungsdaten: eine Zeile je gebuchter Belegposition mit
-Bezug auf Artikel, Kunde, Beleg, Bearbeiter, Lager, Vertreter sowie Preis- und
-Rohertragsangaben.</p>
+<p>Tabelle <code>dbo.ARTIK_WG2</code> — Codetabelle für die <strong>Warengruppen Ebene 2</strong> des
+Artikelstamms. Ein Datensatz pro Warengruppencode; <code>RefWg1</code> verweist auf die
+zugehörige Warengruppe der Ebene 1.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>)</p>
+<p><strong>Primärschlüssel:</strong> <code>Wg2</code> (<code>nvarchar(15)</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1169,113 +1169,37 @@ Rohertragsangaben.</p>
 </thead>
 <tbody>
 <tr>
-<td>Id</td>
-<td>uniqueidentifier</td>
+<td>Wg2</td>
+<td>nvarchar(15)</td>
 <td>no</td>
-<td>technischer PK</td>
+<td>Warengruppencode Ebene 2, PK</td>
 </tr>
 <tr>
-<td>Belegid</td>
-<td>uniqueidentifier</td>
+<td>Bez</td>
+<td>nvarchar(200)</td>
 <td>yes</td>
-<td>Beleg-Klammer</td>
+<td>Bezeichnung</td>
 </tr>
 <tr>
-<td>Belegnr</td>
-<td>bigint</td>
-<td>yes</td>
-<td>Belegnummer</td>
-</tr>
-<tr>
-<td>Posguid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>Positions-GUID innerhalb des Belegs</td>
-</tr>
-<tr>
-<td>Datum</td>
-<td>datetime</td>
-<td>yes</td>
-<td>Buchungsdatum</td>
-</tr>
-<tr>
-<td>Auftrnr</td>
+<td>RefWg1</td>
 <td>nvarchar(15)</td>
 <td>yes</td>
-<td>zugehörige Auftragsnummer</td>
+<td>Verweist fachlich auf <a href="../ARTIK_WG1/">ARTIK_WG1</a>.<code>Wg1</code></td>
 </tr>
 <tr>
-<td>Bearbeiter</td>
-<td>nvarchar(3)</td>
+<td>Steuerung</td>
+<td>nvarchar(200)</td>
 <td>yes</td>
-<td>Kürzel des Bearbeiters</td>
-</tr>
-<tr>
-<td>Kundennr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>FK auf <a href="../KUNDE/">KUNDE</a></td>
-</tr>
-<tr>
-<td>Artnr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>FK auf <a href="../ARTIK/">ARTIK</a></td>
-</tr>
-<tr>
-<td>Lager</td>
-<td>bigint</td>
-<td>yes</td>
-<td>Lagernummer</td>
-</tr>
-<tr>
-<td>Gesamtpreis</td>
-<td>money</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Rohertrag</td>
-<td>money</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Vertreter</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Verweist fachlich auf <a href="../VERTR/">VERTR</a>.<code>Vertrnr</code> (nicht als DAB-Relation deklariert)</td>
+<td>Steuerparameter, Bedeutung ungeklärt</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Anmerkung:</strong> Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich über
-<code>Belegid</code> + <code>Posguid</code>; <code>Id</code> ist der technische Datensatzschlüssel.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Kardinalität</th>
-<th>Ziel</th>
-<th>Mapping</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BUCH_UMSATZ_ARTIK_Artnr</td>
-<td>one</td>
-<td><a href="../ARTIK/">ARTIK</a></td>
-<td><code>Artnr : Artnr</code></td>
-</tr>
-<tr>
-<td>BUCH_UMSATZ_KUNDE_Kundennr</td>
-<td>one</td>
-<td><a href="../KUNDE/">KUNDE</a></td>
-<td><code>Kundennr : Kundennr</code></td>
-</tr>
-</tbody>
-</table>
+<p>In der Registry sind an dieser Tabelle <strong>keine ausgehenden Beziehungen</strong> deklariert.
+Der Verweis über <code>RefWg1</code> auf <a href="../ARTIK_WG1/">ARTIK_WG1</a> ist fachlich vorhanden, aber
+nicht als DAB-Relation registriert.</p>
+<p><a href="../ARTIK/">ARTIK</a> verweist eingehend über <code>Wg2 : Wg2</code> hierher (Relation
+<code>ARTIK_ARTIK_WG2_Wg2</code>).</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
@@ -1318,7 +1242,7 @@ zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich üb
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ARTIK_WG2/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_WG2">
+          <a href="../ARTIK_WG1/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_WG1">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1328,20 +1252,20 @@ zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich üb
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ARTIK_WG2
+                ARTIK_WG1
               </div>
             </div>
           </a>
         
         
           
-          <a href="../KUNDE/" class="md-footer__link md-footer__link--next" aria-label="Weiter: KUNDE">
+          <a href="../BUCH_UMSATZ/" class="md-footer__link md-footer__link--next" aria-label="Weiter: BUCH_UMSATZ">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                KUNDE
+                BUCH_UMSATZ
               </div>
             </div>
             <div class="md-footer__button md-icon">
