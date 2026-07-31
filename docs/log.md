@@ -2,6 +2,31 @@
 
 Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
+## 2026-07-31
+
+**Update** — Registry-Nachtrag (Export 2026-07-31T07:05): `ARTIK` bekommt Feld
+`Katid nvarchar(50)` und die registrierte Relation `ARTIK_ARTIK_KATWERTE_Katid`
+(one → `ARTIK_KATWERTE` über `Katid : Katid`). Jeder Artikel ist damit genau
+einer Kategorie zugeordnet. Angepasst: `ARTIK.md` (neues Feld + Relation, Wegfall
+der „nicht deklariert"-Anmerkung), `ARTIK_KATWERTE.md` (Isoliert-Note entfernt,
+eingehender Verweis dokumentiert, Selbstreferenz `Katidparent` weiterhin nur
+fachlich), `datenbank-ueberblick.md` (Beziehungsgrafik ergänzt).
+
+**Update** — `raw/dab_registry.md` von 4 auf 10 Entitäten erweitert (Export 2026-07-31).
+
+Neue Konzeptseiten unter `10-Tabellen/`: `ARTIK_WG1.md`, `ARTIK_WG2.md`,
+`ARTIK_KATWERTE.md`, `KUNDE_GRP1.md`, `KUNDE_GRP2.md`, `VERTR.md`.
+
+Bestehende Seiten nachgezogen: `ARTIK.md` (neue Relationen zu `ARTIK_WG1`/`ARTIK_WG2`,
+Hinweis auf fehlende Verbindung zu `ARTIK_KATWERTE`), `KUNDE.md` (neues Feld
+`Vertrnr`, drei neue Relationen zu `VERTR`/`KUNDE_GRP1`/`KUNDE_GRP2`),
+`BUCH_UMSATZ.md` (Anmerkung, dass `Vertreter` fachlich auf `VERTR` zeigt, aber keine
+DAB-Relation ist).
+
+Übersichtsseiten aktualisiert: `wiki/index.md`, `00-Allgemeines/datenbank-ueberblick.md`
+(neue Beziehungsgrafik, Trennung Kern- vs. Codetabellen), `00-Allgemeines/kontor-api-service.md`
+(Registry-Aufzählung erweitert), `10-Tabellen/index.md` (zweigeteilte Übersicht).
+
 ## 2026-07-30
 
 **Creation** — Erste Quelle `raw/dab_registry.md` eingelesen (DAB-Registry-Export,

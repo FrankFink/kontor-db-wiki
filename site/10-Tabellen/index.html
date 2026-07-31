@@ -713,6 +713,90 @@
   
   
     <li class="md-nav__item">
+      <a href="ARTIK_KATWERTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_KATWERTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ARTIK_WG1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ARTIK_WG2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="BUCH_UMSATZ/" class="md-nav__link">
         
   
@@ -749,6 +833,90 @@
     
   
     KUNDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="KUNDE_GRP1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="KUNDE_GRP2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="VERTR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VERTR
   
 
     
@@ -985,7 +1153,7 @@
 <h1 id="10-tabellen">10 · Tabellen</h1>
 <p>Ein Konzeptdokument je Tabelle der Kontor Datenbank. Bis sich Muster zeigen, liegen
 die Seiten flach in diesem Ordner.</p>
-<h1 id="seiten">Seiten</h1>
+<h1 id="kernentitaten">Kernentitäten</h1>
 <table>
 <thead>
 <tr>
@@ -1017,8 +1185,51 @@ die Seiten flach in diesem Ordner.</p>
 </tr>
 </tbody>
 </table>
-<p>Alle vier Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
-exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>).</p>
+<h1 id="codetabellen-und-klassifikationen">Codetabellen und Klassifikationen</h1>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+<th>PK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ARTIK_WG1/">ARTIK_WG1</a></td>
+<td>Warengruppe Ebene 1 (Lookup für <code>ARTIK.Wg1</code>)</td>
+<td><code>Wg1</code></td>
+</tr>
+<tr>
+<td><a href="ARTIK_WG2/">ARTIK_WG2</a></td>
+<td>Warengruppe Ebene 2 (Lookup für <code>ARTIK.Wg2</code>, mit <code>RefWg1</code>)</td>
+<td><code>Wg2</code></td>
+</tr>
+<tr>
+<td><a href="ARTIK_KATWERTE/">ARTIK_KATWERTE</a></td>
+<td>Hierarchische Kategoriewerte (Katalog/Shop)</td>
+<td><code>Katid</code></td>
+</tr>
+<tr>
+<td><a href="KUNDE_GRP1/">KUNDE_GRP1</a></td>
+<td>Kundengruppe Ebene 1 (Lookup für <code>KUNDE.Grp1</code>)</td>
+<td><code>Grp1</code></td>
+</tr>
+<tr>
+<td><a href="KUNDE_GRP2/">KUNDE_GRP2</a></td>
+<td>Kundengruppe Ebene 2 (Lookup für <code>KUNDE.Grp2</code>, kein <code>RefGrp1</code>)</td>
+<td><code>Grp2</code></td>
+</tr>
+<tr>
+<td><a href="VERTR/">VERTR</a></td>
+<td>Vertreterstamm</td>
+<td><code>Vertrnr</code></td>
+</tr>
+</tbody>
+</table>
+<p>Alle Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
+exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-07-31,
+10 Entitäten).</p>
 
 
 

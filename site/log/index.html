@@ -450,6 +450,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-07-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-07-30" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -769,6 +780,90 @@
   
   
     <li class="md-nav__item">
+      <a href="../10-Tabellen/ARTIK_KATWERTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_KATWERTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/ARTIK_WG1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/ARTIK_WG2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../10-Tabellen/BUCH_UMSATZ/" class="md-nav__link">
         
   
@@ -805,6 +900,90 @@
     
   
     KUNDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/KUNDE_GRP1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/KUNDE_GRP2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/VERTR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VERTR
   
 
     
@@ -1030,6 +1209,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-07-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-07-30" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1070,6 +1260,25 @@
 
 <h1 id="log">Log</h1>
 <p>Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.</p>
+<h2 id="2026-07-31">2026-07-31</h2>
+<p><strong>Update</strong> — Registry-Nachtrag (Export 2026-07-31T07:05): <code>ARTIK</code> bekommt Feld
+<code>Katid nvarchar(50)</code> und die registrierte Relation <code>ARTIK_ARTIK_KATWERTE_Katid</code>
+(one → <code>ARTIK_KATWERTE</code> über <code>Katid : Katid</code>). Jeder Artikel ist damit genau
+einer Kategorie zugeordnet. Angepasst: <code>ARTIK.md</code> (neues Feld + Relation, Wegfall
+der „nicht deklariert"-Anmerkung), <code>ARTIK_KATWERTE.md</code> (Isoliert-Note entfernt,
+eingehender Verweis dokumentiert, Selbstreferenz <code>Katidparent</code> weiterhin nur
+fachlich), <code>datenbank-ueberblick.md</code> (Beziehungsgrafik ergänzt).</p>
+<p><strong>Update</strong> — <code>raw/dab_registry.md</code> von 4 auf 10 Entitäten erweitert (Export 2026-07-31).</p>
+<p>Neue Konzeptseiten unter <code>10-Tabellen/</code>: <code>ARTIK_WG1.md</code>, <code>ARTIK_WG2.md</code>,
+<code>ARTIK_KATWERTE.md</code>, <code>KUNDE_GRP1.md</code>, <code>KUNDE_GRP2.md</code>, <code>VERTR.md</code>.</p>
+<p>Bestehende Seiten nachgezogen: <code>ARTIK.md</code> (neue Relationen zu <code>ARTIK_WG1</code>/<code>ARTIK_WG2</code>,
+Hinweis auf fehlende Verbindung zu <code>ARTIK_KATWERTE</code>), <code>KUNDE.md</code> (neues Feld
+<code>Vertrnr</code>, drei neue Relationen zu <code>VERTR</code>/<code>KUNDE_GRP1</code>/<code>KUNDE_GRP2</code>),
+<code>BUCH_UMSATZ.md</code> (Anmerkung, dass <code>Vertreter</code> fachlich auf <code>VERTR</code> zeigt, aber keine
+DAB-Relation ist).</p>
+<p>Übersichtsseiten aktualisiert: <code>wiki/index.md</code>, <code>00-Allgemeines/datenbank-ueberblick.md</code>
+(neue Beziehungsgrafik, Trennung Kern- vs. Codetabellen), <code>00-Allgemeines/kontor-api-service.md</code>
+(Registry-Aufzählung erweitert), <code>10-Tabellen/index.md</code> (zweigeteilte Übersicht).</p>
 <h2 id="2026-07-30">2026-07-30</h2>
 <p><strong>Creation</strong> — Erste Quelle <code>raw/dab_registry.md</code> eingelesen (DAB-Registry-Export,
 Stand 2026-07-30). Neue Konzeptseiten:

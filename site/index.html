@@ -708,6 +708,90 @@
   
   
     <li class="md-nav__item">
+      <a href="10-Tabellen/ARTIK_KATWERTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_KATWERTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Tabellen/ARTIK_WG1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Tabellen/ARTIK_WG2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARTIK_WG2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="10-Tabellen/BUCH_UMSATZ/" class="md-nav__link">
         
   
@@ -744,6 +828,90 @@
     
   
     KUNDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Tabellen/KUNDE_GRP1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Tabellen/KUNDE_GRP2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Tabellen/VERTR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VERTR
   
 
     
@@ -1015,13 +1183,14 @@ Entwickler- und Integrationssicht: Tabellen, Views und der Zugriff über den
 dokumentiert ist. <a href="00-Allgemeines/kontor-api-service/">Kontor API Service</a> beschreibt
 den HTTP-Zugriff (REST + GraphQL).</p>
 <h1 id="dokumentierter-ausschnitt">Dokumentierter Ausschnitt</h1>
-<p>Vier über den Kontor API Service exponierte Tabellen mit <code>BUCH_UMSATZ</code> als
-zentralem Bewegungsdatensatz:</p>
-<pre><code>ARTIK ──&lt; BUCH_UMSATZ &gt;── KUNDE ──&lt; ADRESSEN
-                                  (Rgadrid, Lieferadrid)
-</code></pre>
-<p>Siehe <a href="10-Tabellen/ADRESSEN/">ADRESSEN</a>, <a href="10-Tabellen/ARTIK/">ARTIK</a>,
-<a href="10-Tabellen/BUCH_UMSATZ/">BUCH_UMSATZ</a>, <a href="10-Tabellen/KUNDE/">KUNDE</a>.</p>
+<p>Zehn über den Kontor API Service exponierte Tabellen: vier Kernentitäten mit
+<code>BUCH_UMSATZ</code> als zentralem Bewegungsdatensatz sowie sechs Codetabellen für
+Warengruppen, Kategorien, Kundengruppen und Vertreter.</p>
+<ul>
+<li>Kernentitäten: <a href="10-Tabellen/ADRESSEN/">ADRESSEN</a> · <a href="10-Tabellen/ARTIK/">ARTIK</a> · <a href="10-Tabellen/BUCH_UMSATZ/">BUCH_UMSATZ</a> · <a href="10-Tabellen/KUNDE/">KUNDE</a></li>
+<li>Codetabellen: <a href="10-Tabellen/ARTIK_WG1/">ARTIK_WG1</a> · <a href="10-Tabellen/ARTIK_WG2/">ARTIK_WG2</a> · <a href="10-Tabellen/ARTIK_KATWERTE/">ARTIK_KATWERTE</a> · <a href="10-Tabellen/KUNDE_GRP1/">KUNDE_GRP1</a> · <a href="10-Tabellen/KUNDE_GRP2/">KUNDE_GRP2</a> · <a href="10-Tabellen/VERTR/">VERTR</a></li>
+</ul>
+<p>Beziehungsgrafik siehe <a href="00-Allgemeines/datenbank-ueberblick/">Datenbank-Überblick</a>.</p>
 <h1 id="verwaltung">Verwaltung</h1>
 <ul>
 <li><a href="log/">Log</a> — Chronologisches Änderungsprotokoll des Wikis</li>

@@ -30,7 +30,7 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Lager | bigint | yes | Lagernummer |
 | Gesamtpreis | money | yes | |
 | Rohertrag | money | yes | |
-| Vertreter | nvarchar(15) | yes | Kürzel des Vertreters |
+| Vertreter | nvarchar(15) | yes | Verweist fachlich auf [VERTR](<VERTR.md>).`Vertrnr` (nicht als DAB-Relation deklariert) |
 
 **Anmerkung:** Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
 zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich über

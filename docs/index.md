@@ -28,16 +28,14 @@ den HTTP-Zugriff (REST + GraphQL).
 
 # Dokumentierter Ausschnitt
 
-Vier über den Kontor API Service exponierte Tabellen mit `BUCH_UMSATZ` als
-zentralem Bewegungsdatensatz:
+Zehn über den Kontor API Service exponierte Tabellen: vier Kernentitäten mit
+`BUCH_UMSATZ` als zentralem Bewegungsdatensatz sowie sechs Codetabellen für
+Warengruppen, Kategorien, Kundengruppen und Vertreter.
 
-```
-ARTIK ──< BUCH_UMSATZ >── KUNDE ──< ADRESSEN
-                                  (Rgadrid, Lieferadrid)
-```
+- Kernentitäten: [ADRESSEN](<10-Tabellen/ADRESSEN.md>) · [ARTIK](<10-Tabellen/ARTIK.md>) · [BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>) · [KUNDE](<10-Tabellen/KUNDE.md>)
+- Codetabellen: [ARTIK_WG1](<10-Tabellen/ARTIK_WG1.md>) · [ARTIK_WG2](<10-Tabellen/ARTIK_WG2.md>) · [ARTIK_KATWERTE](<10-Tabellen/ARTIK_KATWERTE.md>) · [KUNDE_GRP1](<10-Tabellen/KUNDE_GRP1.md>) · [KUNDE_GRP2](<10-Tabellen/KUNDE_GRP2.md>) · [VERTR](<10-Tabellen/VERTR.md>)
 
-Siehe [ADRESSEN](<10-Tabellen/ADRESSEN.md>), [ARTIK](<10-Tabellen/ARTIK.md>),
-[BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>), [KUNDE](<10-Tabellen/KUNDE.md>).
+Beziehungsgrafik siehe [Datenbank-Überblick](<00-Allgemeines/datenbank-ueberblick.md>).
 
 # Verwaltung
 

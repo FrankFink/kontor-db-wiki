@@ -39,6 +39,7 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Herstellerartnr | nvarchar(50) | yes | Herstellerartikelnummer |
 | Pzn | nvarchar(50) | yes | Pharmazentralnummer |
 | HerstellerId | nvarchar(15) | yes | Hersteller-ID (Verweis vermutlich in eigene Herstellertabelle) |
+| Katid | nvarchar(50) | yes | FK auf [ARTIK_KATWERTE](<ARTIK_KATWERTE.md>).`Katid` — zugeordnete Kategorie |
 
 **Anmerkung:** Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
 zu bestätigen.
@@ -48,6 +49,11 @@ zu bestätigen.
 | Name | Kardinalität | Ziel | Mapping |
 |------|--------------|------|---------|
 | ARTIK_BUCH_UMSATZ_Artnr | many | [BUCH_UMSATZ](<BUCH_UMSATZ.md>) | `Artnr : Artnr` |
+| ARTIK_ARTIK_WG1_Wg1 | one | [ARTIK_WG1](<ARTIK_WG1.md>) | `Wg1 : Wg1` |
+| ARTIK_ARTIK_WG2_Wg2 | one | [ARTIK_WG2](<ARTIK_WG2.md>) | `Wg2 : Wg2` |
+| ARTIK_ARTIK_KATWERTE_Katid | one | [ARTIK_KATWERTE](<ARTIK_KATWERTE.md>) | `Katid : Katid` |
+
+Jeder Artikel ist damit direkt genau **einer** Kategorie zugeordnet (`Katid` in `ARTIK`).
 
 # Citations
 
