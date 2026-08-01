@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Artikelstamm — je Artikelnummer ein Datensatz mit Bezeichnungen, Preisen, Lieferantenbezug und Klassifikationen.">
+        <meta name="description" content="Vorlagen für (vermutlich KI-gestützte) Prompts im CRM, je Profil zuordenbar.">
       
       
       
       
-        <link rel="prev" href="../ADRESSEN/">
+        <link rel="prev" href="../CRM_LEAD_CONFIG/">
       
       
-        <link rel="next" href="../ARTIK_KATWERTE/">
+        <link rel="next" href="../KUNDE/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>ARTIK - Kontor Datenbank Wiki</title>
+        <title>CRM_PROMPT_TEMPLATE - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ARTIK
+              CRM_PROMPT_TEMPLATE
             
           </span>
         </div>
@@ -674,19 +674,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ARTIK/" class="md-nav__link">
         
   
   
@@ -702,7 +693,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -908,10 +898,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../CRM_PROMPT_TEMPLATE/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -927,6 +926,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1292,11 +1292,12 @@
 
 
 
-<p>Tabelle <code>dbo.ARTIK</code> — Artikelstamm der Kontor Datenbank. Ein Datensatz pro
-Artikelnummer.</p>
+<p>Tabelle <code>dbo.CRM_PROMPT_TEMPLATE</code> — Prompt-Vorlagen, benannt und je Profil
+zuordenbar. Der Name und das Zusammenspiel mit <a href="../CRM_LEAD/">CRM_LEAD</a>.<code>Kurzprofil</code>
+deuten auf eine KI-gestützte Aufbereitung von Lead-Daten hin.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Artnr</code> (<code>nvarchar(15)</code>)</p>
+<p><strong>Primärschlüssel:</strong> <code>Name</code> (<code>nvarchar(50)</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1308,185 +1309,29 @@ Artikelnummer.</p>
 </thead>
 <tbody>
 <tr>
-<td>Artnr</td>
-<td>nvarchar(15)</td>
+<td>Name</td>
+<td>nvarchar(50)</td>
 <td>no</td>
-<td>interne Artikelnummer, PK</td>
+<td>PK</td>
 </tr>
 <tr>
-<td>Suchbegriff</td>
-<td>nvarchar(30)</td>
-<td>yes</td>
-<td>Kurzsuchbegriff</td>
-</tr>
-<tr>
-<td>Wg1</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Warengruppe (Ebene 1)</td>
-</tr>
-<tr>
-<td>Wg2</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Warengruppe (Ebene 2)</td>
-</tr>
-<tr>
-<td>Bez1</td>
+<td>Beschreibung</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
-<td>Bezeichnung 1</td>
-</tr>
-<tr>
-<td>Bez2</td>
-<td>nvarchar(500)</td>
-<td>yes</td>
-<td>Bezeichnung 2 (lang)</td>
-</tr>
-<tr>
-<td>Ek</td>
-<td>money</td>
-<td>yes</td>
-<td>Einkaufspreis</td>
-</tr>
-<tr>
-<td>Vk1</td>
-<td>money</td>
-<td>yes</td>
-<td>Verkaufspreis 1</td>
-</tr>
-<tr>
-<td>Vk2</td>
-<td>money</td>
-<td>yes</td>
-<td>Verkaufspreis 2</td>
-</tr>
-<tr>
-<td>Vk3</td>
-<td>money</td>
-<td>yes</td>
-<td>Verkaufspreis 3</td>
-</tr>
-<tr>
-<td>Liefnr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Lieferantennummer</td>
-</tr>
-<tr>
-<td>Bestellnr</td>
-<td>nvarchar(50)</td>
-<td>yes</td>
-<td>Bestellnummer beim Lieferanten</td>
-</tr>
-<tr>
-<td>Mindestbestand</td>
-<td>bigint</td>
-<td>yes</td>
 <td></td>
 </tr>
 <tr>
-<td>Preiseinheit</td>
-<td>int</td>
+<td>Profile</td>
+<td>nvarchar</td>
 <td>yes</td>
-<td>Bezugsmenge zum Preis</td>
-</tr>
-<tr>
-<td>Lagerplatz</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Artean</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>EAN/GTIN</td>
-</tr>
-<tr>
-<td>Artzentralnr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Zentralartikelnummer</td>
-</tr>
-<tr>
-<td>Webshop</td>
-<td>bit</td>
-<td>yes</td>
-<td>Freigabe für Webshop</td>
-</tr>
-<tr>
-<td>Rabgr</td>
-<td>nvarchar(5)</td>
-<td>yes</td>
-<td>Rabattgruppe</td>
-</tr>
-<tr>
-<td>Herstellerartnr</td>
-<td>nvarchar(50)</td>
-<td>yes</td>
-<td>Herstellerartikelnummer</td>
-</tr>
-<tr>
-<td>Pzn</td>
-<td>nvarchar(50)</td>
-<td>yes</td>
-<td>Pharmazentralnummer</td>
-</tr>
-<tr>
-<td>HerstellerId</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>Hersteller-ID (Verweis vermutlich in eigene Herstellertabelle)</td>
-</tr>
-<tr>
-<td>Katid</td>
-<td>nvarchar(50)</td>
-<td>yes</td>
-<td>FK auf <a href="../ARTIK_KATWERTE/">ARTIK_KATWERTE</a>.<code>Katid</code> — zugeordnete Kategorie</td>
+<td>Vermutlich Verweis auf <a href="../CRM_LEAD_CONFIG/">CRM_LEAD_CONFIG</a>.<code>Profile</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Anmerkung:</strong> Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen.</p>
+<p><strong>Ungeklärt:</strong> ob und wo der eigentliche Prompt-Text gespeichert ist — die Tabelle
+enthält nur Name, Beschreibung und Profilzuordnung.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Kardinalität</th>
-<th>Ziel</th>
-<th>Mapping</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ARTIK_BUCH_UMSATZ_Artnr</td>
-<td>many</td>
-<td><a href="../BUCH_UMSATZ/">BUCH_UMSATZ</a></td>
-<td><code>Artnr : Artnr</code></td>
-</tr>
-<tr>
-<td>ARTIK_ARTIK_WG1_Wg1</td>
-<td>one</td>
-<td><a href="../ARTIK_WG1/">ARTIK_WG1</a></td>
-<td><code>Wg1 : Wg1</code></td>
-</tr>
-<tr>
-<td>ARTIK_ARTIK_WG2_Wg2</td>
-<td>one</td>
-<td><a href="../ARTIK_WG2/">ARTIK_WG2</a></td>
-<td><code>Wg2 : Wg2</code></td>
-</tr>
-<tr>
-<td>ARTIK_ARTIK_KATWERTE_Katid</td>
-<td>one</td>
-<td><a href="../ARTIK_KATWERTE/">ARTIK_KATWERTE</a></td>
-<td><code>Katid : Katid</code></td>
-</tr>
-</tbody>
-</table>
-<p>Jeder Artikel ist damit direkt genau <strong>einer</strong> Kategorie zugeordnet (<code>Katid</code> in <code>ARTIK</code>).</p>
+<p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
@@ -1529,7 +1374,7 @@ zu bestätigen.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ADRESSEN/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ADRESSEN">
+          <a href="../CRM_LEAD_CONFIG/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: CRM_LEAD_CONFIG">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1539,20 +1384,20 @@ zu bestätigen.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ADRESSEN
+                CRM_LEAD_CONFIG
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ARTIK_KATWERTE/" class="md-footer__link md-footer__link--next" aria-label="Weiter: ARTIK_KATWERTE">
+          <a href="../KUNDE/" class="md-footer__link md-footer__link--next" aria-label="Weiter: KUNDE">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                ARTIK_KATWERTE
+                KUNDE
               </div>
             </div>
             <div class="md-footer__button md-icon">

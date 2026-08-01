@@ -585,6 +585,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#crm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CRM
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +897,118 @@
   
   
     <li class="md-nav__item">
+      <a href="../../10-Tabellen/CRM_ACTIVITIES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_ACTIVITIES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/CRM_LEAD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/CRM_LEAD_CONFIG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD_CONFIG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/CRM_PROMPT_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_PROMPT_TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../10-Tabellen/KUNDE/" class="md-nav__link">
         
   
@@ -950,6 +1073,34 @@
     
   
     KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/PROJEKT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROJEKT
   
 
     
@@ -1224,6 +1375,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#crm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CRM
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1245,7 +1407,7 @@
 (codegarden software GmbH). Sie liegt im Standard-Schema <code>dbo</code> einer
 SQL-Server-Instanz.</p>
 <h1 id="aktueller-wiki-ausschnitt">Aktueller Wiki-Ausschnitt</h1>
-<p>Dokumentiert sind bislang zehn Tabellen, die über den
+<p>Dokumentiert sind bislang 15 Tabellen, die über den
 <a href="../kontor-api-service/">Kontor API Service</a> freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.</p>
@@ -1273,6 +1435,10 @@ sobald Quellen dazu vorliegen.</p>
 <tr>
 <td><a href="../../10-Tabellen/KUNDE/">KUNDE</a></td>
 <td>Kundenstamm</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/PROJEKT/">PROJEKT</a></td>
+<td>Projektstamm mit Kundenbezug</td>
 </tr>
 </tbody>
 </table>
@@ -1303,6 +1469,36 @@ sobald Quellen dazu vorliegen.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="crm">CRM</h2>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../10-Tabellen/CRM_LEAD/">CRM_LEAD</a></td>
+<td>Lead-/Interessentendatensatz</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/CRM_ACTIVITIES/">CRM_ACTIVITIES</a></td>
+<td>Aktivitäten-/Verlaufsprotokoll, polymorph verknüpft</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/CRM_LEAD_CONFIG/">CRM_LEAD_CONFIG</a></td>
+<td>Konfigurationsprofile für Lead-Verarbeitung</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/CRM_PROMPT_TEMPLATE/">CRM_PROMPT_TEMPLATE</a></td>
+<td>Prompt-Vorlagen je Profil</td>
+</tr>
+</tbody>
+</table>
+<p>Der CRM-Bereich ist neu und schließt fachlich nicht an die übrigen Tabellen an — in
+der Registry sind keine Beziehungen dorthin deklariert, weder zu <code>ADRESSEN</code>/<code>KUNDE</code>
+noch untereinander.</p>
 <h1 id="beziehungen-im-dokumentierten-ausschnitt">Beziehungen im dokumentierten Ausschnitt</h1>
 <p><code>BUCH_UMSATZ</code> liegt im Zentrum der Bewegungsdaten und verweist auf <code>ARTIK</code> und
 <code>KUNDE</code>. <code>KUNDE</code> verweist seinerseits auf zwei Adressen in <code>ADRESSEN</code>
@@ -1322,10 +1518,15 @@ sobald Quellen dazu vorliegen.</p>
                                   └──▶ KUNDE_GRP2
 </code></pre>
 <p><code>BUCH_UMSATZ.Vertreter</code> verweist fachlich auf <code>VERTR</code>, ist aber nicht als DAB-Relation
-registriert.</p>
+registriert. <code>PROJEKT.Kundennr</code> verweist vermutlich auf <code>KUNDE</code>, ebenfalls ohne
+registrierte Relation; <code>PROJEKT.Rgadrid</code>/<code>Lieferadrid</code> sind auffällig als <code>bigint</code>
+typisiert statt <code>uniqueidentifier</code> wie in <code>ADRESSEN</code>/<code>KUNDE</code> (siehe <a href="../../10-Tabellen/PROJEKT/">PROJEKT</a>).</p>
+<p>Der CRM-Bereich (<code>CRM_LEAD</code>, <code>CRM_ACTIVITIES</code>, <code>CRM_LEAD_CONFIG</code>,
+<code>CRM_PROMPT_TEMPLATE</code>) steht separat und ohne registrierte Verbindung zum übrigen
+Schema.</p>
 <h1 id="citations">Citations</h1>
 <ul>
-<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-07-31 (10 Entitäten)</li>
+<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-01 (15 Entitäten)</li>
 </ul>
 
 
