@@ -2,6 +2,19 @@
 
 Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
+## 2026-08-01
+
+**Update** — Zwei neue Rohquellen verarbeitet: `raw/dab_registry.md` (Export
+2026-08-01T07:14, `ADRESSEN` von 21 auf 26 Felder erweitert um `Isansprechpartner`,
+`Firmenadressid`, `Hauptansprechpartner`, `Entscheider`, `Aktiv`) sowie
+`raw/# Aufbau und Zuordnung von Adressen.md` (Fachtext zur Adresszuordnung).
+
+`ADRESSEN.md` grundlegend überarbeitet: Schema um die fünf neuen Felder ergänzt,
+neuer Abschnitt „Aufbau und Zuordnung von Adressen" (Firmenadressid als
+vorrangiges Gruppierungskriterium vor `Kdliefnr`, Ansprechpartner-Kennzeichnung,
+Aktiv-Flag). `datenbank-ueberblick.md` und `10-Tabellen/index.md`
+(Kurzbeschreibung) nachgezogen.
+
 ## 2026-07-31
 
 **Update** — Registry-Nachtrag (Export 2026-07-31T07:05): `ARTIK` bekommt Feld

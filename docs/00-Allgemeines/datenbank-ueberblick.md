@@ -21,7 +21,7 @@ sobald Quellen dazu vorliegen.
 
 | Tabelle | Zweck (Kurz) |
 |---------|--------------|
-| [ADRESSEN](../10-Tabellen/ADRESSEN.md) | Adressdatensätze (Rechnungs- und Lieferadressen) |
+| [ADRESSEN](../10-Tabellen/ADRESSEN.md) | Adressdatensätze (Rechnungs-, Liefer-, Ansprechpartner), gruppiert über `Firmenadressid` |
 | [ARTIK](../10-Tabellen/ARTIK.md) | Artikelstamm |
 | [BUCH_UMSATZ](../10-Tabellen/BUCH_UMSATZ.md) | Umsatzbuchungen je Belegposition |
 | [KUNDE](../10-Tabellen/KUNDE.md) | Kundenstamm |

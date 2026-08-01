@@ -7,7 +7,7 @@ die Seiten flach in diesem Ordner.
 
 | Tabelle | Zweck (Kurz) | PK |
 |---------|--------------|----|
-| [ADRESSEN](<ADRESSEN.md>) | Adressdatensätze (Rechnungs-, Liefer- und weitere Adressen) | `Id` |
+| [ADRESSEN](<ADRESSEN.md>) | Adressdatensätze (Rechnungs-, Liefer-, Ansprechpartner), gruppiert über `Firmenadressid` | `Id` |
 | [ARTIK](<ARTIK.md>) | Artikelstamm | `Artnr` |
 | [BUCH_UMSATZ](<BUCH_UMSATZ.md>) | Umsatzbuchungen je Belegposition | `Id` |
 | [KUNDE](<KUNDE.md>) | Kundenstamm | `Kundennr` |
