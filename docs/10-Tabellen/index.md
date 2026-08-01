@@ -39,6 +39,12 @@ nicht untereinander. Die naheliegenden Verweise (`CRM_LEAD.Adressid/Ansprechid` 
 `CRM_PROMPT_TEMPLATE.Profile` → `CRM_LEAD_CONFIG.Profile`) sind fachliche Vermutungen,
 siehe die jeweiligen Seiten.
 
+# Notizen
+
+| Tabelle | Zweck (Kurz) | PK |
+|---------|--------------|----|
+| [KONTAKTE](<KONTAKTE.md>) | Zentrale Notizsammlung, polymorph über `Src`/`Srcvalue` verknüpft | `Id` |
+
 Alle Tabellen sind über den [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>)
 exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-01,
-15 Entitäten).
+16 Entitäten).

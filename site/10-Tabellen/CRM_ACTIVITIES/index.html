@@ -939,6 +939,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../KONTAKTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KONTAKTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../KUNDE/" class="md-nav__link">
         
   
@@ -1414,6 +1442,9 @@ Notizen) als Zeitverlauf. Die Verknüpfung zum Bezugsobjekt läuft polymorph üb
 </table>
 <p><strong>Ungeklärt:</strong> konkrete Werte von <code>ParentType</code> und die dadurch adressierten Zieltabellen
 (Kandidat: <code>CRM_LEAD</code>); genaue Bedeutung von <code>ResourceId</code>.</p>
+<p>Das gleiche Verknüpfungsmuster (Diskriminator + Fremdschlüssel-Wert statt fester FK)
+verwendet auch <a href="../KONTAKTE/">KONTAKTE</a> (<code>Src</code>/<code>Srcvalue</code>) — dort allerdings ohne
+Registry-Eintrag. Ob beide Tabellen zusammenhängen, ist ungeklärt.</p>
 <h1 id="beziehungen">Beziehungen</h1>
 <p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert — weder die
 polymorphe Verknüpfung über <code>ParentType</code>/<code>ParentId</code> noch <code>ContactId</code>/<code>AccountId</code>.</p>

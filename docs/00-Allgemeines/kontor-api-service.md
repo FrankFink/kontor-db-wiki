@@ -15,11 +15,11 @@ Basis des Microsoft **Data API Builder** (DAB) umgesetzt.
 ## Registrierte Entitäten
 
 Welche Tabellen und Views durch den Service exponiert werden, steht in der
-DAB-Registry. Aktuell registriert sind 15 Tabellen aus dem Schema `dbo`:
+DAB-Registry. Aktuell registriert sind 16 Tabellen aus dem Schema `dbo`:
 Kernentitäten (`ADRESSEN`, `ARTIK`, `BUCH_UMSATZ`, `KUNDE`, `PROJEKT`), Codetabellen
-(`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`, `KUNDE_GRP2`, `VERTR`)
-und ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
-`CRM_PROMPT_TEMPLATE`). Der aktuelle Stand liegt als Rohquelle unter
+(`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`, `KUNDE_GRP2`, `VERTR`),
+ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
+`CRM_PROMPT_TEMPLATE`) und `KONTAKTE`. Der aktuelle Stand liegt als Rohquelle unter
 `../../raw/dab_registry.md`.
 
 ## Zwei Schnittstellen: REST und GraphQL

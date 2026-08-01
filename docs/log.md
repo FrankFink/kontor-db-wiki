@@ -4,6 +4,23 @@ Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
 ## 2026-08-01
 
+**Creation** — Neue Rohquelle `raw/Informationen_Tabelle_Kontakte.md` (Fachtext zu
+`KONTAKTE`) verarbeitet, zunächst als nicht in der Registry vorhandene Tabelle
+dokumentiert (Seite `10-Tabellen/KONTAKTE.md`, ohne „Registriert im Kontor API
+Service").
+
+**Update** — Kurz darauf `raw/dab_registry.md` erneut aktualisiert (Export
+2026-08-01T14:56, 15 → 16 Entitäten): `KONTAKTE` ist doch registriert, mit
+vollständigem Schema (`Id`, `Betreff`, `Erfasser`, `Datum`, `Bemerkungen`, `Src`,
+`Srcvalue`, PK `Id`). `KONTAKTE.md` entsprechend korrigiert — Schema ergänzt,
+„nicht registriert"-Hinweis entfernt. `10-Tabellen/index.md`,
+`datenbank-ueberblick.md`, `kontor-api-service.md` und `wiki/index.md` von einer
+zwischenzeitlichen „außerhalb des API Service"-Kategorie auf reguläre Einordnung
+unter „Notizen" korrigiert; Entitätenzahl durchgängig auf 16 aktualisiert.
+`CRM_ACTIVITIES.md` verweist auf `KONTAKTE` als strukturell ähnliches
+Diskriminator-Muster (`ParentType`/`ParentId` vs. `Src`/`Srcvalue`); keine
+Beziehung zwischen beiden ist registriert oder anderweitig belegt.
+
 **Update** — `raw/dab_registry.md` von 10 auf 15 Entitäten erweitert (Export
 2026-08-01T09:08). Fünf neue Tabellen in zwei neuen Bereichen: CRM (`CRM_LEAD`,
 `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`, `CRM_PROMPT_TEMPLATE`) und `PROJEKT`. Keine

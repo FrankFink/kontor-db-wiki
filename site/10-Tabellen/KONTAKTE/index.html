@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Umsatzbuchungen — je Belegposition ein Datensatz mit Bezug auf Artikel, Kunde, Beleg und Bearbeiter.">
+        <meta name="description" content="Zentrale Notizsammlung (z. B. Telefongesprächsnotizen), polymorph über Src/Srcvalue mit beliebigen Objekten verknüpft.">
       
       
       
       
-        <link rel="prev" href="../ARTIK_WG2/">
+        <link rel="prev" href="../CRM_PROMPT_TEMPLATE/">
       
       
-        <link rel="next" href="../CRM_ACTIVITIES/">
+        <link rel="next" href="../KUNDE/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>BUCH_UMSATZ - Kontor Datenbank Wiki</title>
+        <title>KONTAKTE - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BUCH_UMSATZ
+              KONTAKTE
             
           </span>
         </div>
@@ -786,19 +786,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../BUCH_UMSATZ/" class="md-nav__link">
         
   
   
@@ -814,7 +805,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -936,10 +926,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../KONTAKTE/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -955,6 +954,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1320,9 +1320,8 @@
 
 
 
-<p>Tabelle <code>dbo.BUCH_UMSATZ</code> — Bewegungsdaten: eine Zeile je gebuchter Belegposition mit
-Bezug auf Artikel, Kunde, Beleg, Bearbeiter, Lager, Vertreter sowie Preis- und
-Rohertragsangaben.</p>
+<p>Tabelle <code>dbo.KONTAKTE</code> — zentrale Sammlung von Notizen (z. B. Telefongesprächsnotizen).
+Einträge können sich auf unterschiedliche Objekte und Module in Kontor.MED beziehen.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
 <p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>)</p>
@@ -1340,113 +1339,65 @@ Rohertragsangaben.</p>
 <td>Id</td>
 <td>uniqueidentifier</td>
 <td>no</td>
-<td>technischer PK</td>
+<td>PK</td>
 </tr>
 <tr>
-<td>Belegid</td>
-<td>uniqueidentifier</td>
+<td>Betreff</td>
+<td>nvarchar(500)</td>
 <td>yes</td>
-<td>Beleg-Klammer</td>
+<td></td>
 </tr>
 <tr>
-<td>Belegnr</td>
-<td>bigint</td>
+<td>Erfasser</td>
+<td>nvarchar(20)</td>
 <td>yes</td>
-<td>Belegnummer</td>
-</tr>
-<tr>
-<td>Posguid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>Positions-GUID innerhalb des Belegs</td>
+<td>Kürzel des Erfassers</td>
 </tr>
 <tr>
 <td>Datum</td>
 <td>datetime</td>
 <td>yes</td>
-<td>Buchungsdatum</td>
-</tr>
-<tr>
-<td>Auftrnr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>zugehörige Auftragsnummer</td>
-</tr>
-<tr>
-<td>Bearbeiter</td>
-<td>nvarchar(3)</td>
-<td>yes</td>
-<td>Kürzel des Bearbeiters</td>
-</tr>
-<tr>
-<td>Kundennr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>FK auf <a href="../KUNDE/">KUNDE</a></td>
-</tr>
-<tr>
-<td>Artnr</td>
-<td>nvarchar(15)</td>
-<td>yes</td>
-<td>FK auf <a href="../ARTIK/">ARTIK</a></td>
-</tr>
-<tr>
-<td>Lager</td>
-<td>bigint</td>
-<td>yes</td>
-<td>Lagernummer</td>
-</tr>
-<tr>
-<td>Gesamtpreis</td>
-<td>money</td>
-<td>yes</td>
 <td></td>
 </tr>
 <tr>
-<td>Rohertrag</td>
-<td>money</td>
+<td>Bemerkungen</td>
+<td>nvarchar</td>
 <td>yes</td>
-<td></td>
+<td>Notiztext</td>
 </tr>
 <tr>
-<td>Vertreter</td>
-<td>nvarchar(15)</td>
+<td>Src</td>
+<td>nvarchar(50)</td>
 <td>yes</td>
-<td>Verweist fachlich auf <a href="../VERTR/">VERTR</a>.<code>Vertrnr</code> (nicht als DAB-Relation deklariert)</td>
+<td>Bezeichnung der Quelltabelle bzw. des Objekttyps, z. B. <code>Kunde</code></td>
+</tr>
+<tr>
+<td>Srcvalue</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Zugehöriger Schlüsselwert, z. B. die Kundennummer</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Anmerkung:</strong> Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich über
-<code>Belegid</code> + <code>Posguid</code>; <code>Id</code> ist der technische Datensatzschlüssel.</p>
+<h1 id="zuordnung-einer-notiz">Zuordnung einer Notiz</h1>
+<p>Die Verknüpfung zum Bezugsobjekt läuft polymorph: <code>Src</code> benennt den Objekttyp
+(„Quelltabelle"), <code>Srcvalue</code> trägt dessen Schlüsselwert. Damit lassen sich Notizen aus
+unterschiedlichen Modulen einheitlich ablegen, ohne eine feste Fremdschlüsselspalte je
+Zieltabelle zu benötigen.</p>
+<p>Typische Verwendung laut Fachquelle: Notizen zu Kunden (vermutlich <code>Src = "Kunde"</code> →
+<a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> als <code>Srcvalue</code>), zu Aufträgen und zu Lieferanten.</p>
+<p>Das gleiche Verknüpfungsmuster (Diskriminator + Fremdschlüssel-Wert statt fester FK)
+findet sich auch bei <a href="../CRM_ACTIVITIES/">CRM_ACTIVITIES</a> (<code>ParentType</code>/<code>ParentId</code>).
+Ob <code>KONTAKTE</code> und <code>CRM_ACTIVITIES</code> zwei getrennte Systeme sind oder historisch
+zusammenhängen, ist ungeklärt.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Kardinalität</th>
-<th>Ziel</th>
-<th>Mapping</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BUCH_UMSATZ_ARTIK_Artnr</td>
-<td>one</td>
-<td><a href="../ARTIK/">ARTIK</a></td>
-<td><code>Artnr : Artnr</code></td>
-</tr>
-<tr>
-<td>BUCH_UMSATZ_KUNDE_Kundennr</td>
-<td>one</td>
-<td><a href="../KUNDE/">KUNDE</a></td>
-<td><code>Kundennr : Kundennr</code></td>
-</tr>
-</tbody>
-</table>
+<p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert — die
+polymorphe Verknüpfung über <code>Src</code>/<code>Srcvalue</code> ist rein fachlich und zeigt je nach
+<code>Src</code>-Wert auf unterschiedliche Zieltabellen (u. a. vermutlich <a href="../KUNDE/">KUNDE</a>).</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
+<li><code>../../raw/Informationen_Tabelle_Kontakte.md</code></li>
 </ul>
 
 
@@ -1486,7 +1437,7 @@ zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich üb
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ARTIK_WG2/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_WG2">
+          <a href="../CRM_PROMPT_TEMPLATE/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: CRM_PROMPT_TEMPLATE">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1496,20 +1447,20 @@ zu bestätigen. Die fachliche Zuordnung Position → Beleg läuft vermutlich üb
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ARTIK_WG2
+                CRM_PROMPT_TEMPLATE
               </div>
             </div>
           </a>
         
         
           
-          <a href="../CRM_ACTIVITIES/" class="md-footer__link md-footer__link--next" aria-label="Weiter: CRM_ACTIVITIES">
+          <a href="../KUNDE/" class="md-footer__link md-footer__link--next" aria-label="Weiter: KUNDE">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                CRM_ACTIVITIES
+                KUNDE
               </div>
             </div>
             <div class="md-footer__button md-icon">

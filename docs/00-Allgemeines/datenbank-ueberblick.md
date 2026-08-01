@@ -12,7 +12,7 @@ SQL-Server-Instanz.
 
 # Aktueller Wiki-Ausschnitt
 
-Dokumentiert sind bislang 15 Tabellen, die über den
+Dokumentiert sind bislang 16 Tabellen, die über den
 [Kontor API Service](<kontor-api-service.md>) freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.
@@ -49,6 +49,15 @@ Der CRM-Bereich ist neu und schließt fachlich nicht an die übrigen Tabellen an
 der Registry sind keine Beziehungen dorthin deklariert, weder zu `ADRESSEN`/`KUNDE`
 noch untereinander.
 
+## Notizen
+
+| Tabelle | Zweck (Kurz) |
+|---------|--------------|
+| [KONTAKTE](../10-Tabellen/KONTAKTE.md) | Zentrale Notizsammlung, polymorph über `Src`/`Srcvalue` verknüpft |
+
+Verwendet das gleiche Diskriminator-Muster wie `CRM_ACTIVITIES`
+(`ParentType`/`ParentId`) — beide ohne registrierte Beziehungen.
+
 # Beziehungen im dokumentierten Ausschnitt
 
 `BUCH_UMSATZ` liegt im Zentrum der Bewegungsdaten und verweist auf `ARTIK` und
@@ -82,4 +91,5 @@ Schema.
 
 # Citations
 
-- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-01 (15 Entitäten)
+- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-01 (16 Entitäten)
+- `../../raw/Informationen_Tabelle_Kontakte.md`

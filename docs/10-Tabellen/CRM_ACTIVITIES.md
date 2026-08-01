@@ -39,6 +39,10 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 **Ungeklärt:** konkrete Werte von `ParentType` und die dadurch adressierten Zieltabellen
 (Kandidat: `CRM_LEAD`); genaue Bedeutung von `ResourceId`.
 
+Das gleiche Verknüpfungsmuster (Diskriminator + Fremdschlüssel-Wert statt fester FK)
+verwendet auch [KONTAKTE](<KONTAKTE.md>) (`Src`/`Srcvalue`) — dort allerdings ohne
+Registry-Eintrag. Ob beide Tabellen zusammenhängen, ist ungeklärt.
+
 # Beziehungen
 
 In der Registry sind an dieser Tabelle **keine Beziehungen** deklariert — weder die
