@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Adressdatensätze (Rechnungs-, Liefer- und weitere Adressen), referenziert von KUNDE.">
+        <meta name="description" content="Adressdatensätze (Kunden, Lieferanten, Ansprechpartner), gruppiert über Firmenadressid; referenziert von KUNDE.">
       
       
       
@@ -1152,9 +1152,10 @@
 
 
 
-<p>Tabelle <code>dbo.ADRESSEN</code> — Adressdatensätze. Wird von <a href="../KUNDE/">KUNDE</a> über
-<code>Rgadrid</code> (Rechnungsadresse) und <code>Lieferadrid</code> (Lieferadresse) referenziert; weitere
-Adresstypen sind über <code>Adresstyp</code> und <code>Gruppe</code> differenzierbar.</p>
+<p>Tabelle <code>dbo.ADRESSEN</code> — Adressdatensätze von Kunden, Lieferanten und davon
+unabhängigen Adressen. Jede Adresse hat eine eindeutige <code>Id</code>. Wird von
+<a href="../KUNDE/">KUNDE</a> über <code>Rgadrid</code> (Rechnungsadresse) und <code>Lieferadrid</code>
+(Lieferadresse) referenziert.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
 <p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>)</p>
@@ -1164,6 +1165,7 @@ Adresstypen sind über <code>Adresstyp</code> und <code>Gruppe</code> differenzi
 <th>Feld</th>
 <th>Typ</th>
 <th>Nullable</th>
+<th>Anmerkung</th>
 </tr>
 </thead>
 <tbody>
@@ -1171,110 +1173,185 @@ Adresstypen sind über <code>Adresstyp</code> und <code>Gruppe</code> differenzi
 <td>Id</td>
 <td>uniqueidentifier</td>
 <td>no</td>
+<td>PK</td>
 </tr>
 <tr>
 <td>Kdliefnr</td>
 <td>nvarchar(15)</td>
 <td>yes</td>
+<td>Kunden-/Lieferantennummer; nachrangiges Zuordnungskriterium, siehe unten</td>
 </tr>
 <tr>
 <td>Adresstyp</td>
 <td>nvarchar(3)</td>
 <td>yes</td>
+<td>Bedeutung ungeklärt</td>
 </tr>
 <tr>
 <td>Gruppe</td>
 <td>nvarchar(3)</td>
 <td>yes</td>
+<td>Bedeutung ungeklärt</td>
 </tr>
 <tr>
 <td>Anrede</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Vorname</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Name1</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Name2</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Name3</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Str</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Plz</td>
 <td>nvarchar(15)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Ort1</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Ort2</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Telefon</td>
 <td>nvarchar(100)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Fax</td>
 <td>nvarchar(100)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Email</td>
 <td>nvarchar(400)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Homepage</td>
 <td>nvarchar(500)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Bemerkungen</td>
 <td>nvarchar</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Bestland</td>
 <td>nvarchar(5)</td>
 <td>yes</td>
+<td>Bedeutung ungeklärt</td>
 </tr>
 <tr>
 <td>Abteilung</td>
 <td>nvarchar(500)</td>
 <td>yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Mobil</td>
 <td>nvarchar(100)</td>
 <td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Isansprechpartner</td>
+<td>bit</td>
+<td>yes</td>
+<td>Kennzeichnet Datensatz als Ansprechpartner statt Lieferadresse</td>
+</tr>
+<tr>
+<td>Firmenadressid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>Vorrangiges Zuordnungskriterium: gleicher Wert = gleiche Firma</td>
+</tr>
+<tr>
+<td>Hauptansprechpartner</td>
+<td>bit</td>
+<td>yes</td>
+<td>Hauptansprechpartner innerhalb der Firma</td>
+</tr>
+<tr>
+<td>Entscheider</td>
+<td>bit</td>
+<td>yes</td>
+<td>Ansprechpartner mit Entscheidungsbefugnis</td>
+</tr>
+<tr>
+<td>Aktiv</td>
+<td>bit</td>
+<td>yes</td>
+<td>Adresse aktiv/deaktiviert</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Ungeklärt:</strong> genaue Bedeutung von <code>Kdliefnr</code>, <code>Adresstyp</code>, <code>Gruppe</code>, <code>Bestland</code>.</p>
+<p><strong>Ungeklärt:</strong> genaue Bedeutung von <code>Adresstyp</code>, <code>Gruppe</code>, <code>Bestland</code>.</p>
+<h1 id="aufbau-und-zuordnung-von-adressen">Aufbau und Zuordnung von Adressen</h1>
+<p>Zusammenfassung aus <code>../../raw/# Aufbau und Zuordnung von Adressen.md</code>.</p>
+<p><strong>Zuordnung zu Kunden/Lieferanten.</strong> Im Kunden- bzw. Lieferantenstamm wird die
+Rechnungsadresse über <code>Rgadrid</code> referenziert („Rechnungsadresse-ID"); im Kundenstamm
+zusätzlich optional eine feste Lieferadresse über <code>Lieferadrid</code>. Die im Kundenstamm
+hinterlegte Rechnungsadresse-ID wird zugleich als <code>Firmenadressid</code> verwendet: <strong>alle
+Datensätze in <code>ADRESSEN</code> mit derselben <code>Firmenadressid</code> gehören zur selben Firma</strong>
+(Kunde oder Lieferant). <code>Firmenadressid</code> ist damit das <strong>vorrangige</strong>
+Zuordnungskriterium — <code>Kdliefnr</code> (Kunden-/Lieferantennummer im Adressdatensatz) ist
+nur ein nachrangiges, zusätzliches Kennzeichen.</p>
+<p><strong>Ansprechpartner.</strong> <code>Isansprechpartner</code> markiert einen Datensatz als
+Ansprechperson statt als eigenständige Lieferadresse — er enthält dann nur Kontakt-
+und Adressdaten dieser Person. <code>Hauptansprechpartner</code> und <code>Entscheider</code> verfeinern
+diese Kennzeichnung.</p>
+<p><strong>Aktivierung.</strong> <code>Aktiv</code> schaltet eine Adresse für den regulären Betrieb frei;
+deaktivierte Adressen werden je nach Einstellung im aktiven Betrieb nicht mehr
+verwendet.</p>
+<pre><code>KUNDE.Rgadrid ──▶ ADRESSEN.Id  (= Firmenadresse, Firmenadressid dieser Firma)
+KUNDE.Lieferadrid ──▶ ADRESSEN.Id  (optionale feste Lieferadresse)
+
+ADRESSEN (weitere Datensätze mit gleicher Firmenadressid)
+  ├─ Isansprechpartner = 1  → Ansprechperson (ggf. Hauptansprechpartner/Entscheider)
+  └─ Isansprechpartner = 0  → weitere Lieferadresse der Firma
+</code></pre>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
 <thead>
@@ -1295,10 +1372,13 @@ Adresstypen sind über <code>Adresstyp</code> und <code>Gruppe</code> differenzi
 </tbody>
 </table>
 <p>Zusätzlich referenziert <code>KUNDE</code> diese Tabelle über <code>Rgadrid : Id</code> — siehe
-<a href="../KUNDE/">KUNDE</a>.</p>
+<a href="../KUNDE/">KUNDE</a>. Die Gruppierung über <code>Firmenadressid</code> (siehe oben) ist keine
+in der DAB-Registry deklarierte Relation, da sie innerhalb derselben Tabelle
+(Selbstreferenz auf <code>ADRESSEN.Id</code>) verläuft.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
+<li><code>../../raw/# Aufbau und Zuordnung von Adressen.md</code></li>
 </ul>
 
 
