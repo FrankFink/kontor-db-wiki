@@ -3,7 +3,7 @@ type: Referenz
 title: Datenbank-Überblick
 description: Kurzüberblick zur Kontor Datenbank, aktuell im Wiki dokumentierter Ausschnitt.
 tags: [datenbank, ueberblick]
-timestamp: 2026-07-31
+timestamp: 2026-08-01
 ---
 
 Die **Kontor Datenbank** ist die SQL-Datenbank hinter dem ERP **Kontor.MED**
@@ -12,7 +12,7 @@ SQL-Server-Instanz.
 
 # Aktueller Wiki-Ausschnitt
 
-Dokumentiert sind bislang zehn Tabellen, die über den
+Dokumentiert sind bislang 15 Tabellen, die über den
 [Kontor API Service](<kontor-api-service.md>) freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.
@@ -25,6 +25,7 @@ sobald Quellen dazu vorliegen.
 | [ARTIK](../10-Tabellen/ARTIK.md) | Artikelstamm |
 | [BUCH_UMSATZ](../10-Tabellen/BUCH_UMSATZ.md) | Umsatzbuchungen je Belegposition |
 | [KUNDE](../10-Tabellen/KUNDE.md) | Kundenstamm |
+| [PROJEKT](../10-Tabellen/PROJEKT.md) | Projektstamm mit Kundenbezug |
 
 ## Codetabellen und Klassifikationen
 
@@ -34,6 +35,19 @@ sobald Quellen dazu vorliegen.
 | [ARTIK_KATWERTE](../10-Tabellen/ARTIK_KATWERTE.md) | Hierarchische Kategoriewerte (Katalog/Shop) |
 | [KUNDE_GRP1](../10-Tabellen/KUNDE_GRP1.md), [KUNDE_GRP2](../10-Tabellen/KUNDE_GRP2.md) | Kundengruppen Ebene 1/2 (voneinander unabhängig) |
 | [VERTR](../10-Tabellen/VERTR.md) | Vertreterstamm |
+
+## CRM
+
+| Tabelle | Zweck (Kurz) |
+|---------|--------------|
+| [CRM_LEAD](../10-Tabellen/CRM_LEAD.md) | Lead-/Interessentendatensatz |
+| [CRM_ACTIVITIES](../10-Tabellen/CRM_ACTIVITIES.md) | Aktivitäten-/Verlaufsprotokoll, polymorph verknüpft |
+| [CRM_LEAD_CONFIG](../10-Tabellen/CRM_LEAD_CONFIG.md) | Konfigurationsprofile für Lead-Verarbeitung |
+| [CRM_PROMPT_TEMPLATE](../10-Tabellen/CRM_PROMPT_TEMPLATE.md) | Prompt-Vorlagen je Profil |
+
+Der CRM-Bereich ist neu und schließt fachlich nicht an die übrigen Tabellen an — in
+der Registry sind keine Beziehungen dorthin deklariert, weder zu `ADRESSEN`/`KUNDE`
+noch untereinander.
 
 # Beziehungen im dokumentierten Ausschnitt
 
@@ -58,8 +72,14 @@ sobald Quellen dazu vorliegen.
 ```
 
 `BUCH_UMSATZ.Vertreter` verweist fachlich auf `VERTR`, ist aber nicht als DAB-Relation
-registriert.
+registriert. `PROJEKT.Kundennr` verweist vermutlich auf `KUNDE`, ebenfalls ohne
+registrierte Relation; `PROJEKT.Rgadrid`/`Lieferadrid` sind auffällig als `bigint`
+typisiert statt `uniqueidentifier` wie in `ADRESSEN`/`KUNDE` (siehe [PROJEKT](../10-Tabellen/PROJEKT.md)).
+
+Der CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
+`CRM_PROMPT_TEMPLATE`) steht separat und ohne registrierte Verbindung zum übrigen
+Schema.
 
 # Citations
 
-- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-07-31 (10 Entitäten)
+- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-01 (15 Entitäten)

@@ -903,6 +903,118 @@
   
   
     <li class="md-nav__item">
+      <a href="../10-Tabellen/CRM_ACTIVITIES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_ACTIVITIES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/CRM_LEAD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/CRM_LEAD_CONFIG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD_CONFIG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/CRM_PROMPT_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_PROMPT_TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../10-Tabellen/KUNDE/" class="md-nav__link">
         
   
@@ -967,6 +1079,34 @@
     
   
     KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/PROJEKT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROJEKT
   
 
     
@@ -1283,6 +1423,27 @@
 <h1 id="log">Log</h1>
 <p>Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.</p>
 <h2 id="2026-08-01">2026-08-01</h2>
+<p><strong>Update</strong> — <code>raw/dab_registry.md</code> von 10 auf 15 Entitäten erweitert (Export
+2026-08-01T09:08). Fünf neue Tabellen in zwei neuen Bereichen: CRM (<code>CRM_LEAD</code>,
+<code>CRM_ACTIVITIES</code>, <code>CRM_LEAD_CONFIG</code>, <code>CRM_PROMPT_TEMPLATE</code>) und <code>PROJEKT</code>. Keine
+der zehn bestehenden Tabellen hat sich inhaltlich verändert.</p>
+<p>Neue Konzeptseiten unter <code>10-Tabellen/</code>: <code>CRM_LEAD.md</code>, <code>CRM_ACTIVITIES.md</code>,
+<code>CRM_LEAD_CONFIG.md</code>, <code>CRM_PROMPT_TEMPLATE.md</code>, <code>PROJEKT.md</code>. Keine der vier
+CRM-Tabellen hat in der Registry deklarierte Beziehungen — weder zu <code>ADRESSEN</code>/<code>KUNDE</code>
+noch untereinander; naheliegende fachliche Verweise (<code>CRM_LEAD.Adressid/Ansprechid</code> →
+<code>ADRESSEN</code>, <code>CRM_ACTIVITIES.ParentId</code> → vermutlich <code>CRM_LEAD</code>,
+<code>CRM_PROMPT_TEMPLATE.Profile</code> → <code>CRM_LEAD_CONFIG.Profile</code>) sind auf den Seiten als
+Vermutung markiert. Bei <code>PROJEKT</code> auffällig: <code>Rgadrid</code>/<code>Lieferadrid</code> sind dort
+<code>bigint</code>, während dieselben Feldnamen in <code>KUNDE</code>/<code>ADRESSEN</code> <code>uniqueidentifier</code> sind —
+als offene Typabweichung dokumentiert.</p>
+<p><code>10-Tabellen/index.md</code> um eine dritte Gruppe „CRM" ergänzt; <code>wiki/index.md</code>,
+<code>00-Allgemeines/datenbank-ueberblick.md</code> (Beziehungsgrafik-Text, CRM als
+unverbundener Bereich vermerkt) und <code>00-Allgemeines/kontor-api-service.md</code>
+(Registry-Aufzählung) nachgezogen.</p>
+<p><strong>Lint</strong> — 15 Tabellen jetzt flach in <code>10-Tabellen/</code>; laut <code>struktur.md</code> ist eine
+Gruppierung nach Fachbereich „ab einer gewissen Menge" vorgesehen. Der CRM-Bereich
+ist ein guter Kandidat für einen eigenen Unterordner, falls weitere CRM-Tabellen
+hinzukommen — noch nicht umgesetzt, da <code>struktur.md</code> das nicht vorgibt.</p>
 <p><strong>Update</strong> — Zwei neue Rohquellen verarbeitet: <code>raw/dab_registry.md</code> (Export
 2026-08-01T07:14, <code>ADRESSEN</code> von 21 auf 26 Felder erweitert um <code>Isansprechpartner</code>,
 <code>Firmenadressid</code>, <code>Hauptansprechpartner</code>, <code>Entscheider</code>, <code>Aktiv</code>) sowie

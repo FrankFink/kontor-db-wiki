@@ -4,6 +4,31 @@ Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
 ## 2026-08-01
 
+**Update** — `raw/dab_registry.md` von 10 auf 15 Entitäten erweitert (Export
+2026-08-01T09:08). Fünf neue Tabellen in zwei neuen Bereichen: CRM (`CRM_LEAD`,
+`CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`, `CRM_PROMPT_TEMPLATE`) und `PROJEKT`. Keine
+der zehn bestehenden Tabellen hat sich inhaltlich verändert.
+
+Neue Konzeptseiten unter `10-Tabellen/`: `CRM_LEAD.md`, `CRM_ACTIVITIES.md`,
+`CRM_LEAD_CONFIG.md`, `CRM_PROMPT_TEMPLATE.md`, `PROJEKT.md`. Keine der vier
+CRM-Tabellen hat in der Registry deklarierte Beziehungen — weder zu `ADRESSEN`/`KUNDE`
+noch untereinander; naheliegende fachliche Verweise (`CRM_LEAD.Adressid/Ansprechid` →
+`ADRESSEN`, `CRM_ACTIVITIES.ParentId` → vermutlich `CRM_LEAD`,
+`CRM_PROMPT_TEMPLATE.Profile` → `CRM_LEAD_CONFIG.Profile`) sind auf den Seiten als
+Vermutung markiert. Bei `PROJEKT` auffällig: `Rgadrid`/`Lieferadrid` sind dort
+`bigint`, während dieselben Feldnamen in `KUNDE`/`ADRESSEN` `uniqueidentifier` sind —
+als offene Typabweichung dokumentiert.
+
+`10-Tabellen/index.md` um eine dritte Gruppe „CRM" ergänzt; `wiki/index.md`,
+`00-Allgemeines/datenbank-ueberblick.md` (Beziehungsgrafik-Text, CRM als
+unverbundener Bereich vermerkt) und `00-Allgemeines/kontor-api-service.md`
+(Registry-Aufzählung) nachgezogen.
+
+**Lint** — 15 Tabellen jetzt flach in `10-Tabellen/`; laut `struktur.md` ist eine
+Gruppierung nach Fachbereich „ab einer gewissen Menge" vorgesehen. Der CRM-Bereich
+ist ein guter Kandidat für einen eigenen Unterordner, falls weitere CRM-Tabellen
+hinzukommen — noch nicht umgesetzt, da `struktur.md` das nicht vorgibt.
+
 **Update** — Zwei neue Rohquellen verarbeitet: `raw/dab_registry.md` (Export
 2026-08-01T07:14, `ADRESSEN` von 21 auf 26 Felder erweitert um `Isansprechpartner`,
 `Firmenadressid`, `Hauptansprechpartner`, `Entscheider`, `Aktiv`) sowie

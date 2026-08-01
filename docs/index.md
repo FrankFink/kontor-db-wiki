@@ -28,12 +28,14 @@ den HTTP-Zugriff (REST + GraphQL).
 
 # Dokumentierter Ausschnitt
 
-Zehn über den Kontor API Service exponierte Tabellen: vier Kernentitäten mit
-`BUCH_UMSATZ` als zentralem Bewegungsdatensatz sowie sechs Codetabellen für
-Warengruppen, Kategorien, Kundengruppen und Vertreter.
+15 über den Kontor API Service exponierte Tabellen: fünf Kernentitäten mit
+`BUCH_UMSATZ` als zentralem Bewegungsdatensatz, sechs Codetabellen für
+Warengruppen, Kategorien, Kundengruppen und Vertreter, sowie ein neuer,
+eigenständiger CRM-Bereich.
 
-- Kernentitäten: [ADRESSEN](<10-Tabellen/ADRESSEN.md>) · [ARTIK](<10-Tabellen/ARTIK.md>) · [BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>) · [KUNDE](<10-Tabellen/KUNDE.md>)
+- Kernentitäten: [ADRESSEN](<10-Tabellen/ADRESSEN.md>) · [ARTIK](<10-Tabellen/ARTIK.md>) · [BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>) · [KUNDE](<10-Tabellen/KUNDE.md>) · [PROJEKT](<10-Tabellen/PROJEKT.md>)
 - Codetabellen: [ARTIK_WG1](<10-Tabellen/ARTIK_WG1.md>) · [ARTIK_WG2](<10-Tabellen/ARTIK_WG2.md>) · [ARTIK_KATWERTE](<10-Tabellen/ARTIK_KATWERTE.md>) · [KUNDE_GRP1](<10-Tabellen/KUNDE_GRP1.md>) · [KUNDE_GRP2](<10-Tabellen/KUNDE_GRP2.md>) · [VERTR](<10-Tabellen/VERTR.md>)
+- CRM: [CRM_LEAD](<10-Tabellen/CRM_LEAD.md>) · [CRM_ACTIVITIES](<10-Tabellen/CRM_ACTIVITIES.md>) · [CRM_LEAD_CONFIG](<10-Tabellen/CRM_LEAD_CONFIG.md>) · [CRM_PROMPT_TEMPLATE](<10-Tabellen/CRM_PROMPT_TEMPLATE.md>)
 
 Beziehungsgrafik siehe [Datenbank-Überblick](<00-Allgemeines/datenbank-ueberblick.md>).
 

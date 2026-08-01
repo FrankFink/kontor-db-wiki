@@ -11,6 +11,7 @@ die Seiten flach in diesem Ordner.
 | [ARTIK](<ARTIK.md>) | Artikelstamm | `Artnr` |
 | [BUCH_UMSATZ](<BUCH_UMSATZ.md>) | Umsatzbuchungen je Belegposition | `Id` |
 | [KUNDE](<KUNDE.md>) | Kundenstamm | `Kundennr` |
+| [PROJEKT](<PROJEKT.md>) | Projektstamm mit Kundenbezug | `Projektnr` |
 
 # Codetabellen und Klassifikationen
 
@@ -23,6 +24,21 @@ die Seiten flach in diesem Ordner.
 | [KUNDE_GRP2](<KUNDE_GRP2.md>) | Kundengruppe Ebene 2 (Lookup für `KUNDE.Grp2`, kein `RefGrp1`) | `Grp2` |
 | [VERTR](<VERTR.md>) | Vertreterstamm | `Vertrnr` |
 
+# CRM
+
+| Tabelle | Zweck (Kurz) | PK |
+|---------|--------------|----|
+| [CRM_LEAD](<CRM_LEAD.md>) | Lead-/Interessentendatensatz | `Leadid` |
+| [CRM_ACTIVITIES](<CRM_ACTIVITIES.md>) | Aktivitäten-/Verlaufsprotokoll, polymorph verknüpft | `ActivityId` |
+| [CRM_LEAD_CONFIG](<CRM_LEAD_CONFIG.md>) | Konfigurationsprofile für Lead-Verarbeitung | `Profile` |
+| [CRM_PROMPT_TEMPLATE](<CRM_PROMPT_TEMPLATE.md>) | Prompt-Vorlagen je Profil | `Name` |
+
+Keine dieser vier CRM-Tabellen hat in der Registry deklarierte Beziehungen — auch
+nicht untereinander. Die naheliegenden Verweise (`CRM_LEAD.Adressid/Ansprechid` →
+`ADRESSEN`, `CRM_ACTIVITIES.ParentId` → vermutlich `CRM_LEAD`,
+`CRM_PROMPT_TEMPLATE.Profile` → `CRM_LEAD_CONFIG.Profile`) sind fachliche Vermutungen,
+siehe die jeweiligen Seiten.
+
 Alle Tabellen sind über den [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>)
-exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-07-31,
-10 Entitäten).
+exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-01,
+15 Entitäten).

@@ -825,6 +825,118 @@
   
   
     <li class="md-nav__item">
+      <a href="CRM_ACTIVITIES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_ACTIVITIES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CRM_LEAD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CRM_LEAD_CONFIG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_LEAD_CONFIG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CRM_PROMPT_TEMPLATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM_PROMPT_TEMPLATE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="KUNDE/" class="md-nav__link">
         
   
@@ -889,6 +1001,34 @@
     
   
     KUNDE_GRP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PROJEKT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROJEKT
   
 
     
@@ -1183,6 +1323,11 @@ die Seiten flach in diesem Ordner.</p>
 <td>Kundenstamm</td>
 <td><code>Kundennr</code></td>
 </tr>
+<tr>
+<td><a href="PROJEKT/">PROJEKT</a></td>
+<td>Projektstamm mit Kundenbezug</td>
+<td><code>Projektnr</code></td>
+</tr>
 </tbody>
 </table>
 <h1 id="codetabellen-und-klassifikationen">Codetabellen und Klassifikationen</h1>
@@ -1227,9 +1372,46 @@ die Seiten flach in diesem Ordner.</p>
 </tr>
 </tbody>
 </table>
+<h1 id="crm">CRM</h1>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+<th>PK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="CRM_LEAD/">CRM_LEAD</a></td>
+<td>Lead-/Interessentendatensatz</td>
+<td><code>Leadid</code></td>
+</tr>
+<tr>
+<td><a href="CRM_ACTIVITIES/">CRM_ACTIVITIES</a></td>
+<td>Aktivitäten-/Verlaufsprotokoll, polymorph verknüpft</td>
+<td><code>ActivityId</code></td>
+</tr>
+<tr>
+<td><a href="CRM_LEAD_CONFIG/">CRM_LEAD_CONFIG</a></td>
+<td>Konfigurationsprofile für Lead-Verarbeitung</td>
+<td><code>Profile</code></td>
+</tr>
+<tr>
+<td><a href="CRM_PROMPT_TEMPLATE/">CRM_PROMPT_TEMPLATE</a></td>
+<td>Prompt-Vorlagen je Profil</td>
+<td><code>Name</code></td>
+</tr>
+</tbody>
+</table>
+<p>Keine dieser vier CRM-Tabellen hat in der Registry deklarierte Beziehungen — auch
+nicht untereinander. Die naheliegenden Verweise (<code>CRM_LEAD.Adressid/Ansprechid</code> →
+<code>ADRESSEN</code>, <code>CRM_ACTIVITIES.ParentId</code> → vermutlich <code>CRM_LEAD</code>,
+<code>CRM_PROMPT_TEMPLATE.Profile</code> → <code>CRM_LEAD_CONFIG.Profile</code>) sind fachliche Vermutungen,
+siehe die jeweiligen Seiten.</p>
 <p>Alle Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
-exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-07-31,
-10 Entitäten).</p>
+exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-01,
+15 Entitäten).</p>
 
 
 
