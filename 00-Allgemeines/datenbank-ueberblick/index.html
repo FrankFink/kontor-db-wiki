@@ -596,6 +596,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notizen
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1009,6 +1020,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../10-Tabellen/KONTAKTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KONTAKTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../10-Tabellen/KUNDE/" class="md-nav__link">
         
   
@@ -1386,6 +1425,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notizen
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1407,7 +1457,7 @@
 (codegarden software GmbH). Sie liegt im Standard-Schema <code>dbo</code> einer
 SQL-Server-Instanz.</p>
 <h1 id="aktueller-wiki-ausschnitt">Aktueller Wiki-Ausschnitt</h1>
-<p>Dokumentiert sind bislang 15 Tabellen, die über den
+<p>Dokumentiert sind bislang 16 Tabellen, die über den
 <a href="../kontor-api-service/">Kontor API Service</a> freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.</p>
@@ -1499,6 +1549,23 @@ sobald Quellen dazu vorliegen.</p>
 <p>Der CRM-Bereich ist neu und schließt fachlich nicht an die übrigen Tabellen an — in
 der Registry sind keine Beziehungen dorthin deklariert, weder zu <code>ADRESSEN</code>/<code>KUNDE</code>
 noch untereinander.</p>
+<h2 id="notizen">Notizen</h2>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../10-Tabellen/KONTAKTE/">KONTAKTE</a></td>
+<td>Zentrale Notizsammlung, polymorph über <code>Src</code>/<code>Srcvalue</code> verknüpft</td>
+</tr>
+</tbody>
+</table>
+<p>Verwendet das gleiche Diskriminator-Muster wie <code>CRM_ACTIVITIES</code>
+(<code>ParentType</code>/<code>ParentId</code>) — beide ohne registrierte Beziehungen.</p>
 <h1 id="beziehungen-im-dokumentierten-ausschnitt">Beziehungen im dokumentierten Ausschnitt</h1>
 <p><code>BUCH_UMSATZ</code> liegt im Zentrum der Bewegungsdaten und verweist auf <code>ARTIK</code> und
 <code>KUNDE</code>. <code>KUNDE</code> verweist seinerseits auf zwei Adressen in <code>ADRESSEN</code>
@@ -1526,7 +1593,8 @@ typisiert statt <code>uniqueidentifier</code> wie in <code>ADRESSEN</code>/<code
 Schema.</p>
 <h1 id="citations">Citations</h1>
 <ul>
-<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-01 (15 Entitäten)</li>
+<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-01 (16 Entitäten)</li>
+<li><code>../../raw/Informationen_Tabelle_Kontakte.md</code></li>
 </ul>
 
 

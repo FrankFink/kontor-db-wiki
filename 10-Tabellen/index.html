@@ -937,6 +937,34 @@
   
   
     <li class="md-nav__item">
+      <a href="KONTAKTE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KONTAKTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="KUNDE/" class="md-nav__link">
         
   
@@ -1409,9 +1437,26 @@ nicht untereinander. Die naheliegenden Verweise (<code>CRM_LEAD.Adressid/Ansprec
 <code>ADRESSEN</code>, <code>CRM_ACTIVITIES.ParentId</code> → vermutlich <code>CRM_LEAD</code>,
 <code>CRM_PROMPT_TEMPLATE.Profile</code> → <code>CRM_LEAD_CONFIG.Profile</code>) sind fachliche Vermutungen,
 siehe die jeweiligen Seiten.</p>
+<h1 id="notizen">Notizen</h1>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+<th>PK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="KONTAKTE/">KONTAKTE</a></td>
+<td>Zentrale Notizsammlung, polymorph über <code>Src</code>/<code>Srcvalue</code> verknüpft</td>
+<td><code>Id</code></td>
+</tr>
+</tbody>
+</table>
 <p>Alle Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
 exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-01,
-15 Entitäten).</p>
+16 Entitäten).</p>
 
 
 
