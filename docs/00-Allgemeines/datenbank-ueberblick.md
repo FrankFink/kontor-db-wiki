@@ -3,7 +3,7 @@ type: Referenz
 title: Datenbank-Überblick
 description: Kurzüberblick zur Kontor Datenbank, aktuell im Wiki dokumentierter Ausschnitt.
 tags: [datenbank, ueberblick]
-timestamp: 2026-08-01
+timestamp: 2026-08-02
 ---
 
 Die **Kontor Datenbank** ist die SQL-Datenbank hinter dem ERP **Kontor.MED**
@@ -12,7 +12,7 @@ SQL-Server-Instanz.
 
 # Aktueller Wiki-Ausschnitt
 
-Dokumentiert sind bislang 16 Tabellen, die über den
+Dokumentiert sind bislang 19 Tabellen, die über den
 [Kontor API Service](<kontor-api-service.md>) freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.
@@ -58,6 +58,18 @@ noch untereinander.
 Verwendet das gleiche Diskriminator-Muster wie `CRM_ACTIVITIES`
 (`ParentType`/`ParentId`) — beide ohne registrierte Beziehungen.
 
+## Aufgabenverwaltung
+
+| Tabelle | Zweck (Kurz) |
+|---------|--------------|
+| [WFLOW](../10-Tabellen/WFLOW.md) | Aufgaben der Nutzer, zugeordnet über `PROJEKT` |
+| [WFLOW_FOLDERS](../10-Tabellen/WFLOW_FOLDERS.md) | Ordner zur Strukturierung von Aufgaben |
+| [WFLOW_INVOICINGUNIT](../10-Tabellen/WFLOW_INVOICINGUNIT.md) | Code-Tabelle für Abrechnungseinheiten-Arten |
+
+Einzige der neueren Gruppen mit registriertem Anschluss an bestehende
+Kernentitäten: Aufgabe → `PROJEKT` → `KUNDE` (siehe unten), beide Schritte als
+DAB-Relation deklariert.
+
 # Beziehungen im dokumentierten Ausschnitt
 
 `BUCH_UMSATZ` liegt im Zentrum der Bewegungsdaten und verweist auf `ARTIK` und
@@ -81,15 +93,26 @@ Verwendet das gleiche Diskriminator-Muster wie `CRM_ACTIVITIES`
 ```
 
 `BUCH_UMSATZ.Vertreter` verweist fachlich auf `VERTR`, ist aber nicht als DAB-Relation
-registriert. `PROJEKT.Kundennr` verweist vermutlich auf `KUNDE`, ebenfalls ohne
-registrierte Relation; `PROJEKT.Rgadrid`/`Lieferadrid` sind auffällig als `bigint`
-typisiert statt `uniqueidentifier` wie in `ADRESSEN`/`KUNDE` (siehe [PROJEKT](../10-Tabellen/PROJEKT.md)).
+registriert. `PROJEKT.Kundennr` → `KUNDE` ist inzwischen als DAB-Relation registriert;
+`PROJEKT.Rgadrid`/`Lieferadrid` bleiben auffällig als `bigint` typisiert statt
+`uniqueidentifier` wie in `ADRESSEN`/`KUNDE` (siehe [PROJEKT](../10-Tabellen/PROJEKT.md)).
 
 Der CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
 `CRM_PROMPT_TEMPLATE`) steht separat und ohne registrierte Verbindung zum übrigen
 Schema.
 
+`WFLOW.Projektnr` → `PROJEKT.Projektnr` → `PROJEKT.Kundennr` → `KUNDE` ist
+durchgehend als DAB-Relation registriert:
+
+```
+WFLOW ──▶ PROJEKT ──▶ KUNDE   (beide Pfeile registriert)
+  │
+  ├──▶ WFLOW_FOLDERS (Folder, registriert)
+  └──▶ WFLOW_INVOICINGUNIT (Invoicingunit → Unit, registriert)
+```
+
 # Citations
 
-- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-01 (16 Entitäten)
+- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-02 (19 Entitäten)
 - `../../raw/Informationen_Tabelle_Kontakte.md`
+- `../../raw/# Tabellen der Aufgabenverwaltung W.md`

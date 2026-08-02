@@ -3,7 +3,7 @@ type: Integration
 title: Kontor API Service
 description: Zugriff auf die Kontor Datenbank über eine DAB-Instanz (REST + GraphQL).
 tags: [api, dab, integration]
-timestamp: 2026-08-01
+timestamp: 2026-08-02
 ---
 
 Der **Kontor API Service** stellt lesenden und schreibenden Zugriff auf ausgewählte
@@ -15,12 +15,13 @@ Basis des Microsoft **Data API Builder** (DAB) umgesetzt.
 ## Registrierte Entitäten
 
 Welche Tabellen und Views durch den Service exponiert werden, steht in der
-DAB-Registry. Aktuell registriert sind 16 Tabellen aus dem Schema `dbo`:
+DAB-Registry. Aktuell registriert sind 19 Tabellen aus dem Schema `dbo`:
 Kernentitäten (`ADRESSEN`, `ARTIK`, `BUCH_UMSATZ`, `KUNDE`, `PROJEKT`), Codetabellen
 (`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`, `KUNDE_GRP2`, `VERTR`),
 ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
-`CRM_PROMPT_TEMPLATE`) und `KONTAKTE`. Der aktuelle Stand liegt als Rohquelle unter
-`../../raw/dab_registry.md`.
+`CRM_PROMPT_TEMPLATE`), `KONTAKTE` sowie die Aufgabenverwaltung (`WFLOW`,
+`WFLOW_FOLDERS`, `WFLOW_INVOICINGUNIT`). Der aktuelle Stand liegt als Rohquelle
+unter `../../raw/dab_registry.md`.
 
 ## Zwei Schnittstellen: REST und GraphQL
 

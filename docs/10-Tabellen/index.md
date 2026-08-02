@@ -45,6 +45,21 @@ siehe die jeweiligen Seiten.
 |---------|--------------|----|
 | [KONTAKTE](<KONTAKTE.md>) | Zentrale Notizsammlung, polymorph über `Src`/`Srcvalue` verknüpft | `Id` |
 
+# Aufgabenverwaltung
+
+| Tabelle | Zweck (Kurz) | PK |
+|---------|--------------|----|
+| [WFLOW](<WFLOW.md>) | Aufgaben der Nutzer, zugeordnet über `PROJEKT` | `ID` |
+| [WFLOW_FOLDERS](<WFLOW_FOLDERS.md>) | Ordner zur Strukturierung von Aufgaben | `Folder` |
+| [WFLOW_INVOICINGUNIT](<WFLOW_INVOICINGUNIT.md>) | Code-Tabelle für Abrechnungseinheiten-Arten | `Unit` |
+
+Eine Aufgabe (`WFLOW`) wird stets einem Projekt zugeordnet; darüber ist sie auch
+einem Kunden zurechenbar (`WFLOW.Projektnr` → `PROJEKT.Projektnr` →
+`PROJEKT.Kundennr` → `KUNDE.Kundennr`, beide Schritte inzwischen als DAB-Relation
+registriert). Die Abrechnungsdaten selbst liegen in `WFLOW`
+(`FinishedTime`/`InvoicingUnitCount`/`Invoicingunit`);
+`WFLOW_INVOICINGUNIT` ist nur die Code-Tabelle für die Art.
+
 Alle Tabellen sind über den [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>)
-exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-01,
-16 Entitäten).
+exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-02,
+19 Entitäten).

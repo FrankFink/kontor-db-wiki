@@ -3,7 +3,7 @@ type: Entität
 title: PROJEKT
 description: Projektstamm mit Kundenbezug, Vertrags- und Preisangaben; Rgadrid/Lieferadrid hier untypisiert als bigint.
 tags: [tabelle, projekt, vertrieb]
-timestamp: 2026-08-01
+timestamp: 2026-08-02
 ---
 
 Tabelle `dbo.PROJEKT` — ein Datensatz je Projekt, mit Kundenbezug, Vertrags- und
@@ -21,7 +21,7 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Bearb | nvarchar(5) | yes | Kürzel des Bearbeiters |
 | Projektdatum | datetime | yes | |
 | Projektname | nvarchar(150) | yes | |
-| Kundennr | nvarchar(15) | yes | Vermutlich Verweis auf [KUNDE](<KUNDE.md>).`Kundennr` |
+| Kundennr | nvarchar(15) | yes | FK auf [KUNDE](<KUNDE.md>).`Kundennr` |
 | Suchbegriff | nvarchar(30) | yes | |
 | Hinweistext | ntext(1073741823) | yes | |
 | VertragReg | ntext(1073741823) | yes | |
@@ -53,9 +53,16 @@ anderes referenzieren, ist ungeklärt.
 
 # Beziehungen
 
-In der Registry sind an dieser Tabelle **keine Beziehungen** deklariert — auch nicht
-der naheliegende Verweis `Kundennr` → [KUNDE](<KUNDE.md>).
+| Name | Kardinalität | Ziel | Mapping |
+|------|--------------|------|---------|
+| PROJEKT_KUNDE_Kundennr | one | [KUNDE](<KUNDE.md>) | `Kundennr : Kundennr` |
+
+[WFLOW](<WFLOW.md>) referenziert diese Tabelle über die registrierte Relation
+`WFLOW_PROJEKT_Projektnr` (`Projektnr : Projektnr`): eine Aufgabe wird stets über
+ihr Projekt einem Kunden zugeordnet (Aufgabe → Projekt → Kunde), und beide Schritte
+sind jetzt als DAB-Relation deklariert.
 
 # Citations
 
 - `../../raw/dab_registry.md`
+- `../../raw/# Tabellen der Aufgabenverwaltung W.md`

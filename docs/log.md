@@ -2,6 +2,45 @@
 
 Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
+## 2026-08-02
+
+**Update** — `raw/dab_registry.md` zweimal kurz hintereinander nachgezogen (Export
+2026-08-02T10:31 und T10:33, weiterhin 19 Entitäten): `WFLOW` bekommt drei
+registrierte Relationen (`WFLOW_WFLOW_INVOICINGUNIT_Invoicingunit`,
+`WFLOW_PROJEKT_Projektnr`, `WFLOW_WFLOW_FOLDERS_Folder`), `PROJEKT` bekommt die
+Relation `PROJEKT_KUNDE_Kundennr`. Alle vier Verweise, die zuvor auf den jeweiligen
+Seiten als „fachlich, nicht registriert" dokumentiert waren, sind jetzt offizielle
+DAB-Relationen — die Kette Aufgabe → Projekt → Kunde ist damit durchgehend
+registriert.
+
+Korrigiert: `WFLOW.md`, `WFLOW_FOLDERS.md`, `WFLOW_INVOICINGUNIT.md`, `PROJEKT.md`
+(Beziehungsabschnitte von Vermutung auf registrierte Relation umgestellt),
+`10-Tabellen/index.md` und `datenbank-ueberblick.md` (Beziehungsgrafik und Texte
+entsprechend angepasst).
+
+**Creation** — Zwei zusammenhängende Rohquellen verarbeitet:
+`raw/dab_registry.md` (Export 2026-08-02T10:18, 16 → 19 Entitäten) und
+`raw/# Tabellen der Aufgabenverwaltung W.md` (Fachtext zu `WFLOW`,
+`WFLOW_FOLDERS`, `WFLOW_INVOICINGUNIT`). Die zehn zuvor dokumentierten und
+sechs CRM/KONTAKTE-Tabellen sind inhaltlich unverändert.
+
+Neue Konzeptseiten unter `10-Tabellen/`: `WFLOW.md`, `WFLOW_FOLDERS.md`,
+`WFLOW_INVOICINGUNIT.md` — die Aufgabenverwaltung. Kernaussage der Fachquelle:
+eine Aufgabe wird immer über ein Projekt zugeordnet, das Projekt referenziert den
+Kunden, damit ist eine Aufgabe transitiv einem Kunden zurechenbar
+(`WFLOW.Projektnr` → `PROJEKT.Projektnr` → `PROJEKT.Kundennr` → `KUNDE.Kundennr`,
+durchgehend fachlich, keine registrierte Relation). Klargestellt: Die eigentlichen
+Abrechnungsdaten (Datum, Anzahl, Art) liegen direkt in `WFLOW`
+(`FinishedTime`/`InvoicingUnitCount`/`Invoicingunit`) — `WFLOW_INVOICINGUNIT` ist
+nur die Code-Tabelle für die Art (`Unit`/`Name`), trotz leicht irreführender
+Formulierung in der Fachquelle.
+
+`PROJEKT.md` um den eingehenden Verweis von `WFLOW` ergänzt. `10-Tabellen/index.md`
+um die Gruppe „Aufgabenverwaltung" erweitert; `wiki/index.md`,
+`00-Allgemeines/datenbank-ueberblick.md` (neue Beziehungsgrafik WFLOW → PROJEKT →
+KUNDE) und `00-Allgemeines/kontor-api-service.md` nachgezogen. Entitätenzahl
+durchgängig auf 19 aktualisiert.
+
 ## 2026-08-01
 
 **Creation** — Neue Rohquelle `raw/Informationen_Tabelle_Kontakte.md` (Fachtext zu
