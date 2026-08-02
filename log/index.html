@@ -450,6 +450,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-08-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-08-01" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1176,6 +1187,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/WFLOW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/WFLOW_FOLDERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_FOLDERS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-Tabellen/WFLOW_INVOICINGUNIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1388,6 +1483,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-08-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-08-01" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1450,6 +1556,39 @@
 
 <h1 id="log">Log</h1>
 <p>Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.</p>
+<h2 id="2026-08-02">2026-08-02</h2>
+<p><strong>Update</strong> — <code>raw/dab_registry.md</code> zweimal kurz hintereinander nachgezogen (Export
+2026-08-02T10:31 und T10:33, weiterhin 19 Entitäten): <code>WFLOW</code> bekommt drei
+registrierte Relationen (<code>WFLOW_WFLOW_INVOICINGUNIT_Invoicingunit</code>,
+<code>WFLOW_PROJEKT_Projektnr</code>, <code>WFLOW_WFLOW_FOLDERS_Folder</code>), <code>PROJEKT</code> bekommt die
+Relation <code>PROJEKT_KUNDE_Kundennr</code>. Alle vier Verweise, die zuvor auf den jeweiligen
+Seiten als „fachlich, nicht registriert" dokumentiert waren, sind jetzt offizielle
+DAB-Relationen — die Kette Aufgabe → Projekt → Kunde ist damit durchgehend
+registriert.</p>
+<p>Korrigiert: <code>WFLOW.md</code>, <code>WFLOW_FOLDERS.md</code>, <code>WFLOW_INVOICINGUNIT.md</code>, <code>PROJEKT.md</code>
+(Beziehungsabschnitte von Vermutung auf registrierte Relation umgestellt),
+<code>10-Tabellen/index.md</code> und <code>datenbank-ueberblick.md</code> (Beziehungsgrafik und Texte
+entsprechend angepasst).</p>
+<p><strong>Creation</strong> — Zwei zusammenhängende Rohquellen verarbeitet:
+<code>raw/dab_registry.md</code> (Export 2026-08-02T10:18, 16 → 19 Entitäten) und
+<code>raw/# Tabellen der Aufgabenverwaltung W.md</code> (Fachtext zu <code>WFLOW</code>,
+<code>WFLOW_FOLDERS</code>, <code>WFLOW_INVOICINGUNIT</code>). Die zehn zuvor dokumentierten und
+sechs CRM/KONTAKTE-Tabellen sind inhaltlich unverändert.</p>
+<p>Neue Konzeptseiten unter <code>10-Tabellen/</code>: <code>WFLOW.md</code>, <code>WFLOW_FOLDERS.md</code>,
+<code>WFLOW_INVOICINGUNIT.md</code> — die Aufgabenverwaltung. Kernaussage der Fachquelle:
+eine Aufgabe wird immer über ein Projekt zugeordnet, das Projekt referenziert den
+Kunden, damit ist eine Aufgabe transitiv einem Kunden zurechenbar
+(<code>WFLOW.Projektnr</code> → <code>PROJEKT.Projektnr</code> → <code>PROJEKT.Kundennr</code> → <code>KUNDE.Kundennr</code>,
+durchgehend fachlich, keine registrierte Relation). Klargestellt: Die eigentlichen
+Abrechnungsdaten (Datum, Anzahl, Art) liegen direkt in <code>WFLOW</code>
+(<code>FinishedTime</code>/<code>InvoicingUnitCount</code>/<code>Invoicingunit</code>) — <code>WFLOW_INVOICINGUNIT</code> ist
+nur die Code-Tabelle für die Art (<code>Unit</code>/<code>Name</code>), trotz leicht irreführender
+Formulierung in der Fachquelle.</p>
+<p><code>PROJEKT.md</code> um den eingehenden Verweis von <code>WFLOW</code> ergänzt. <code>10-Tabellen/index.md</code>
+um die Gruppe „Aufgabenverwaltung" erweitert; <code>wiki/index.md</code>,
+<code>00-Allgemeines/datenbank-ueberblick.md</code> (neue Beziehungsgrafik WFLOW → PROJEKT →
+KUNDE) und <code>00-Allgemeines/kontor-api-service.md</code> nachgezogen. Entitätenzahl
+durchgängig auf 19 aktualisiert.</p>
 <h2 id="2026-08-01">2026-08-01</h2>
 <p><strong>Creation</strong> — Neue Rohquelle <code>raw/Informationen_Tabelle_Kontakte.md</code> (Fachtext zu
 <code>KONTAKTE</code>) verarbeitet, zunächst als nicht in der Registry vorhandene Tabelle

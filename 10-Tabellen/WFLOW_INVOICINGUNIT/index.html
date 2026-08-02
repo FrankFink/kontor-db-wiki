@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Projektstamm mit Kundenbezug, Vertrags- und Preisangaben; Rgadrid/Lieferadrid hier untypisiert als bigint.">
+        <meta name="description" content="Code-Tabelle für Abrechnungseinheiten-Arten; die eigentlichen Abrechnungsdaten liegen in WFLOW.">
       
       
       
       
-        <link rel="prev" href="../KUNDE_GRP2/">
+        <link rel="prev" href="../WFLOW_FOLDERS/">
       
       
-        <link rel="next" href="../VERTR/">
+        <link rel="next" href="../../20-Views/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>PROJEKT - Kontor Datenbank Wiki</title>
+        <title>WFLOW_INVOICINGUNIT - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PROJEKT
+              WFLOW_INVOICINGUNIT
             
           </span>
         </div>
@@ -1038,19 +1038,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../PROJEKT/" class="md-nav__link">
         
   
   
@@ -1066,7 +1057,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1160,10 +1150,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../WFLOW_INVOICINGUNIT/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1179,6 +1178,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1404,11 +1404,13 @@
 
 
 
-<p>Tabelle <code>dbo.PROJEKT</code> — ein Datensatz je Projekt, mit Kundenbezug, Vertrags- und
-Kalkulationsangaben.</p>
+<p>Tabelle <code>dbo.WFLOW_INVOICINGUNIT</code> — Code-Tabelle für die <strong>Art</strong> der
+Abrechnungseinheit (z. B. Stunden, Pauschale). Sie hält nur Code und Bezeichnung;
+Abrechnungsdatum, Anzahl und die konkrete Art-Zuordnung einer Aufgabe liegen in
+<a href="../WFLOW/">WFLOW</a> selbst (<code>FinishedTime</code>, <code>InvoicingUnitCount</code>, <code>Invoicingunit</code>).</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Projektnr</code> (<code>nvarchar(50)</code>)</p>
+<p><strong>Primärschlüssel:</strong> <code>Unit</code> (<code>nvarchar(15)</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1420,192 +1422,23 @@ Kalkulationsangaben.</p>
 </thead>
 <tbody>
 <tr>
-<td>Projektnr</td>
-<td>nvarchar(50)</td>
-<td>no</td>
-<td>PK</td>
-</tr>
-<tr>
-<td>Bearb</td>
-<td>nvarchar(5)</td>
-<td>yes</td>
-<td>Kürzel des Bearbeiters</td>
-</tr>
-<tr>
-<td>Projektdatum</td>
-<td>datetime</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Projektname</td>
-<td>nvarchar(150)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Kundennr</td>
+<td>Unit</td>
 <td>nvarchar(15)</td>
-<td>yes</td>
-<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code></td>
+<td>no</td>
+<td>Code der Abrechnungseinheit, PK</td>
 </tr>
 <tr>
-<td>Suchbegriff</td>
-<td>nvarchar(30)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Hinweistext</td>
-<td>ntext(1073741823)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>VertragReg</td>
-<td>ntext(1073741823)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Info1</td>
-<td>nvarchar(80)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Info2</td>
-<td>nvarchar(80)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Info3</td>
-<td>nvarchar(80)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Info4</td>
-<td>nvarchar(80)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>KennWaehrung</td>
-<td>nvarchar(5)</td>
-<td>yes</td>
-<td>Währungskennzeichen</td>
-</tr>
-<tr>
-<td>Projektreferenz</td>
-<td>nvarchar(60)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>LVImport</td>
-<td>bit</td>
-<td>yes</td>
-<td>Vermutlich Import aus Leistungsverzeichnis</td>
-</tr>
-<tr>
-<td>Rgadrid</td>
-<td>bigint</td>
-<td>yes</td>
-<td>Rechnungsadresse — <strong>Typ weicht ab</strong>, siehe Anmerkung unten</td>
-</tr>
-<tr>
-<td>Lieferadrid</td>
-<td>bigint</td>
-<td>yes</td>
-<td>Lieferadresse — <strong>Typ weicht ab</strong>, siehe Anmerkung unten</td>
-</tr>
-<tr>
-<td>Kw</td>
-<td>nvarchar(10)</td>
-<td>yes</td>
-<td>Vermutlich Kalenderwoche</td>
-</tr>
-<tr>
-<td>Lager</td>
-<td>smallint</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Preistabelle</td>
-<td>nvarchar(3)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Sprcode</td>
-<td>nvarchar(3)</td>
-<td>yes</td>
-<td>Sprachcode</td>
-</tr>
-<tr>
-<td>Rglistmode</td>
-<td>bit</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Mwst</td>
-<td>decimal</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Posnumstep</td>
-<td>int</td>
-<td>yes</td>
-<td>Schrittweite der Positionsnummerierung</td>
-</tr>
-<tr>
-<td>Style</td>
-<td>nvarchar(200)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Groupname</td>
+<td>Name</td>
 <td>nvarchar(50)</td>
 <td>yes</td>
-<td></td>
+<td>Bezeichnung</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Anmerkung — Typabweichung bei Rgadrid/Lieferadrid:</strong> In <a href="../ADRESSEN/">ADRESSEN</a>
-ist <code>Id</code> ein <code>uniqueidentifier</code>, in <a href="../KUNDE/">KUNDE</a> sind <code>Rgadrid</code>/<code>Lieferadrid</code>
-entsprechend <code>uniqueidentifier</code>. In <code>PROJEKT</code> sind die gleichnamigen Felder dagegen
-<code>bigint</code>. Ob sie trotz des Namens dieselbe Adresszuordnung meinen (dann wäre der
-Datentyp inkonsistent oder es gibt eine zweite, ältere Adressstruktur) oder etwas
-anderes referenzieren, ist ungeklärt.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Kardinalität</th>
-<th>Ziel</th>
-<th>Mapping</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PROJEKT_KUNDE_Kundennr</td>
-<td>one</td>
-<td><a href="../KUNDE/">KUNDE</a></td>
-<td><code>Kundennr : Kundennr</code></td>
-</tr>
-</tbody>
-</table>
+<p>In der Registry sind an dieser Tabelle <strong>keine ausgehenden Beziehungen</strong> deklariert.</p>
 <p><a href="../WFLOW/">WFLOW</a> referenziert diese Tabelle über die registrierte Relation
-<code>WFLOW_PROJEKT_Projektnr</code> (<code>Projektnr : Projektnr</code>): eine Aufgabe wird stets über
-ihr Projekt einem Kunden zugeordnet (Aufgabe → Projekt → Kunde), und beide Schritte
-sind jetzt als DAB-Relation deklariert.</p>
+<code>WFLOW_WFLOW_INVOICINGUNIT_Invoicingunit</code> (<code>Invoicingunit : Unit</code>).</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
@@ -1649,7 +1482,7 @@ sind jetzt als DAB-Relation deklariert.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../KUNDE_GRP2/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: KUNDE_GRP2">
+          <a href="../WFLOW_FOLDERS/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: WFLOW_FOLDERS">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1659,20 +1492,20 @@ sind jetzt als DAB-Relation deklariert.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                KUNDE_GRP2
+                WFLOW_FOLDERS
               </div>
             </div>
           </a>
         
         
           
-          <a href="../VERTR/" class="md-footer__link md-footer__link--next" aria-label="Weiter: VERTR">
+          <a href="../../20-Views/" class="md-footer__link md-footer__link--next" aria-label="Weiter: 20 · Views">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                VERTR
+                20 · Views
               </div>
             </div>
             <div class="md-footer__button md-icon">

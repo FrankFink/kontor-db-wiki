@@ -1098,6 +1098,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="WFLOW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="WFLOW_FOLDERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_FOLDERS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="WFLOW_INVOICINGUNIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1454,9 +1538,42 @@ siehe die jeweiligen Seiten.</p>
 </tr>
 </tbody>
 </table>
+<h1 id="aufgabenverwaltung">Aufgabenverwaltung</h1>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+<th>PK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="WFLOW/">WFLOW</a></td>
+<td>Aufgaben der Nutzer, zugeordnet über <code>PROJEKT</code></td>
+<td><code>ID</code></td>
+</tr>
+<tr>
+<td><a href="WFLOW_FOLDERS/">WFLOW_FOLDERS</a></td>
+<td>Ordner zur Strukturierung von Aufgaben</td>
+<td><code>Folder</code></td>
+</tr>
+<tr>
+<td><a href="WFLOW_INVOICINGUNIT/">WFLOW_INVOICINGUNIT</a></td>
+<td>Code-Tabelle für Abrechnungseinheiten-Arten</td>
+<td><code>Unit</code></td>
+</tr>
+</tbody>
+</table>
+<p>Eine Aufgabe (<code>WFLOW</code>) wird stets einem Projekt zugeordnet; darüber ist sie auch
+einem Kunden zurechenbar (<code>WFLOW.Projektnr</code> → <code>PROJEKT.Projektnr</code> →
+<code>PROJEKT.Kundennr</code> → <code>KUNDE.Kundennr</code>, beide Schritte inzwischen als DAB-Relation
+registriert). Die Abrechnungsdaten selbst liegen in <code>WFLOW</code>
+(<code>FinishedTime</code>/<code>InvoicingUnitCount</code>/<code>Invoicingunit</code>);
+<code>WFLOW_INVOICINGUNIT</code> ist nur die Code-Tabelle für die Art.</p>
 <p>Alle Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
-exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-01,
-16 Entitäten).</p>
+exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-02,
+19 Entitäten).</p>
 
 
 

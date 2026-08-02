@@ -607,6 +607,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aufgabenverwaltung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aufgabenverwaltung
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1181,6 +1192,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/WFLOW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/WFLOW_FOLDERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_FOLDERS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-Tabellen/WFLOW_INVOICINGUNIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1436,6 +1531,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aufgabenverwaltung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aufgabenverwaltung
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1457,7 +1563,7 @@
 (codegarden software GmbH). Sie liegt im Standard-Schema <code>dbo</code> einer
 SQL-Server-Instanz.</p>
 <h1 id="aktueller-wiki-ausschnitt">Aktueller Wiki-Ausschnitt</h1>
-<p>Dokumentiert sind bislang 16 Tabellen, die über den
+<p>Dokumentiert sind bislang 19 Tabellen, die über den
 <a href="../kontor-api-service/">Kontor API Service</a> freigegeben sind. Die Datenbank enthält
 darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
 sobald Quellen dazu vorliegen.</p>
@@ -1566,6 +1672,32 @@ noch untereinander.</p>
 </table>
 <p>Verwendet das gleiche Diskriminator-Muster wie <code>CRM_ACTIVITIES</code>
 (<code>ParentType</code>/<code>ParentId</code>) — beide ohne registrierte Beziehungen.</p>
+<h2 id="aufgabenverwaltung">Aufgabenverwaltung</h2>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../10-Tabellen/WFLOW/">WFLOW</a></td>
+<td>Aufgaben der Nutzer, zugeordnet über <code>PROJEKT</code></td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/WFLOW_FOLDERS/">WFLOW_FOLDERS</a></td>
+<td>Ordner zur Strukturierung von Aufgaben</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/WFLOW_INVOICINGUNIT/">WFLOW_INVOICINGUNIT</a></td>
+<td>Code-Tabelle für Abrechnungseinheiten-Arten</td>
+</tr>
+</tbody>
+</table>
+<p>Einzige der neueren Gruppen mit registriertem Anschluss an bestehende
+Kernentitäten: Aufgabe → <code>PROJEKT</code> → <code>KUNDE</code> (siehe unten), beide Schritte als
+DAB-Relation deklariert.</p>
 <h1 id="beziehungen-im-dokumentierten-ausschnitt">Beziehungen im dokumentierten Ausschnitt</h1>
 <p><code>BUCH_UMSATZ</code> liegt im Zentrum der Bewegungsdaten und verweist auf <code>ARTIK</code> und
 <code>KUNDE</code>. <code>KUNDE</code> verweist seinerseits auf zwei Adressen in <code>ADRESSEN</code>
@@ -1585,16 +1717,24 @@ noch untereinander.</p>
                                   └──▶ KUNDE_GRP2
 </code></pre>
 <p><code>BUCH_UMSATZ.Vertreter</code> verweist fachlich auf <code>VERTR</code>, ist aber nicht als DAB-Relation
-registriert. <code>PROJEKT.Kundennr</code> verweist vermutlich auf <code>KUNDE</code>, ebenfalls ohne
-registrierte Relation; <code>PROJEKT.Rgadrid</code>/<code>Lieferadrid</code> sind auffällig als <code>bigint</code>
-typisiert statt <code>uniqueidentifier</code> wie in <code>ADRESSEN</code>/<code>KUNDE</code> (siehe <a href="../../10-Tabellen/PROJEKT/">PROJEKT</a>).</p>
+registriert. <code>PROJEKT.Kundennr</code> → <code>KUNDE</code> ist inzwischen als DAB-Relation registriert;
+<code>PROJEKT.Rgadrid</code>/<code>Lieferadrid</code> bleiben auffällig als <code>bigint</code> typisiert statt
+<code>uniqueidentifier</code> wie in <code>ADRESSEN</code>/<code>KUNDE</code> (siehe <a href="../../10-Tabellen/PROJEKT/">PROJEKT</a>).</p>
 <p>Der CRM-Bereich (<code>CRM_LEAD</code>, <code>CRM_ACTIVITIES</code>, <code>CRM_LEAD_CONFIG</code>,
 <code>CRM_PROMPT_TEMPLATE</code>) steht separat und ohne registrierte Verbindung zum übrigen
 Schema.</p>
+<p><code>WFLOW.Projektnr</code> → <code>PROJEKT.Projektnr</code> → <code>PROJEKT.Kundennr</code> → <code>KUNDE</code> ist
+durchgehend als DAB-Relation registriert:</p>
+<pre><code>WFLOW ──▶ PROJEKT ──▶ KUNDE   (beide Pfeile registriert)
+  │
+  ├──▶ WFLOW_FOLDERS (Folder, registriert)
+  └──▶ WFLOW_INVOICINGUNIT (Invoicingunit → Unit, registriert)
+</code></pre>
 <h1 id="citations">Citations</h1>
 <ul>
-<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-01 (16 Entitäten)</li>
+<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-02 (19 Entitäten)</li>
 <li><code>../../raw/Informationen_Tabelle_Kontakte.md</code></li>
+<li><code>../../raw/# Tabellen der Aufgabenverwaltung W.md</code></li>
 </ul>
 
 
