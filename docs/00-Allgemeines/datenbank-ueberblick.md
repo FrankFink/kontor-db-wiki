@@ -3,7 +3,7 @@ type: Referenz
 title: Datenbank-Überblick
 description: Kurzüberblick zur Kontor Datenbank, aktuell im Wiki dokumentierter Ausschnitt.
 tags: [datenbank, ueberblick]
-timestamp: 2026-08-02
+timestamp: 2026-08-14
 ---
 
 Die **Kontor Datenbank** ist die SQL-Datenbank hinter dem ERP **Kontor.MED**
@@ -12,10 +12,12 @@ SQL-Server-Instanz.
 
 # Aktueller Wiki-Ausschnitt
 
-Dokumentiert sind bislang 19 Tabellen, die über den
-[Kontor API Service](<kontor-api-service.md>) freigegeben sind. Die Datenbank enthält
-darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier aufgenommen,
-sobald Quellen dazu vorliegen.
+Dokumentiert sind bislang 24 fachliche Tabellen sowie zwei Objekte der
+API-Infrastruktur selbst (`SYS_DAB_METADATA`, `kon_dab_checkentityvalue`) — zusammen
+26 über den [Kontor API Service](<kontor-api-service.md>) freigegebene Entitäten
+(zzgl. `CRM_LEAD_CONFIG` als nicht mehr registrierte Altseite). Die Datenbank
+enthält darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier
+aufgenommen, sobald Quellen dazu vorliegen.
 
 ## Kernentitäten
 
@@ -26,6 +28,7 @@ sobald Quellen dazu vorliegen.
 | [BUCH_UMSATZ](../10-Tabellen/BUCH_UMSATZ.md) | Umsatzbuchungen je Belegposition |
 | [KUNDE](../10-Tabellen/KUNDE.md) | Kundenstamm |
 | [PROJEKT](../10-Tabellen/PROJEKT.md) | Projektstamm mit Kundenbezug |
+| [_FIRMA](../10-Tabellen/_FIRMA.md) | Firmenstammtabelle des Anwenderunternehmens |
 
 ## Codetabellen und Klassifikationen
 
@@ -40,14 +43,14 @@ sobald Quellen dazu vorliegen.
 
 | Tabelle | Zweck (Kurz) |
 |---------|--------------|
-| [CRM_LEAD](../10-Tabellen/CRM_LEAD.md) | Lead-/Interessentendatensatz |
+| [CRM_LEAD](../10-Tabellen/CRM_LEAD.md) | Lead-/Interessentendatensatz (2026-08-14 stark verschlankt) |
 | [CRM_ACTIVITIES](../10-Tabellen/CRM_ACTIVITIES.md) | Aktivitäten-/Verlaufsprotokoll, polymorph verknüpft |
-| [CRM_LEAD_CONFIG](../10-Tabellen/CRM_LEAD_CONFIG.md) | Konfigurationsprofile für Lead-Verarbeitung |
 | [CRM_PROMPT_TEMPLATE](../10-Tabellen/CRM_PROMPT_TEMPLATE.md) | Prompt-Vorlagen je Profil |
 
-Der CRM-Bereich ist neu und schließt fachlich nicht an die übrigen Tabellen an — in
-der Registry sind keine Beziehungen dorthin deklariert, weder zu `ADRESSEN`/`KUNDE`
-noch untereinander.
+Der CRM-Bereich schließt fachlich nicht an die übrigen Tabellen an — in der
+Registry sind keine Beziehungen dorthin deklariert, weder zu `ADRESSEN`/`KUNDE`
+noch untereinander. [CRM_LEAD_CONFIG](../10-Tabellen/CRM_LEAD_CONFIG.md) ist seit
+2026-08-14 nicht mehr registriert (siehe dort).
 
 ## Notizen
 
@@ -69,6 +72,21 @@ Verwendet das gleiche Diskriminator-Muster wie `CRM_ACTIVITIES`
 Einzige der neueren Gruppen mit registriertem Anschluss an bestehende
 Kernentitäten: Aufgabe → `PROJEKT` → `KUNDE` (siehe unten), beide Schritte als
 DAB-Relation deklariert.
+
+## Rezeptabrechnung
+
+| Tabelle | Zweck (Kurz) |
+|---------|--------------|
+| [REZ](../10-Tabellen/REZ.md) | Erfasstes Rezept |
+| [REZ_POS](../10-Tabellen/REZ_POS.md) | Einzelne Rezeptposition |
+| [REZ_ABRECH](../10-Tabellen/REZ_ABRECH.md) | Erzeugte Abrechnung |
+| [REZ_ABRECH_POS](../10-Tabellen/REZ_ABRECH_POS.md) | Zuordnung Abrechnung ↔ Position |
+| [KUNDE_UNTERKONTO](../10-Tabellen/KUNDE_UNTERKONTO.md) | Unterkonten für Praxen mit mehreren Ärzten |
+
+Tabellen des Plugins „Rezeptabrechnung". **Update 2026-08-14:** Diese Domäne,
+ursprünglich um 10:06 ohne jede registrierte Beziehung dokumentiert, ist bis 10:52
+vollständig angebunden worden — zu `KUNDE`, `ARTIK` und untereinander (siehe
+Beziehungsgrafik unten).
 
 # Beziehungen im dokumentierten Ausschnitt
 
@@ -97,9 +115,26 @@ registriert. `PROJEKT.Kundennr` → `KUNDE` ist inzwischen als DAB-Relation regi
 `PROJEKT.Rgadrid`/`Lieferadrid` bleiben auffällig als `bigint` typisiert statt
 `uniqueidentifier` wie in `ADRESSEN`/`KUNDE` (siehe [PROJEKT](../10-Tabellen/PROJEKT.md)).
 
-Der CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
-`CRM_PROMPT_TEMPLATE`) steht separat und ohne registrierte Verbindung zum übrigen
-Schema.
+Der CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_PROMPT_TEMPLATE`) steht separat
+und ohne registrierte Verbindung zum übrigen Schema.
+
+Die Rezeptabrechnungs-Domäne ist seit 2026-08-14 (10:52) vollständig angebunden:
+
+```
+                    ┌──▶ KUNDE  ◀── REZ_ABRECH.Kundennrkk
+                    │            (bestätigt: Krankenkassen als KUNDE-Datensätze)
+ARTIK ◀── REZ_POS ──┼──▶ REZ ──▶ KUNDE
+             │       └──▶ REZ_ABRECH ──▶ KUNDE (Kundennr + Kundennrkk)
+             │
+             └──◀── REZ_ABRECH_POS ──▶ REZ_ABRECH
+
+KUNDE_UNTERKONTO ──▶ KUNDE   (Id jetzt als PK registriert)
+```
+
+Alle Pfeile sind registrierte DAB-Relationen. `KUNDE_UNTERKONTO` hat weiterhin 5
+von der Fachquelle beschriebene Felder, die in der Registry fehlen (`Verwendung`,
+`Adressid`, `Kundennrkk`, `Deaktiviert`, `Info`), siehe
+[KUNDE_UNTERKONTO](../10-Tabellen/KUNDE_UNTERKONTO.md).
 
 `WFLOW.Projektnr` → `PROJEKT.Projektnr` → `PROJEKT.Kundennr` → `KUNDE` ist
 durchgehend als DAB-Relation registriert:
@@ -111,8 +146,20 @@ WFLOW ──▶ PROJEKT ──▶ KUNDE   (beide Pfeile registriert)
   └──▶ WFLOW_INVOICINGUNIT (Invoicingunit → Unit, registriert)
 ```
 
+## API-Infrastruktur
+
+Seit 2026-08-10 zwei weitere registrierte Objekte, die keine Fachdaten sind, sondern
+zum [Kontor API Service](<kontor-api-service.md>) selbst gehören:
+[SYS_DAB_METADATA](<SYS_DAB_METADATA.md>) (Feld-Metadaten anderer Entitäten) und
+[kon_dab_checkentityvalue](<kon_dab_checkentityvalue.md>) (gespeicherte Prozedur,
+erstes registriertes Nicht-Tabellen-Objekt). Beide stehen fachlich isoliert, ihr
+vermuteter Zusammenhang (`SYS_DAB_METADATA.Hasproccheck` → Aufruf der Prozedur) ist
+nicht in der Registry belegt.
+
 # Citations
 
-- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-02 (19 Entitäten)
+- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-14, 10:52 Uhr (26 Entitäten)
 - `../../raw/Informationen_Tabelle_Kontakte.md`
 - `../../raw/# Tabellen der Aufgabenverwaltung W.md`
+- `../../raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md`
+- `../../raw/Firmenstammdaten.md`

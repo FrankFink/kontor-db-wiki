@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kundenstamm — je Kundennummer ein Datensatz mit Verweisen auf Rechnungs- und Lieferadresse.">
+        <meta name="description" content="Kundenstamm — je Kundennummer ein Datensatz mit Verweisen auf Rechnungs- und Lieferadresse; seit 2026-08-14 zusätzlich Krankenkassen-/Arztfelder für die Rezeptabrechnung.">
       
       
       
@@ -501,6 +501,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../00-Allgemeines/SYS_DAB_METADATA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS_DAB_METADATA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
         
   
@@ -509,6 +537,34 @@
     
   
     Datenbank-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-Allgemeines/kon_dab_checkentityvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kon_dab_checkentityvalue
   
 
     
@@ -1051,6 +1107,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../KUNDE_UNTERKONTO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../PROJEKT/" class="md-nav__link">
         
   
@@ -1059,6 +1143,118 @@
     
   
     PROJEKT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH_POS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_POS
   
 
     
@@ -1171,6 +1367,34 @@
     
   
     WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../_FIRMA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _FIRMA
   
 
     
@@ -1473,10 +1697,54 @@ Fremdschlüssel auf <a href="../ADRESSEN/">ADRESSEN</a> (Rechnungs- und Lieferad
 <td>yes</td>
 <td>FK auf <a href="../VERTR/">VERTR</a>.<code>Vertrnr</code> — zugeordneter Vertreter</td>
 </tr>
+<tr>
+<td>Anlagedatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Vermutlich Erstanlage des Kunden</td>
+</tr>
+<tr>
+<td>KundennrKK</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Vermutlich Kundennummer der für diesen Kunden hinterlegten Standard-Krankenkasse. Dass Krankenkassen als eigene <code>KUNDE</code>-Datensätze geführt werden, ist über <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Kundennrkk</code> (registrierte FK auf <code>KUNDE</code>) bestätigt — dieses Feld selbst (<code>KUNDE.KundennrKK</code>) hat aber keine eigene registrierte Relation</td>
+</tr>
+<tr>
+<td>Lanr</td>
+<td>nvarchar(150)</td>
+<td>yes</td>
+<td>Lebenslange Arztnummer; vermutlich der Standardwert für Kunden mit nur einem Arzt/einer Betriebsstätte — bei mehreren siehe <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a></td>
+</tr>
+<tr>
+<td>Kostentraegerkennung</td>
+<td>nvarchar(150)</td>
+<td>yes</td>
+<td>Kennung des Kostenträgers; Verhältnis zu <code>KundennrKK</code> ungeklärt (unterschiedliche Kennungssysteme?)</td>
+</tr>
+<tr>
+<td>Klinikverbund</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Zugehörigkeit zu einem Klinikverbund, falls zutreffend</td>
+</tr>
+<tr>
+<td>Betriebsnummer</td>
+<td>nvarchar(150)</td>
+<td>yes</td>
+<td>Betriebsstättennummer (BSNR); vermutlich Standardwert analog zu <code>Lanr</code>, siehe <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a></td>
+</tr>
+<tr>
+<td>Kv</td>
+<td>nvarchar(5)</td>
+<td>yes</td>
+<td>Vermutlich Kürzel der zuständigen Kassenärztlichen Vereinigung</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Anmerkung:</strong> Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen.</p>
+zu bestätigen. Die sechs zuletzt genannten Felder (<code>KundennrKK</code> bis <code>Kv</code>) wurden am
+2026-08-14 zusammen mit der Rezeptabrechnungs-Domäne ergänzt und dort auch fachlich
+eingeordnet — siehe <a href="../REZ/">REZ</a> und <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a>.</p>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
 <thead>
@@ -1526,6 +1794,15 @@ zu bestätigen.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="eingehende-beziehungen">Eingehende Beziehungen</h2>
+<p>Zahlreiche Tabellen referenzieren <code>KUNDE</code> über eine bei sich selbst registrierte
+Relation (nicht in obiger Tabelle enthalten, da dort nur die von <code>KUNDE</code> aus
+deklarierten Relationen stehen):</p>
+<p><a href="../PROJEKT/">PROJEKT</a> (<code>Kundennr</code>), <a href="../WFLOW/">WFLOW</a> (transitiv über
+<code>PROJEKT</code>), <a href="../REZ/">REZ</a> (<code>Kundennr</code>), <a href="../REZ_ABRECH/">REZ_ABRECH</a>
+(<code>Kundennr</code> <strong>und</strong> <code>Kundennrkk</code> — bestätigt, dass Krankenkassen als eigene
+<code>KUNDE</code>-Datensätze geführt werden), <a href="../REZ_POS/">REZ_POS</a> (<code>Kundennr</code>) und
+<a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a> (<code>Kundennr</code>).</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>

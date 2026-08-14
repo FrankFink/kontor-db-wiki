@@ -34,6 +34,9 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Invoicingunit | nvarchar(3) | yes | FK auf [WFLOW_INVOICINGUNIT](<WFLOW_INVOICINGUNIT.md>).`Unit` — Art der Abrechnungseinheit |
 | InvoicingUnitCount | decimal | yes | Anzahl der Abrechnungseinheiten |
 | Projektnr | nvarchar(200) | yes | FK auf [PROJEKT](<PROJEKT.md>).`Projektnr` |
+| Sender | nvarchar(50) | yes | Ersteller/Absender der Aufgabe; Verhältnis zu `Receiver` und zur (noch nicht dokumentierten) Benutzertabelle ungeklärt |
+| ProcessingTime | datetime | yes | Vermutlich Zeitpunkt des Bearbeitungsbeginns |
+| Wrkstate | nvarchar(5) | yes | Vermutlich der in der Fachquelle erwähnte Bearbeitungsstatus der Aufgabe |
 
 # Zuordnung zu Projekt und Kunde
 

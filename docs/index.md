@@ -28,16 +28,19 @@ den HTTP-Zugriff (REST + GraphQL).
 
 # Dokumentierter Ausschnitt
 
-19 über den Kontor API Service exponierte Tabellen: fünf Kernentitäten mit
+26 über den Kontor API Service exponierte Entitäten: sechs Kernentitäten mit
 `BUCH_UMSATZ` als zentralem Bewegungsdatensatz, sechs Codetabellen für
-Warengruppen, Kategorien, Kundengruppen und Vertreter, ein eigenständiger
-CRM-Bereich, die Notiztabelle `KONTAKTE` sowie die Aufgabenverwaltung (`WFLOW`).
+Warengruppen, Kategorien, Kundengruppen und Vertreter, ein CRM-Bereich, die
+Notiztabelle `KONTAKTE`, die Aufgabenverwaltung (`WFLOW`), die
+Rezeptabrechnung (`REZ`) sowie zwei Objekte der API-Infrastruktur selbst.
 
-- Kernentitäten: [ADRESSEN](<10-Tabellen/ADRESSEN.md>) · [ARTIK](<10-Tabellen/ARTIK.md>) · [BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>) · [KUNDE](<10-Tabellen/KUNDE.md>) · [PROJEKT](<10-Tabellen/PROJEKT.md>)
+- Kernentitäten: [ADRESSEN](<10-Tabellen/ADRESSEN.md>) · [ARTIK](<10-Tabellen/ARTIK.md>) · [BUCH_UMSATZ](<10-Tabellen/BUCH_UMSATZ.md>) · [KUNDE](<10-Tabellen/KUNDE.md>) · [PROJEKT](<10-Tabellen/PROJEKT.md>) · [_FIRMA](<10-Tabellen/_FIRMA.md>)
 - Codetabellen: [ARTIK_WG1](<10-Tabellen/ARTIK_WG1.md>) · [ARTIK_WG2](<10-Tabellen/ARTIK_WG2.md>) · [ARTIK_KATWERTE](<10-Tabellen/ARTIK_KATWERTE.md>) · [KUNDE_GRP1](<10-Tabellen/KUNDE_GRP1.md>) · [KUNDE_GRP2](<10-Tabellen/KUNDE_GRP2.md>) · [VERTR](<10-Tabellen/VERTR.md>)
-- CRM: [CRM_LEAD](<10-Tabellen/CRM_LEAD.md>) · [CRM_ACTIVITIES](<10-Tabellen/CRM_ACTIVITIES.md>) · [CRM_LEAD_CONFIG](<10-Tabellen/CRM_LEAD_CONFIG.md>) · [CRM_PROMPT_TEMPLATE](<10-Tabellen/CRM_PROMPT_TEMPLATE.md>)
+- CRM: [CRM_LEAD](<10-Tabellen/CRM_LEAD.md>) · [CRM_ACTIVITIES](<10-Tabellen/CRM_ACTIVITIES.md>) · [CRM_PROMPT_TEMPLATE](<10-Tabellen/CRM_PROMPT_TEMPLATE.md>) · [CRM_LEAD_CONFIG](<10-Tabellen/CRM_LEAD_CONFIG.md>) (nicht mehr registriert)
 - Notizen: [KONTAKTE](<10-Tabellen/KONTAKTE.md>)
 - Aufgabenverwaltung: [WFLOW](<10-Tabellen/WFLOW.md>) · [WFLOW_FOLDERS](<10-Tabellen/WFLOW_FOLDERS.md>) · [WFLOW_INVOICINGUNIT](<10-Tabellen/WFLOW_INVOICINGUNIT.md>)
+- Rezeptabrechnung: [REZ](<10-Tabellen/REZ.md>) · [REZ_POS](<10-Tabellen/REZ_POS.md>) · [REZ_ABRECH](<10-Tabellen/REZ_ABRECH.md>) · [REZ_ABRECH_POS](<10-Tabellen/REZ_ABRECH_POS.md>) · [KUNDE_UNTERKONTO](<10-Tabellen/KUNDE_UNTERKONTO.md>)
+- API-Infrastruktur: [SYS_DAB_METADATA](<00-Allgemeines/SYS_DAB_METADATA.md>) · [kon_dab_checkentityvalue](<00-Allgemeines/kon_dab_checkentityvalue.md>)
 
 Beziehungsgrafik siehe [Datenbank-Überblick](<00-Allgemeines/datenbank-ueberblick.md>).
 

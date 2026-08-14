@@ -1,15 +1,21 @@
 ---
 type: Entität
 title: CRM_LEAD_CONFIG
-description: Konfigurationsprofile für die Lead-Verarbeitung, JSON-Settings je Profil.
-tags: [tabelle, crm, lead, konfiguration]
-timestamp: 2026-08-01
+description: "DEPRECATED (seit 2026-08-14 nicht mehr registriert): Konfigurationsprofile für die Lead-Verarbeitung, JSON-Settings je Profil."
+tags: [tabelle, crm, lead, konfiguration, deprecated]
+timestamp: 2026-08-14
 ---
+
+> **Nicht mehr in der DAB-Registry.** Diese Tabelle war bis zum Export vom
+> 2026-08-02 registriert und ist im Export vom 2026-08-14 nicht mehr enthalten.
+> Ob die Tabelle in der Datenbank noch existiert und nur nicht mehr über den
+> Kontor API Service exponiert wird, oder ob sie entfernt wurde, ist unklar. Seite
+> als historische Referenz erhalten; siehe `log.md` (2026-08-14).
 
 Tabelle `dbo.CRM_LEAD_CONFIG` — ein Konfigurationsdatensatz je Profil, mit den
 Einstellungen als JSON in `SettingsJson`.
 
-Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
+War registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 
 # Schema
 

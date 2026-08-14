@@ -3,7 +3,7 @@ type: Entität
 title: ADRESSEN
 description: Adressdatensätze (Kunden, Lieferanten, Ansprechpartner), gruppiert über Firmenadressid; referenziert von KUNDE.
 tags: [tabelle, adressen, stammdaten]
-timestamp: 2026-08-01
+timestamp: 2026-08-10
 ---
 
 Tabelle `dbo.ADRESSEN` — Adressdatensätze von Kunden, Lieferanten und davon
@@ -45,8 +45,12 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Hauptansprechpartner | bit | yes | Hauptansprechpartner innerhalb der Firma |
 | Entscheider | bit | yes | Ansprechpartner mit Entscheidungsbefugnis |
 | Aktiv | bit | yes | Adresse aktiv/deaktiviert |
+| Geocode_lat | decimal | yes | Breitengrad, vermutlich aus Geocoding von `Str`/`Plz`/`Ort1` |
+| Geocode_lng | decimal | yes | Längengrad, vermutlich aus Geocoding von `Str`/`Plz`/`Ort1` |
 
-**Ungeklärt:** genaue Bedeutung von `Adresstyp`, `Gruppe`, `Bestland`.
+**Ungeklärt:** genaue Bedeutung von `Adresstyp`, `Gruppe`, `Bestland`; wodurch/wann
+`Geocode_lat`/`Geocode_lng` befüllt werden (z. B. bei Speicherung automatisch, oder
+über einen separaten Geocoding-Lauf).
 
 # Aufbau und Zuordnung von Adressen
 

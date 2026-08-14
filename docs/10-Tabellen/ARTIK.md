@@ -3,7 +3,7 @@ type: Entität
 title: ARTIK
 description: Artikelstamm — je Artikelnummer ein Datensatz mit Bezeichnungen, Preisen, Lieferantenbezug und Klassifikationen.
 tags: [tabelle, artikel, stammdaten]
-timestamp: 2026-07-30
+timestamp: 2026-08-14
 ---
 
 Tabelle `dbo.ARTIK` — Artikelstamm der Kontor Datenbank. Ein Datensatz pro
@@ -40,9 +40,16 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Pzn | nvarchar(50) | yes | Pharmazentralnummer |
 | HerstellerId | nvarchar(15) | yes | Hersteller-ID (Verweis vermutlich in eigene Herstellertabelle) |
 | Katid | nvarchar(50) | yes | FK auf [ARTIK_KATWERTE](<ARTIK_KATWERTE.md>).`Katid` — zugeordnete Kategorie |
+| Mwstklasse | nvarchar(15) | no | Mehrwertsteuerklasse, Pflichtfeld; vermutlich Schlüssel „voll"/„ermäßigt" analog zu [_FIRMA](<_FIRMA.md>).`Mwst`/`Mwst2` |
+| SSB | nvarchar(50) | yes | Vermutlich Kennzeichen für Sprechstundenbedarf-Fähigkeit des Artikels (siehe Schwesterwiki `Kontor MED v1`) |
+| Rezeptbez1 | nvarchar(50) | yes | Bezeichnung des Artikels für den Rezeptdruck/die Rezeptabrechnung |
+| Rezeptbez2 | nvarchar(50) | yes | Zweite Bezeichnungszeile für den Rezeptdruck/die Rezeptabrechnung |
+| Abda_preisfaktor | decimal | yes | Preisfaktor aus ABDA-Daten (Arzneimittel-Preisdatenbank der Apothekerverbände) |
 
 **Anmerkung:** Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen.
+zu bestätigen. Die fünf zuletzt genannten Felder (`Mwstklasse` bis
+`Abda_preisfaktor`) gehören inhaltlich zur Rezeptabrechnungs-/Pharma-Domäne, siehe
+[REZ](<REZ.md>) und Umfeld.
 
 # Beziehungen
 

@@ -3,7 +3,7 @@ type: Entität
 title: CRM_PROMPT_TEMPLATE
 description: Vorlagen für (vermutlich KI-gestützte) Prompts im CRM, je Profil zuordenbar.
 tags: [tabelle, crm, prompt, ki]
-timestamp: 2026-08-01
+timestamp: 2026-08-14
 ---
 
 Tabelle `dbo.CRM_PROMPT_TEMPLATE` — Prompt-Vorlagen, benannt und je Profil
@@ -20,7 +20,7 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 |------|-----|----------|-----------|
 | Name | nvarchar(50) | no | PK |
 | Beschreibung | nvarchar(200) | yes | |
-| Profile | nvarchar | yes | Vermutlich Verweis auf [CRM_LEAD_CONFIG](<CRM_LEAD_CONFIG.md>).`Profile` |
+| Profile | nvarchar | yes | Zielte vermutlich auf [CRM_LEAD_CONFIG](<CRM_LEAD_CONFIG.md>).`Profile` — diese Tabelle ist seit 2026-08-14 nicht mehr registriert, der Verweis damit unklar geworden |
 
 **Ungeklärt:** ob und wo der eigentliche Prompt-Text gespeichert ist — die Tabelle
 enthält nur Name, Beschreibung und Profilzuordnung.

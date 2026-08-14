@@ -3,7 +3,7 @@ type: Integration
 title: Kontor API Service
 description: Zugriff auf die Kontor Datenbank über eine DAB-Instanz (REST + GraphQL).
 tags: [api, dab, integration]
-timestamp: 2026-08-02
+timestamp: 2026-08-14
 ---
 
 Der **Kontor API Service** stellt lesenden und schreibenden Zugriff auf ausgewählte
@@ -14,14 +14,38 @@ Basis des Microsoft **Data API Builder** (DAB) umgesetzt.
 
 ## Registrierte Entitäten
 
-Welche Tabellen und Views durch den Service exponiert werden, steht in der
-DAB-Registry. Aktuell registriert sind 19 Tabellen aus dem Schema `dbo`:
-Kernentitäten (`ADRESSEN`, `ARTIK`, `BUCH_UMSATZ`, `KUNDE`, `PROJEKT`), Codetabellen
-(`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`, `KUNDE_GRP2`, `VERTR`),
-ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_LEAD_CONFIG`,
-`CRM_PROMPT_TEMPLATE`), `KONTAKTE` sowie die Aufgabenverwaltung (`WFLOW`,
-`WFLOW_FOLDERS`, `WFLOW_INVOICINGUNIT`). Der aktuelle Stand liegt als Rohquelle
-unter `../../raw/dab_registry.md`.
+Welche Tabellen, Views und Prozeduren durch den Service exponiert werden, steht in
+der DAB-Registry. Aktuell registriert sind 26 Objekte aus dem Schema `dbo`:
+Kernentitäten (`ADRESSEN`, `ARTIK`, `BUCH_UMSATZ`, `KUNDE`, `PROJEKT`, `_FIRMA`),
+Codetabellen (`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`,
+`KUNDE_GRP2`, `VERTR`), ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`,
+`CRM_PROMPT_TEMPLATE`), `KONTAKTE`, die Aufgabenverwaltung (`WFLOW`,
+`WFLOW_FOLDERS`, `WFLOW_INVOICINGUNIT`), die Rezeptabrechnung (`REZ`, `REZ_POS`,
+`REZ_ABRECH`, `REZ_ABRECH_POS`, `KUNDE_UNTERKONTO`) sowie zwei Objekte der
+API-Infrastruktur selbst: die Metadaten-Tabelle
+[SYS_DAB_METADATA](<SYS_DAB_METADATA.md>) und die gespeicherte Prozedur
+[kon_dab_checkentityvalue](<kon_dab_checkentityvalue.md>). Der aktuelle Stand
+liegt als Rohquelle unter `../../raw/dab_registry.md`.
+
+`CRM_LEAD_CONFIG` war bis zum Export vom 2026-08-02 registriert und fehlt seit
+2026-08-14 — die Registry ist damit nicht monoton wachsend, Entitäten können auch
+wieder verschwinden. Die Wiki-Seite bleibt als historische Referenz erhalten
+(siehe [CRM_LEAD_CONFIG](<../10-Tabellen/CRM_LEAD_CONFIG.md>)).
+
+## Nicht jede Entität ist eine Tabelle
+
+Bislang waren alle registrierten Objekte Tabellen. Seit dem Export vom 2026-08-10
+taucht mit `kon_dab_checkentityvalue` erstmals eine **gespeicherte Prozedur** in der
+Registry auf — DAB kann offenbar auch Prozeduren als aufrufbare Entität exponieren,
+nicht nur Datentabellen. Für Prozeduren listet die Registry weder Felder noch
+Beziehungen.
+
+## Selbstbeschreibung über SYS_DAB_METADATA
+
+[SYS_DAB_METADATA](<SYS_DAB_METADATA.md>) beschreibt Felder anderer Entitäten
+(Label, Pflichtfeld, Lookup-Ziel, Prüfroutine) und wirkt wie eine
+Metadatenschicht, die vermutlich UI-Generierung und Feldvalidierung im Kontor API
+Service steuert — unabhängig vom Fachschema der einzelnen Tabellen.
 
 ## Zwei Schnittstellen: REST und GraphQL
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Lead-/Interessentendatensatz im CRM mit Firmen-, Ansprechpartner-, Klassifizierungs- und Wiedervorlagedaten.">
+        <meta name="description" content="Lead-/Interessentendatensatz im CRM; am 2026-08-14 stark verschlankt — mehrere zuvor dokumentierte Felder existieren nicht mehr in der Registry.">
       
       
       
@@ -501,6 +501,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../00-Allgemeines/SYS_DAB_METADATA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS_DAB_METADATA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
         
   
@@ -509,6 +537,34 @@
     
   
     Datenbank-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-Allgemeines/kon_dab_checkentityvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kon_dab_checkentityvalue
   
 
     
@@ -1051,6 +1107,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../KUNDE_UNTERKONTO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../PROJEKT/" class="md-nav__link">
         
   
@@ -1059,6 +1143,118 @@
     
   
     PROJEKT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH_POS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_POS
   
 
     
@@ -1171,6 +1367,34 @@
     
   
     WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../_FIRMA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _FIRMA
   
 
     
@@ -1404,9 +1628,17 @@
 
 
 
-<p>Tabelle <code>dbo.CRM_LEAD</code> — ein Datensatz je Lead/Interessent: Firmen- und
-Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlagefelder.</p>
+<p>Tabelle <code>dbo.CRM_LEAD</code> — ein Datensatz je Lead/Interessent: Kontaktdaten,
+Klassifizierung und Statusfelder.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
+<p><strong>Schema-Historie:</strong> Am 2026-08-14 ist die Tabelle von 33 auf 20 Felder
+geschrumpft. Entfallen sind u. a. <code>Adressid</code>/<code>Ansprechid</code> (die vermuteten
+FK-Kandidaten auf <a href="../ADRESSEN/">ADRESSEN</a>), <code>Kampid</code>, <code>Finished</code>, <code>Ergebnis</code>,
+<code>Label</code>, <code>Branche</code>, <code>Webshop</code>, <code>Geodata</code> sowie alle Aktions-/Wiedervorlagefelder
+(<code>Aktionen</code>, <code>AktionAktiv</code>, <code>AktionLastdate</code>, <code>AktionNextdate</code>, <code>Prio</code>). Neu
+hinzugekommen ist <code>Str</code>. Ob die Felder aus der Tabelle selbst entfernt wurden oder
+nur nicht mehr über den API Service registriert sind, ist aus der Registry allein
+nicht ersichtlich.</p>
 <h1 id="schema">Schema</h1>
 <p><strong>Primärschlüssel:</strong> <code>Leadid</code> (<code>uniqueidentifier</code>)</p>
 <table>
@@ -1444,30 +1676,6 @@ Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlage
 <td>Bezeichnung/Firmenname</td>
 </tr>
 <tr>
-<td>Adressid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>Vermutlich Verweis auf <a href="../ADRESSEN/">ADRESSEN</a>.<code>Id</code></td>
-</tr>
-<tr>
-<td>Ansprechid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>Vermutlich Verweis auf <a href="../ADRESSEN/">ADRESSEN</a>.<code>Id</code> (Ansprechpartner-Datensatz)</td>
-</tr>
-<tr>
-<td>Kampid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>Kampagnenbezug; Zieltabelle noch nicht dokumentiert</td>
-</tr>
-<tr>
-<td>Finished</td>
-<td>bit</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
 <td>FinishedTime</td>
 <td>datetime</td>
 <td>yes</td>
@@ -1476,30 +1684,6 @@ Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlage
 <tr>
 <td>Statusinfo</td>
 <td>nvarchar(100)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Ergebnis</td>
-<td>nvarchar(5)</td>
-<td>yes</td>
-<td>Ergebniscode</td>
-</tr>
-<tr>
-<td>Label</td>
-<td>nvarchar</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Branche</td>
-<td>nvarchar(50)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Webshop</td>
-<td>nvarchar(50)</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -1531,17 +1715,11 @@ Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlage
 <td>Ansprechpartner</td>
 <td>nvarchar(100)</td>
 <td>yes</td>
-<td>Freitext-Name; Verhältnis zu <code>Ansprechid</code> ungeklärt</td>
+<td>Freitext-Name</td>
 </tr>
 <tr>
 <td>Emails</td>
 <td>nvarchar(500)</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>Geodata</td>
-<td>nvarchar(50)</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -1576,40 +1754,10 @@ Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlage
 <td>ABC-Klassifizierung</td>
 </tr>
 <tr>
-<td>Aktionen</td>
-<td>int</td>
-<td>yes</td>
-<td>Anzahl/Zähler von Aktionen</td>
-</tr>
-<tr>
 <td>Bemerkungen</td>
 <td>nvarchar</td>
 <td>yes</td>
 <td></td>
-</tr>
-<tr>
-<td>AktionAktiv</td>
-<td>bit</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>AktionLastdate</td>
-<td>datetime</td>
-<td>yes</td>
-<td></td>
-</tr>
-<tr>
-<td>AktionNextdate</td>
-<td>datetime</td>
-<td>yes</td>
-<td>Wiedervorlagedatum</td>
-</tr>
-<tr>
-<td>Prio</td>
-<td>bit</td>
-<td>yes</td>
-<td>Priorisierungsflag</td>
 </tr>
 <tr>
 <td>Leadstatus</td>
@@ -1617,14 +1765,19 @@ Ansprechpartnerdaten, Kampagnenbezug, Klassifizierung und Aktions-/Wiedervorlage
 <td>yes</td>
 <td></td>
 </tr>
+<tr>
+<td>Str</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Straße (neu seit 2026-08-14)</td>
+</tr>
 </tbody>
 </table>
-<p><strong>Ungeklärt:</strong> ob <code>Ansprechpartner</code> (Freitext) und <code>Ansprechid</code> (FK-Kandidat) denselben
-Ansprechpartner redundant halten oder unterschiedliche Zwecke haben; Zieltabelle von
-<code>Kampid</code>.</p>
+<p><strong>Ungeklärt:</strong> Zieltabelle eines Kampagnenbezugs ist mit dem Wegfall von <code>Kampid</code>
+hinfällig geworden; ob Adress-/Ansprechpartnerdaten jetzt ausschließlich als
+Freitext (<code>Ansprechpartner</code>, <code>Str</code>, <code>Plz</code>, <code>Ort</code>, …) statt über FK geführt werden.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert — auch nicht
-die naheliegenden Verweise <code>Adressid</code>/<code>Ansprechid</code> → <a href="../ADRESSEN/">ADRESSEN</a>.</p>
+<p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert.</p>
 <p><a href="../CRM_ACTIVITIES/">CRM_ACTIVITIES</a> referenziert vermutlich Leads über die
 polymorphe Verknüpfung <code>ParentType</code>/<code>ParentId</code>.</p>
 <h1 id="citations">Citations</h1>
