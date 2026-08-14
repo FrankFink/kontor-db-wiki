@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Warengruppe Ebene 1 — Codetabelle für ARTIK.Wg1.">
+        <meta name="description" content="Erfasstes Rezept — die Rezeptid entspricht zugleich der Dokumenten-ID des gespeicherten Rezeptscans.">
       
       
       
       
-        <link rel="prev" href="../ARTIK_KATWERTE/">
+        <link rel="prev" href="../PROJEKT/">
       
       
-        <link rel="next" href="../ARTIK_WG2/">
+        <link rel="next" href="../REZ_ABRECH/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>ARTIK_WG1 - Kontor Datenbank Wiki</title>
+        <title>REZ - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ARTIK_WG1
+              REZ
             
           </span>
         </div>
@@ -786,19 +786,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ARTIK_WG1/" class="md-nav__link">
         
   
   
@@ -814,7 +805,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1160,10 +1150,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../REZ/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1179,6 +1178,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1628,11 +1628,12 @@
 
 
 
-<p>Tabelle <code>dbo.ARTIK_WG1</code> — Codetabelle für die <strong>Warengruppen Ebene 1</strong> des
-Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
+<p>Tabelle <code>dbo.REZ</code> — enthält die Informationen zu einem erfassten Rezept. Zentrale
+Tabelle des Kontor.MED-Plugins <strong>„Rezeptabrechnung"</strong>. Die <code>Rezeptid</code> entspricht
+gleichzeitig der Dokumenten-ID, unter der der Scan des Rezepts gespeichert ist.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Wg1</code> (<code>nvarchar(15)</code>)</p>
+<p><strong>Primärschlüssel:</strong> <code>Rezeptid</code> (<code>uniqueidentifier</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1644,34 +1645,99 @@ Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
 </thead>
 <tbody>
 <tr>
-<td>Wg1</td>
-<td>nvarchar(15)</td>
+<td>Rezeptid</td>
+<td>uniqueidentifier</td>
 <td>no</td>
-<td>Warengruppencode, PK</td>
+<td>PK; identisch mit der Dokumenten-ID des Rezeptscans; Default vermutlich <code>newid()</code></td>
 </tr>
 <tr>
-<td>Bez</td>
-<td>nvarchar(100)</td>
+<td>Kundennr</td>
+<td>nvarchar(15)</td>
 <td>yes</td>
-<td>Bezeichnung</td>
+<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> — Kunde, dem das Rezept zugeordnet ist (registriert)</td>
 </tr>
 <tr>
-<td>Steuerung</td>
-<td>nvarchar(200)</td>
+<td>Kundennrkk</td>
+<td>nvarchar(15)</td>
 <td>yes</td>
-<td>Steuerparameter, Bedeutung ungeklärt</td>
+<td>Kundennummer der zugeordneten Krankenkasse. Für diese Tabelle <strong>nicht</strong> als eigene Relation registriert (anders als bei <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Kundennrkk</code>, das explizit auf <code>KUNDE</code> verweist) — vermutlich dennoch dasselbe Muster: Krankenkassen als eigene <code>KUNDE</code>-Datensätze geführt</td>
+</tr>
+<tr>
+<td>Datum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Datum des Datensatzes</td>
+</tr>
+<tr>
+<td>Lanr</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Lebenslange Arztnummer, dem Rezept zugeordnet; vgl. <a href="../KUNDE/">KUNDE</a>.<code>Lanr</code> bzw. <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a>.<code>Lanr</code> bei mehreren Ärzten</td>
+</tr>
+<tr>
+<td>Bsnr</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Betriebsstättennummer, dem Rezept zugeordnet; vgl. <a href="../KUNDE/">KUNDE</a>.<code>Betriebsnummer</code> bzw. <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a>.<code>Betriebsnummer</code></td>
+</tr>
+<tr>
+<td>Rezeptdatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Datum des Rezepts selbst</td>
+</tr>
+<tr>
+<td>Abgabedatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Abgabedatum des Rezepts</td>
+</tr>
+<tr>
+<td>Rezeptformat</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Kürzel für ein Template, das das Formular-Format beschreibt</td>
 </tr>
 </tbody>
 </table>
+<h1 id="zuordnung">Zuordnung</h1>
+<p><code>REZ_POS.Rezeptid</code> ordnet einzelne Rezeptpositionen einem Rezept aus <code>REZ</code> zu —
+mehrere Positionen können über dieselbe <code>Rezeptid</code> auf einem Rezept zusammengefasst
+werden. Siehe <a href="../REZ_POS/">REZ_POS</a> und die Gesamtübersicht in
+<a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a> (Abschnitt „Bedeutung für die
+Rezeptabrechnung").</p>
+<pre><code>REZ ──▶ REZ_POS ──▶ REZ_ABRECH_POS ──▶ REZ_ABRECH
+ (alle vier Pfeile registriert, Stand 2026-08-14 10:52 — die letzte Lücke,
+  REZ_ABRECH_POS→REZ_ABRECH, wurde um 10:52 geschlossen)
+</code></pre>
 <h1 id="beziehungen">Beziehungen</h1>
-<p>In der Registry sind an dieser Tabelle <strong>keine ausgehenden Beziehungen</strong> deklariert.</p>
-<p><a href="../ARTIK/">ARTIK</a> verweist eingehend über <code>Wg1 : Wg1</code> hierher (Relation
-<code>ARTIK_ARTIK_WG1_Wg1</code>); <a href="../ARTIK_WG2/">ARTIK_WG2</a> trägt das Feld <code>RefWg1</code>, das
-fachlich auf <code>ARTIK_WG1.Wg1</code> verweist — die inverse Beziehung ist in der Registry
-allerdings nicht deklariert.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kardinalität</th>
+<th>Ziel</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REZ_KUNDE_Kundennr</td>
+<td>one</td>
+<td><a href="../KUNDE/">KUNDE</a></td>
+<td><code>Kundennr : Kundennr</code></td>
+</tr>
+</tbody>
+</table>
+<p>Seit dem Registry-Export vom 2026-08-14 (10:46) registriert — zuvor hatte diese
+Tabelle keine deklarierten Beziehungen. <code>Lanr</code>/<code>Bsnr</code>/<code>Kundennrkk</code> bleiben ohne
+eigene Relation.</p>
+<p><a href="../REZ_POS/">REZ_POS</a> referenziert diese Tabelle über die registrierte Relation
+<code>REZ_POS_REZ_Rezeptid</code> (<code>Rezeptid : Rezeptid</code>).</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
+<li><code>../../raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md</code></li>
 </ul>
 
 
@@ -1711,7 +1777,7 @@ allerdings nicht deklariert.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ARTIK_KATWERTE/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_KATWERTE">
+          <a href="../PROJEKT/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: PROJEKT">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1721,20 +1787,20 @@ allerdings nicht deklariert.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ARTIK_KATWERTE
+                PROJEKT
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ARTIK_WG2/" class="md-footer__link md-footer__link--next" aria-label="Weiter: ARTIK_WG2">
+          <a href="../REZ_ABRECH/" class="md-footer__link md-footer__link--next" aria-label="Weiter: REZ_ABRECH">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                ARTIK_WG2
+                REZ_ABRECH
               </div>
             </div>
             <div class="md-footer__button md-icon">

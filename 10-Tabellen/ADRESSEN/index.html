@@ -501,6 +501,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../00-Allgemeines/SYS_DAB_METADATA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS_DAB_METADATA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
         
   
@@ -509,6 +537,34 @@
     
   
     Datenbank-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-Allgemeines/kon_dab_checkentityvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kon_dab_checkentityvalue
   
 
     
@@ -1051,6 +1107,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../KUNDE_UNTERKONTO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../PROJEKT/" class="md-nav__link">
         
   
@@ -1059,6 +1143,118 @@
     
   
     PROJEKT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH_POS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_POS
   
 
     
@@ -1171,6 +1367,34 @@
     
   
     WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../_FIRMA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _FIRMA
   
 
     
@@ -1577,9 +1801,23 @@ unabhängigen Adressen. Jede Adresse hat eine eindeutige <code>Id</code>. Wird v
 <td>yes</td>
 <td>Adresse aktiv/deaktiviert</td>
 </tr>
+<tr>
+<td>Geocode_lat</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Breitengrad, vermutlich aus Geocoding von <code>Str</code>/<code>Plz</code>/<code>Ort1</code></td>
+</tr>
+<tr>
+<td>Geocode_lng</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Längengrad, vermutlich aus Geocoding von <code>Str</code>/<code>Plz</code>/<code>Ort1</code></td>
+</tr>
 </tbody>
 </table>
-<p><strong>Ungeklärt:</strong> genaue Bedeutung von <code>Adresstyp</code>, <code>Gruppe</code>, <code>Bestland</code>.</p>
+<p><strong>Ungeklärt:</strong> genaue Bedeutung von <code>Adresstyp</code>, <code>Gruppe</code>, <code>Bestland</code>; wodurch/wann
+<code>Geocode_lat</code>/<code>Geocode_lng</code> befüllt werden (z. B. bei Speicherung automatisch, oder
+über einen separaten Geocoding-Lauf).</p>
 <h1 id="aufbau-und-zuordnung-von-adressen">Aufbau und Zuordnung von Adressen</h1>
 <p>Zusammenfassung aus <code>../../raw/# Aufbau und Zuordnung von Adressen.md</code>.</p>
 <p><strong>Zuordnung zu Kunden/Lieferanten.</strong> Im Kunden- bzw. Lieferantenstamm wird die

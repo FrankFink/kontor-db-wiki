@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Warengruppe Ebene 1 — Codetabelle für ARTIK.Wg1.">
+        <meta name="description" content="Firmenstammtabelle — Stammdaten des Anwenderunternehmens selbst (Firmenname, Adresse, Steuernummer, USt-ID, IK-Nummer, MwSt-Sätze).">
       
       
       
       
-        <link rel="prev" href="../ARTIK_KATWERTE/">
+        <link rel="prev" href="../WFLOW_INVOICINGUNIT/">
       
       
-        <link rel="next" href="../ARTIK_WG2/">
+        <link rel="next" href="../../20-Views/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>ARTIK_WG1 - Kontor Datenbank Wiki</title>
+        <title>_FIRMA - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ARTIK_WG1
+              _FIRMA
             
           </span>
         </div>
@@ -786,19 +786,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ARTIK_WG1/" class="md-nav__link">
         
   
   
@@ -814,7 +805,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1384,10 +1374,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../_FIRMA/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1403,6 +1402,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1628,11 +1628,14 @@
 
 
 
-<p>Tabelle <code>dbo.ARTIK_WG1</code> — Codetabelle für die <strong>Warengruppen Ebene 1</strong> des
-Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
+<p>Tabelle <code>dbo._FIRMA</code> — die Firmenstammtabelle. Enthält die Stammdaten des Anwenders
+bzw. Unternehmens selbst (nicht eines Kunden), u. a. Firmenname, Firmenadresse,
+Steuernummer, Umsatzsteuer-ID und IK-Nummer der Firma. Der <code>int</code>-Primärschlüssel
+und das führende <code>_</code> im Namen deuten auf eine Systemtabelle mit vermutlich genau
+einem Datensatz hin (Konfigurationscharakter), das ist aber nicht belegt.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Wg1</code> (<code>nvarchar(15)</code>)</p>
+<p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>int</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1644,34 +1647,102 @@ Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
 </thead>
 <tbody>
 <tr>
-<td>Wg1</td>
-<td>nvarchar(15)</td>
+<td>Id</td>
+<td>int</td>
 <td>no</td>
-<td>Warengruppencode, PK</td>
+<td>PK</td>
 </tr>
 <tr>
-<td>Bez</td>
-<td>nvarchar(100)</td>
+<td>Finame1</td>
+<td>nvarchar(50)</td>
 <td>yes</td>
-<td>Bezeichnung</td>
+<td>Firmenname (Zeile 1)</td>
 </tr>
 <tr>
-<td>Steuerung</td>
-<td>nvarchar(200)</td>
+<td>Finame2</td>
+<td>nvarchar(50)</td>
 <td>yes</td>
-<td>Steuerparameter, Bedeutung ungeklärt</td>
+<td>Firmenname (Zeile 2)</td>
+</tr>
+<tr>
+<td>Str</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Straße</td>
+</tr>
+<tr>
+<td>Plz</td>
+<td>nvarchar(5)</td>
+<td>yes</td>
+<td>Postleitzahl</td>
+</tr>
+<tr>
+<td>Ort</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Tel</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Telefon</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Homepage</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Mwst</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Standard-Mehrwertsteuersatz für Schlüssel „voll" — aktuell 19 %</td>
+</tr>
+<tr>
+<td>Ustid</td>
+<td>nvarchar(20)</td>
+<td>yes</td>
+<td>Umsatzsteuer-ID</td>
+</tr>
+<tr>
+<td>Steuernr</td>
+<td>nvarchar(30)</td>
+<td>yes</td>
+<td>Steuernummer</td>
+</tr>
+<tr>
+<td>Iknummer</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>IK-Nummer der Firma</td>
+</tr>
+<tr>
+<td>Mwst2</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Standard-Mehrwertsteuersatz für Schlüssel „ermäßigt" — aktuell 7 %</td>
 </tr>
 </tbody>
 </table>
+<h1 id="mehrwertsteuersatze">Mehrwertsteuersätze</h1>
+<p><code>Mwst</code> und <code>Mwst2</code> sind laut Fachquelle die beiden Standardsätze, mit denen die
+Mehrwertsteuerschlüssel <strong>voll</strong> (19 %) bzw. <strong>ermäßigt</strong> (7 %) erfasst werden.
+Diese Zuordnung ist konfigurierbar — die genannten Prozentsätze sind der aktuelle
+Stand, kein fester Programmwert.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<p>In der Registry sind an dieser Tabelle <strong>keine ausgehenden Beziehungen</strong> deklariert.</p>
-<p><a href="../ARTIK/">ARTIK</a> verweist eingehend über <code>Wg1 : Wg1</code> hierher (Relation
-<code>ARTIK_ARTIK_WG1_Wg1</code>); <a href="../ARTIK_WG2/">ARTIK_WG2</a> trägt das Feld <code>RefWg1</code>, das
-fachlich auf <code>ARTIK_WG1.Wg1</code> verweist — die inverse Beziehung ist in der Registry
-allerdings nicht deklariert.</p>
+<p>In der Registry sind an dieser Tabelle <strong>keine Beziehungen</strong> deklariert.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
+<li><code>../../raw/Firmenstammdaten.md</code></li>
 </ul>
 
 
@@ -1711,7 +1782,7 @@ allerdings nicht deklariert.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ARTIK_KATWERTE/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_KATWERTE">
+          <a href="../WFLOW_INVOICINGUNIT/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: WFLOW_INVOICINGUNIT">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1721,20 +1792,20 @@ allerdings nicht deklariert.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ARTIK_KATWERTE
+                WFLOW_INVOICINGUNIT
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ARTIK_WG2/" class="md-footer__link md-footer__link--next" aria-label="Weiter: ARTIK_WG2">
+          <a href="../../20-Views/" class="md-footer__link md-footer__link--next" aria-label="Weiter: 20 · Views">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                ARTIK_WG2
+                20 · Views
               </div>
             </div>
             <div class="md-footer__button md-icon">

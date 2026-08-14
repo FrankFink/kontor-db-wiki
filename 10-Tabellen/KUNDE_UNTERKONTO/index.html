@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Warengruppe Ebene 1 — Codetabelle für ARTIK.Wg1.">
+        <meta name="description" content="Unterkonten eines Kunden für Praxen mit mehreren Ärzten (unterschiedliche LANR/BSNR-Kombinationen); Registry-Schema war zunächst unvollständiger als die Fachquelle, PK-Feld Id inzwischen nachregistriert.">
       
       
       
       
-        <link rel="prev" href="../ARTIK_KATWERTE/">
+        <link rel="prev" href="../KUNDE_GRP2/">
       
       
-        <link rel="next" href="../ARTIK_WG2/">
+        <link rel="next" href="../PROJEKT/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>ARTIK_WG1 - Kontor Datenbank Wiki</title>
+        <title>KUNDE_UNTERKONTO - Kontor Datenbank Wiki</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ARTIK_WG1
+              KUNDE_UNTERKONTO
             
           </span>
         </div>
@@ -786,19 +786,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ARTIK_WG1/" class="md-nav__link">
         
   
   
@@ -814,7 +805,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1104,10 +1094,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../KUNDE_UNTERKONTO/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1123,6 +1140,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uber-die-registry-abrufbare-felder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Über die Registry abrufbare Felder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weiterhin-fehlende-felder-laut-fachquelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weiterhin fehlende Felder laut Fachquelle
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1613,6 +1672,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uber-die-registry-abrufbare-felder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Über die Registry abrufbare Felder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weiterhin-fehlende-felder-laut-fachquelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weiterhin fehlende Felder laut Fachquelle
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1628,11 +1717,21 @@
 
 
 
-<p>Tabelle <code>dbo.ARTIK_WG1</code> — Codetabelle für die <strong>Warengruppen Ebene 1</strong> des
-Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
+<p>Tabelle <code>dbo.KUNDE_UNTERKONTO</code> — bildet Unterkonten eines Kunden ab. Relevant, wenn
+eine Praxis bzw. ein Kunde mehrere Ärzte mit unterschiedlichen Kombinationen aus
+<strong>LANR</strong> und <strong>BSNR</strong> hat: über Unterkonten lassen sich diese arzt- bzw.
+betriebsstättenbezogenen Daten innerhalb einer gemeinsamen Kundennummer
+unterscheiden. Damit ist die Tabelle für die korrekte Zuordnung von Rezepten und
+Rezeptpositionen zum jeweiligen Arzt bzw. zur jeweiligen Betriebsstätte relevant.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Primärschlüssel:</strong> <code>Wg1</code> (<code>nvarchar(15)</code>)</p>
+<p><strong>Abweichung zwischen Registry und Fachquelle — teilweise behoben.</strong> Die
+DAB-Registry listete zunächst (Export bis 2026-08-14 10:06) nur 5 Felder ohne
+Primärschlüssel. Im Export vom selben Tag, 10:46 Uhr, ist <code>Id</code> als sechstes Feld
+und PK hinzugekommen — deckt sich jetzt mit der Fachquelle. Fünf von der
+Fachquelle beschriebene Felder fehlen aber weiterhin in der Registry.</p>
+<p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>, seit 2026-08-14 10:46 registriert)</p>
+<h2 id="uber-die-registry-abrufbare-felder">Über die Registry abrufbare Felder</h2>
 <table>
 <thead>
 <tr>
@@ -1644,34 +1743,112 @@ Artikelstamms. Ein Datensatz pro Warengruppencode.</p>
 </thead>
 <tbody>
 <tr>
-<td>Wg1</td>
-<td>nvarchar(15)</td>
+<td>Id</td>
+<td>uniqueidentifier</td>
 <td>no</td>
-<td>Warengruppencode, PK</td>
+<td>PK — seit 2026-08-14 (10:46) registriert, vorher fehlte sie in der Registry</td>
+</tr>
+<tr>
+<td>Kundennr</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> — übergeordneter Kunde/Praxis (registriert)</td>
+</tr>
+<tr>
+<td>Nr</td>
+<td>int</td>
+<td>yes</td>
+<td>Nummer des Unterkontos</td>
 </tr>
 <tr>
 <td>Bez</td>
-<td>nvarchar(100)</td>
-<td>yes</td>
-<td>Bezeichnung</td>
-</tr>
-<tr>
-<td>Steuerung</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
-<td>Steuerparameter, Bedeutung ungeklärt</td>
+<td>Bezeichnung des Unterkontos</td>
+</tr>
+<tr>
+<td>Betriebsnummer</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>BSNR des Unterkontos</td>
+</tr>
+<tr>
+<td>Lanr</td>
+<td>nvarchar(35)</td>
+<td>yes</td>
+<td>LANR des zugeordneten Arztes</td>
 </tr>
 </tbody>
 </table>
+<h2 id="weiterhin-fehlende-felder-laut-fachquelle">Weiterhin fehlende Felder laut Fachquelle</h2>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Bedeutung laut Fachquelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Verwendung</code></td>
+<td>Kennung für die Verwendung des Unterkontos</td>
+</tr>
+<tr>
+<td><code>Adressid</code></td>
+<td>ID einer dem Unterkonto zugeordneten Adresse (vermutlich <a href="../ADRESSEN/">ADRESSEN</a>.<code>Id</code>)</td>
+</tr>
+<tr>
+<td><code>Kundennrkk</code></td>
+<td>Kundennummer der zugeordneten Krankenkasse</td>
+</tr>
+<tr>
+<td><code>Deaktiviert</code></td>
+<td>Kennzeichen, ob das Unterkonto deaktiviert ist</td>
+</tr>
+<tr>
+<td><code>Info</code></td>
+<td>Zusätzliches Informationsfeld</td>
+</tr>
+</tbody>
+</table>
+<h1 id="bedeutung-fur-die-rezeptabrechnung">Bedeutung für die Rezeptabrechnung</h1>
+<p>Reicht die allgemeine Kundennummer allein nicht aus, um ein Rezept eindeutig dem
+richtigen Arzt bzw. der richtigen Betriebsstätte zuzuordnen (mehrere Ärzte je
+Praxis), greifen die Unterkonten. Relevant sind dabei laut Fachquelle:</p>
+<ul>
+<li><code>Kundennr</code> — Zuordnung zur Praxis/zum Hauptkunden</li>
+<li><code>Lanr</code> — Zuordnung des jeweiligen Arztes</li>
+<li><code>Betriebsnummer</code> — Zuordnung der jeweiligen Betriebsstätte</li>
+<li><code>Kundennrkk</code> — Zuordnung der Krankenkasse</li>
+</ul>
+<p>Im einfachen Fall (nur ein Arzt/eine Betriebsstätte) genügen vermutlich die direkt
+auf <a href="../KUNDE/">KUNDE</a> liegenden Felder <code>Lanr</code>/<code>Betriebsnummer</code> — Unterkonten
+kommen erst bei mehreren Kombinationen je Kunde zum Einsatz. Diese Lesart ist eine
+Interpretation, keine belegte Tatsache.</p>
 <h1 id="beziehungen">Beziehungen</h1>
-<p>In der Registry sind an dieser Tabelle <strong>keine ausgehenden Beziehungen</strong> deklariert.</p>
-<p><a href="../ARTIK/">ARTIK</a> verweist eingehend über <code>Wg1 : Wg1</code> hierher (Relation
-<code>ARTIK_ARTIK_WG1_Wg1</code>); <a href="../ARTIK_WG2/">ARTIK_WG2</a> trägt das Feld <code>RefWg1</code>, das
-fachlich auf <code>ARTIK_WG1.Wg1</code> verweist — die inverse Beziehung ist in der Registry
-allerdings nicht deklariert.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kardinalität</th>
+<th>Ziel</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KUNDE_UNTERKONTO_KUNDE_Kundennr</td>
+<td>one</td>
+<td><a href="../KUNDE/">KUNDE</a></td>
+<td><code>Kundennr : Kundennr</code></td>
+</tr>
+</tbody>
+</table>
+<p>Seit dem Registry-Export vom 2026-08-14 (10:46) registriert.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
+<li><code>../../raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md</code></li>
 </ul>
 
 
@@ -1711,7 +1888,7 @@ allerdings nicht deklariert.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ARTIK_KATWERTE/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: ARTIK_KATWERTE">
+          <a href="../KUNDE_GRP2/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: KUNDE_GRP2">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1721,20 +1898,20 @@ allerdings nicht deklariert.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                ARTIK_KATWERTE
+                KUNDE_GRP2
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ARTIK_WG2/" class="md-footer__link md-footer__link--next" aria-label="Weiter: ARTIK_WG2">
+          <a href="../PROJEKT/" class="md-footer__link md-footer__link--next" aria-label="Weiter: PROJEKT">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                ARTIK_WG2
+                PROJEKT
               </div>
             </div>
             <div class="md-footer__button md-icon">

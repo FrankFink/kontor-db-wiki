@@ -501,6 +501,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../00-Allgemeines/SYS_DAB_METADATA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS_DAB_METADATA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
         
   
@@ -509,6 +537,34 @@
     
   
     Datenbank-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-Allgemeines/kon_dab_checkentityvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kon_dab_checkentityvalue
   
 
     
@@ -1051,6 +1107,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../KUNDE_UNTERKONTO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../PROJEKT/" class="md-nav__link">
         
   
@@ -1059,6 +1143,118 @@
     
   
     PROJEKT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECH_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH_POS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_POS
   
 
     
@@ -1171,6 +1367,34 @@
     
   
     WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../_FIRMA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _FIRMA
   
 
     
@@ -1557,10 +1781,42 @@ Artikelnummer.</p>
 <td>yes</td>
 <td>FK auf <a href="../ARTIK_KATWERTE/">ARTIK_KATWERTE</a>.<code>Katid</code> — zugeordnete Kategorie</td>
 </tr>
+<tr>
+<td>Mwstklasse</td>
+<td>nvarchar(15)</td>
+<td>no</td>
+<td>Mehrwertsteuerklasse, Pflichtfeld; vermutlich Schlüssel „voll"/„ermäßigt" analog zu <a href="../_FIRMA/">_FIRMA</a>.<code>Mwst</code>/<code>Mwst2</code></td>
+</tr>
+<tr>
+<td>SSB</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Vermutlich Kennzeichen für Sprechstundenbedarf-Fähigkeit des Artikels (siehe Schwesterwiki <code>Kontor MED v1</code>)</td>
+</tr>
+<tr>
+<td>Rezeptbez1</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Bezeichnung des Artikels für den Rezeptdruck/die Rezeptabrechnung</td>
+</tr>
+<tr>
+<td>Rezeptbez2</td>
+<td>nvarchar(50)</td>
+<td>yes</td>
+<td>Zweite Bezeichnungszeile für den Rezeptdruck/die Rezeptabrechnung</td>
+</tr>
+<tr>
+<td>Abda_preisfaktor</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Preisfaktor aus ABDA-Daten (Arzneimittel-Preisdatenbank der Apothekerverbände)</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Anmerkung:</strong> Die Anmerkungsspalte enthält Interpretationen aus den Feldnamen und ist
-zu bestätigen.</p>
+zu bestätigen. Die fünf zuletzt genannten Felder (<code>Mwstklasse</code> bis
+<code>Abda_preisfaktor</code>) gehören inhaltlich zur Rezeptabrechnungs-/Pharma-Domäne, siehe
+<a href="../REZ/">REZ</a> und Umfeld.</p>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
 <thead>

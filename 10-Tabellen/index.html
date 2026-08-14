@@ -499,6 +499,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../00-Allgemeines/SYS_DAB_METADATA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS_DAB_METADATA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../00-Allgemeines/datenbank-ueberblick/" class="md-nav__link">
         
   
@@ -507,6 +535,34 @@
     
   
     Datenbank-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-Allgemeines/kon_dab_checkentityvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kon_dab_checkentityvalue
   
 
     
@@ -1049,6 +1105,34 @@
   
   
     <li class="md-nav__item">
+      <a href="KUNDE_UNTERKONTO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KUNDE_UNTERKONTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="PROJEKT/" class="md-nav__link">
         
   
@@ -1057,6 +1141,118 @@
     
   
     PROJEKT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="REZ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="REZ_ABRECH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="REZ_ABRECH_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECH_POS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="REZ_POS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_POS
   
 
     
@@ -1169,6 +1365,34 @@
     
   
     WFLOW_INVOICINGUNIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="_FIRMA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _FIRMA
   
 
     
@@ -1440,6 +1664,11 @@ die Seiten flach in diesem Ordner.</p>
 <td>Projektstamm mit Kundenbezug</td>
 <td><code>Projektnr</code></td>
 </tr>
+<tr>
+<td><a href="_FIRMA/">_FIRMA</a></td>
+<td>Firmenstammtabelle — Stammdaten des Anwenderunternehmens selbst</td>
+<td><code>Id</code></td>
+</tr>
 </tbody>
 </table>
 <h1 id="codetabellen-und-klassifikationen">Codetabellen und Klassifikationen</h1>
@@ -1496,7 +1725,7 @@ die Seiten flach in diesem Ordner.</p>
 <tbody>
 <tr>
 <td><a href="CRM_LEAD/">CRM_LEAD</a></td>
-<td>Lead-/Interessentendatensatz</td>
+<td>Lead-/Interessentendatensatz (2026-08-14 stark verschlankt)</td>
 <td><code>Leadid</code></td>
 </tr>
 <tr>
@@ -1505,22 +1734,18 @@ die Seiten flach in diesem Ordner.</p>
 <td><code>ActivityId</code></td>
 </tr>
 <tr>
-<td><a href="CRM_LEAD_CONFIG/">CRM_LEAD_CONFIG</a></td>
-<td>Konfigurationsprofile für Lead-Verarbeitung</td>
-<td><code>Profile</code></td>
-</tr>
-<tr>
 <td><a href="CRM_PROMPT_TEMPLATE/">CRM_PROMPT_TEMPLATE</a></td>
 <td>Prompt-Vorlagen je Profil</td>
 <td><code>Name</code></td>
 </tr>
 </tbody>
 </table>
-<p>Keine dieser vier CRM-Tabellen hat in der Registry deklarierte Beziehungen — auch
-nicht untereinander. Die naheliegenden Verweise (<code>CRM_LEAD.Adressid/Ansprechid</code> →
-<code>ADRESSEN</code>, <code>CRM_ACTIVITIES.ParentId</code> → vermutlich <code>CRM_LEAD</code>,
-<code>CRM_PROMPT_TEMPLATE.Profile</code> → <code>CRM_LEAD_CONFIG.Profile</code>) sind fachliche Vermutungen,
-siehe die jeweiligen Seiten.</p>
+<p>Keine dieser CRM-Tabellen hat in der Registry deklarierte Beziehungen — auch nicht
+untereinander. <code>CRM_ACTIVITIES.ParentId</code> → vermutlich <code>CRM_LEAD</code> bleibt eine
+fachliche Vermutung, siehe die jeweiligen Seiten.</p>
+<p><strong>Nicht mehr registriert:</strong> <a href="CRM_LEAD_CONFIG/">CRM_LEAD_CONFIG</a> war bis
+2026-08-02 Teil der Registry, fehlt seit dem Export vom 2026-08-14. Seite als
+historische Referenz erhalten.</p>
 <h1 id="notizen">Notizen</h1>
 <table>
 <thead>
@@ -1571,9 +1796,62 @@ einem Kunden zurechenbar (<code>WFLOW.Projektnr</code> → <code>PROJEKT.Projekt
 registriert). Die Abrechnungsdaten selbst liegen in <code>WFLOW</code>
 (<code>FinishedTime</code>/<code>InvoicingUnitCount</code>/<code>Invoicingunit</code>);
 <code>WFLOW_INVOICINGUNIT</code> ist nur die Code-Tabelle für die Art.</p>
+<h1 id="rezeptabrechnung">Rezeptabrechnung</h1>
+<table>
+<thead>
+<tr>
+<th>Tabelle</th>
+<th>Zweck (Kurz)</th>
+<th>PK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="REZ/">REZ</a></td>
+<td>Erfasstes Rezept; <code>Rezeptid</code> = Dokumenten-ID des Scans</td>
+<td><code>Rezeptid</code></td>
+</tr>
+<tr>
+<td><a href="REZ_POS/">REZ_POS</a></td>
+<td>Einzelne Rezeptposition, über <code>Rezeptid</code> einem Rezept zugeordnet</td>
+<td><code>Id</code></td>
+</tr>
+<tr>
+<td><a href="REZ_ABRECH/">REZ_ABRECH</a></td>
+<td>Erzeugte Abrechnung</td>
+<td><code>Abrechnungsid</code></td>
+</tr>
+<tr>
+<td><a href="REZ_ABRECH_POS/">REZ_ABRECH_POS</a></td>
+<td>Zuordnung Abrechnung ↔ Rezeptposition</td>
+<td><code>Id</code></td>
+</tr>
+<tr>
+<td><a href="KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a></td>
+<td>Unterkonten für Praxen mit mehreren Ärzten (LANR/BSNR)</td>
+<td><code>Id</code></td>
+</tr>
+</tbody>
+</table>
+<p>Tabellen des Kontor.MED-Plugins „Rezeptabrechnung". Fachliche Zuordnungskette laut
+Quelle: <code>REZ → REZ_POS → REZ_ABRECH_POS → REZ_ABRECH</code>. <strong>Update 2026-08-14:</strong> Bei
+Erstdokumentation (10:06) hatte keine dieser fünf Tabellen registrierte
+Beziehungen; bis 10:52 sind alle fachlich naheliegenden Verknüpfungen zu
+<code>KUNDE</code>/<code>ARTIK</code> und untereinander registriert worden — auch die letzte Lücke
+(<code>REZ_ABRECH_POS</code> → <code>REZ_ABRECH</code>) ist inzwischen geschlossen. <code>KUNDE_UNTERKONTO</code>
+hat weiterhin 5 von der Fachquelle beschriebene Felder, die nicht in der Registry
+stehen (<code>Verwendung</code>, <code>Adressid</code>, <code>Kundennrkk</code>, <code>Deaktiviert</code>, <code>Info</code>) — <code>Id</code> als
+PK ist aber seit 10:46 registriert.</p>
+<p>Zusammenhang mit <code>KUNDE</code>: seit 2026-08-14 trägt <a href="KUNDE/">KUNDE</a> selbst
+Krankenkassen-/Arztfelder (<code>KundennrKK</code>, <code>Lanr</code>, <code>Betriebsnummer</code>, <code>Kv</code>, …) —
+vermutlich der Standardfall für Kunden mit nur einem Arzt, während
+<code>KUNDE_UNTERKONTO</code> mehrere Kombinationen je Kunde abbildet. Bestätigt (über die
+registrierte Relation <code>REZ_ABRECH_KUNDE_Kundennrkk</code>): Krankenkassen werden als
+eigene <code>KUNDE</code>-Datensätze geführt.</p>
 <p>Alle Tabellen sind über den <a href="../00-Allgemeines/kontor-api-service/">Kontor API Service</a>
-exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-02,
-19 Entitäten).</p>
+exponiert (Registry-Export in <code>../../raw/dab_registry.md</code>, Stand 2026-08-14,
+26 Entitäten — davon zwei keine Fachtabellen, sondern API-Infrastruktur, siehe
+<a href="../00-Allgemeines/">00-Allgemeines</a>).</p>
 
 
 
