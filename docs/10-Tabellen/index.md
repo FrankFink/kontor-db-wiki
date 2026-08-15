@@ -67,29 +67,48 @@ registriert). Die Abrechnungsdaten selbst liegen in `WFLOW`
 | Tabelle | Zweck (Kurz) | PK |
 |---------|--------------|----|
 | [REZ](<REZ.md>) | Erfasstes Rezept; `Rezeptid` = Dokumenten-ID des Scans | `Rezeptid` |
-| [REZ_POS](<REZ_POS.md>) | Einzelne Rezeptposition, über `Rezeptid` einem Rezept zugeordnet | `Id` |
-| [REZ_ABRECH](<REZ_ABRECH.md>) | Erzeugte Abrechnung | `Abrechnungsid` |
+| [REZ_POS](<REZ_POS.md>) | Rezeptposition inkl. vollständiger Preiskalkulation (Taxierung) | `Id` |
+| [REZ_ABRECH](<REZ_ABRECH.md>) | Abrechnungslauf: Zeitraum, Zähler, Betrag, Versand, Storno | `Abrechnungsid` |
 | [REZ_ABRECH_POS](<REZ_ABRECH_POS.md>) | Zuordnung Abrechnung ↔ Rezeptposition | `Id` |
+| [REZ_ABRECHNUNGSSTELLE](<REZ_ABRECHNUNGSSTELLE.md>) | Code-Tabelle der Abrechnungsstellen (Clearingstellen) | `Id` |
 | [KUNDE_UNTERKONTO](<KUNDE_UNTERKONTO.md>) | Unterkonten für Praxen mit mehreren Ärzten (LANR/BSNR) | `Id` |
 
-Tabellen des Kontor.MED-Plugins „Rezeptabrechnung". Fachliche Zuordnungskette laut
-Quelle: `REZ → REZ_POS → REZ_ABRECH_POS → REZ_ABRECH`. **Update 2026-08-14:** Bei
-Erstdokumentation (10:06) hatte keine dieser fünf Tabellen registrierte
-Beziehungen; bis 10:52 sind alle fachlich naheliegenden Verknüpfungen zu
-`KUNDE`/`ARTIK` und untereinander registriert worden — auch die letzte Lücke
-(`REZ_ABRECH_POS` → `REZ_ABRECH`) ist inzwischen geschlossen. `KUNDE_UNTERKONTO`
-hat weiterhin 5 von der Fachquelle beschriebene Felder, die nicht in der Registry
-stehen (`Verwendung`, `Adressid`, `Kundennrkk`, `Deaktiviert`, `Info`) — `Id` als
-PK ist aber seit 10:46 registriert.
+Tabellen des Kontor.MED-Plugins „Rezeptabrechnung". Diese Domäne hat sich seit
+dem 2026-08-14 in mehreren Schritten stark weiterentwickelt und ist mit dem
+Export vom 2026-08-15 (15:41) stabil:
 
-Zusammenhang mit `KUNDE`: seit 2026-08-14 trägt [KUNDE](<KUNDE.md>) selbst
-Krankenkassen-/Arztfelder (`KundennrKK`, `Lanr`, `Betriebsnummer`, `Kv`, …) —
-vermutlich der Standardfall für Kunden mit nur einem Arzt, während
-`KUNDE_UNTERKONTO` mehrere Kombinationen je Kunde abbildet. Bestätigt (über die
-registrierte Relation `REZ_ABRECH_KUNDE_Kundennrkk`): Krankenkassen werden als
-eigene `KUNDE`-Datensätze geführt.
+- **2026-08-14, 10:06** — Erstdokumentation, keine registrierten Beziehungen.
+- **10:46–10:52** — Beziehungen zu `KUNDE`/`ARTIK` und untereinander registriert.
+- **11:47** — `REZ` (9→15 Felder), `REZ_POS` (15→25 Felder, komplette
+  Preiskalkulation ergänzt) und `REZ_ABRECH` (6→19 Felder, jetzt vollständiger
+  Abrechnungslauf mit Zeitraum/Versand/Storno) deutlich erweitert; neue
+  Code-Tabelle `REZ_ABRECHNUNGSSTELLE` hinzugekommen. Dabei schwankte kurzzeitig
+  die Relation `REZ_ABRECH_POS` → `REZ_POS`.
+- **2026-08-15, 15:41 (Registry)** — alle zuvor offenen Punkte geschlossen:
+  `REZ` bekommt drei weitere Relationen (zu `REZ_POS`, `KUNDE_UNTERKONTO` und
+  `KUNDE` über `Kundennrkk`) sowie das neue Feld `Reznr`; `ARTIK` bekommt Feld
+  `Aktiv`; `REZ_ABRECH` → `REZ_ABRECHNUNGSSTELLE` ist jetzt registriert; die
+  `REZ_ABRECH_POS`-Relationen sind stabil und die Tippfehler-Inkonsistenz
+  (`Abrechungsid` vs. `Abrechnungsid`) ist behoben.
+- **2026-08-15, 17:52 (Fachquelle)** — die Rezeptabrechnungs-Fachquelle wurde
+  bearbeitet: Beschreibungen der fünf nie registrierten `KUNDE_UNTERKONTO`-Felder
+  (`Verwendung`, `Adressid`, `Kundennrkk`, `Deaktiviert`, `Info`) sind entfernt.
+  Dabei ist auch die Beschreibung des tatsächlich registrierten Felds `Bez`
+  verlorengegangen — neue kleine Lücke, siehe [KUNDE_UNTERKONTO](<KUNDE_UNTERKONTO.md>).
+
+Die Registry und die Fachquelle für `KUNDE_UNTERKONTO` sind inzwischen deckungsgleich
+(je 6 Felder); die einzige verbleibende Lücke ist eine fehlende Beschreibung für
+`Bez`, kein fehlendes Feld.
+
+Zusammenhang mit `KUNDE`: [KUNDE](<KUNDE.md>) trägt selbst Krankenkassen-/
+Arztfelder (`KundennrKK`, `Lanr`, `Betriebsnummer`, `Kv`, …) — vermutlich der
+Standardfall für Kunden mit nur einem Arzt, während `KUNDE_UNTERKONTO` mehrere
+Kombinationen je Kunde abbildet (jetzt auch über die registrierte Relation
+`REZ.Unterkontoid` abgebildet). Bestätigt (über zwei registrierte Relationen,
+`REZ_ABRECH_KUNDE_Kundennrkk` und `REZ_KUNDE_Kundennrkk`): Krankenkassen werden
+als eigene `KUNDE`-Datensätze geführt.
 
 Alle Tabellen sind über den [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>)
-exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-14,
-26 Entitäten — davon zwei keine Fachtabellen, sondern API-Infrastruktur, siehe
+exponiert (Registry-Export in `../../raw/dab_registry.md`, Stand 2026-08-15,
+27 Entitäten — davon zwei keine Fachtabellen, sondern API-Infrastruktur, siehe
 [00-Allgemeines](<../00-Allgemeines/index.md>)).

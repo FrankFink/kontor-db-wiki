@@ -3,7 +3,7 @@ type: Integration
 title: Kontor API Service
 description: Zugriff auf die Kontor Datenbank über eine DAB-Instanz (REST + GraphQL).
 tags: [api, dab, integration]
-timestamp: 2026-08-14
+timestamp: 2026-08-15
 ---
 
 Der **Kontor API Service** stellt lesenden und schreibenden Zugriff auf ausgewählte
@@ -15,17 +15,24 @@ Basis des Microsoft **Data API Builder** (DAB) umgesetzt.
 ## Registrierte Entitäten
 
 Welche Tabellen, Views und Prozeduren durch den Service exponiert werden, steht in
-der DAB-Registry. Aktuell registriert sind 26 Objekte aus dem Schema `dbo`:
+der DAB-Registry. Aktuell registriert sind 27 Objekte aus dem Schema `dbo`:
 Kernentitäten (`ADRESSEN`, `ARTIK`, `BUCH_UMSATZ`, `KUNDE`, `PROJEKT`, `_FIRMA`),
 Codetabellen (`ARTIK_WG1`, `ARTIK_WG2`, `ARTIK_KATWERTE`, `KUNDE_GRP1`,
 `KUNDE_GRP2`, `VERTR`), ein CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`,
 `CRM_PROMPT_TEMPLATE`), `KONTAKTE`, die Aufgabenverwaltung (`WFLOW`,
 `WFLOW_FOLDERS`, `WFLOW_INVOICINGUNIT`), die Rezeptabrechnung (`REZ`, `REZ_POS`,
-`REZ_ABRECH`, `REZ_ABRECH_POS`, `KUNDE_UNTERKONTO`) sowie zwei Objekte der
-API-Infrastruktur selbst: die Metadaten-Tabelle
+`REZ_ABRECH`, `REZ_ABRECH_POS`, `REZ_ABRECHNUNGSSTELLE`, `KUNDE_UNTERKONTO`)
+sowie zwei Objekte der API-Infrastruktur selbst: die Metadaten-Tabelle
 [SYS_DAB_METADATA](<SYS_DAB_METADATA.md>) und die gespeicherte Prozedur
 [kon_dab_checkentityvalue](<kon_dab_checkentityvalue.md>). Der aktuelle Stand
 liegt als Rohquelle unter `../../raw/dab_registry.md`.
+
+Die Rezeptabrechnungs-Tabellen wurden zwischen dem 2026-08-14 und 2026-08-15
+mehrfach nachexportiert, mit teils erheblichen Schema-Erweiterungen und
+zwischenzeitlich einer schwankenden Beziehung (registriert → verschwunden →
+wieder registriert). Seit dem Export vom 2026-08-15 (15:41) ist der Stand
+stabil und vollständig verknüpft — siehe [10-Tabellen](<../10-Tabellen/index.md>),
+Abschnitt „Rezeptabrechnung", für die Entwicklungshistorie.
 
 `CRM_LEAD_CONFIG` war bis zum Export vom 2026-08-02 registriert und fehlt seit
 2026-08-14 — die Registry ist damit nicht monoton wachsend, Entitäten können auch

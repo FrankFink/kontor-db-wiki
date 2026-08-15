@@ -3,7 +3,7 @@ type: Referenz
 title: Datenbank-Überblick
 description: Kurzüberblick zur Kontor Datenbank, aktuell im Wiki dokumentierter Ausschnitt.
 tags: [datenbank, ueberblick]
-timestamp: 2026-08-14
+timestamp: 2026-08-15
 ---
 
 Die **Kontor Datenbank** ist die SQL-Datenbank hinter dem ERP **Kontor.MED**
@@ -12,9 +12,9 @@ SQL-Server-Instanz.
 
 # Aktueller Wiki-Ausschnitt
 
-Dokumentiert sind bislang 24 fachliche Tabellen sowie zwei Objekte der
+Dokumentiert sind bislang 25 fachliche Tabellen sowie zwei Objekte der
 API-Infrastruktur selbst (`SYS_DAB_METADATA`, `kon_dab_checkentityvalue`) — zusammen
-26 über den [Kontor API Service](<kontor-api-service.md>) freigegebene Entitäten
+27 über den [Kontor API Service](<kontor-api-service.md>) freigegebene Entitäten
 (zzgl. `CRM_LEAD_CONFIG` als nicht mehr registrierte Altseite). Die Datenbank
 enthält darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier
 aufgenommen, sobald Quellen dazu vorliegen.
@@ -78,15 +78,18 @@ DAB-Relation deklariert.
 | Tabelle | Zweck (Kurz) |
 |---------|--------------|
 | [REZ](../10-Tabellen/REZ.md) | Erfasstes Rezept |
-| [REZ_POS](../10-Tabellen/REZ_POS.md) | Einzelne Rezeptposition |
-| [REZ_ABRECH](../10-Tabellen/REZ_ABRECH.md) | Erzeugte Abrechnung |
+| [REZ_POS](../10-Tabellen/REZ_POS.md) | Rezeptposition inkl. vollständiger Preiskalkulation |
+| [REZ_ABRECH](../10-Tabellen/REZ_ABRECH.md) | Abrechnungslauf: Zeitraum, Zähler, Betrag, Versand, Storno |
 | [REZ_ABRECH_POS](../10-Tabellen/REZ_ABRECH_POS.md) | Zuordnung Abrechnung ↔ Position |
+| [REZ_ABRECHNUNGSSTELLE](../10-Tabellen/REZ_ABRECHNUNGSSTELLE.md) | Code-Tabelle der Abrechnungsstellen |
 | [KUNDE_UNTERKONTO](../10-Tabellen/KUNDE_UNTERKONTO.md) | Unterkonten für Praxen mit mehreren Ärzten |
 
-Tabellen des Plugins „Rezeptabrechnung". **Update 2026-08-14:** Diese Domäne,
-ursprünglich um 10:06 ohne jede registrierte Beziehung dokumentiert, ist bis 10:52
-vollständig angebunden worden — zu `KUNDE`, `ARTIK` und untereinander (siehe
-Beziehungsgrafik unten).
+Tabellen des Plugins „Rezeptabrechnung". Diese Domäne wurde ab dem 2026-08-14 in
+mehreren Schritten ausgebaut (Erstdokumentation ohne Beziehungen → Anbindung an
+`KUNDE`/`ARTIK` → Schema-Erweiterung um `REZ_ABRECHNUNGSSTELLE` und
+Preiskalkulationsfelder, mit einer kurzzeitig schwankenden Relation) und ist seit
+dem Export vom 2026-08-15 (15:41) vollständig verknüpft — siehe Beziehungsgrafik
+unten und [10-Tabellen](../10-Tabellen/index.md) für die Historie im Detail.
 
 # Beziehungen im dokumentierten Ausschnitt
 
@@ -118,22 +121,24 @@ registriert. `PROJEKT.Kundennr` → `KUNDE` ist inzwischen als DAB-Relation regi
 Der CRM-Bereich (`CRM_LEAD`, `CRM_ACTIVITIES`, `CRM_PROMPT_TEMPLATE`) steht separat
 und ohne registrierte Verbindung zum übrigen Schema.
 
-Die Rezeptabrechnungs-Domäne ist seit 2026-08-14 (10:52) vollständig angebunden:
+Die Rezeptabrechnungs-Domäne (Stand 2026-08-15, 15:41) — vollständig verknüpft:
 
 ```
-                    ┌──▶ KUNDE  ◀── REZ_ABRECH.Kundennrkk
+                    ┌──▶ KUNDE  ◀── REZ_ABRECH.Kundennrkk, REZ.Kundennrkk
                     │            (bestätigt: Krankenkassen als KUNDE-Datensätze)
 ARTIK ◀── REZ_POS ──┼──▶ REZ ──▶ KUNDE
+             ▲       │    │
+             │       │    └──▶ KUNDE_UNTERKONTO ──▶ KUNDE
              │       └──▶ REZ_ABRECH ──▶ KUNDE (Kundennr + Kundennrkk)
-             │
-             └──◀── REZ_ABRECH_POS ──▶ REZ_ABRECH
-
-KUNDE_UNTERKONTO ──▶ KUNDE   (Id jetzt als PK registriert)
+             │                  │
+             └── REZ_ABRECH_POS ┴──▶ REZ_ABRECHNUNGSSTELLE
 ```
 
-Alle Pfeile sind registrierte DAB-Relationen. `KUNDE_UNTERKONTO` hat weiterhin 5
-von der Fachquelle beschriebene Felder, die in der Registry fehlen (`Verwendung`,
-`Adressid`, `Kundennrkk`, `Deaktiviert`, `Info`), siehe
+Alle Pfeile sind registrierte DAB-Relationen. `KUNDE_UNTERKONTO` und die
+Fachquelle sind seit 2026-08-15 deckungsgleich (je 6 Felder) — die zuvor
+zusätzlich beschriebenen Felder `Verwendung`, `Adressid`, `Kundennrkk`,
+`Deaktiviert`, `Info` sind aus der Fachquelle entfernt worden. Dabei ging auch
+die Beschreibung des Felds `Bez` verloren, siehe
 [KUNDE_UNTERKONTO](../10-Tabellen/KUNDE_UNTERKONTO.md).
 
 `WFLOW.Projektnr` → `PROJEKT.Projektnr` → `PROJEKT.Kundennr` → `KUNDE` ist
@@ -158,7 +163,7 @@ nicht in der Registry belegt.
 
 # Citations
 
-- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-14, 10:52 Uhr (26 Entitäten)
+- `../../raw/dab_registry.md` — DAB-Registry-Export vom 2026-08-15, 15:50 Uhr (27 Entitäten)
 - `../../raw/Informationen_Tabelle_Kontakte.md`
 - `../../raw/# Tabellen der Aufgabenverwaltung W.md`
 - `../../raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md`

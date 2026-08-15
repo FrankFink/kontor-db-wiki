@@ -1311,6 +1311,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../10-Tabellen/REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../10-Tabellen/REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1789,17 +1817,23 @@ Basis des Microsoft <strong>Data API Builder</strong> (DAB) umgesetzt.</p>
 <h1 id="schema">Schema</h1>
 <h2 id="registrierte-entitaten">Registrierte Entitäten</h2>
 <p>Welche Tabellen, Views und Prozeduren durch den Service exponiert werden, steht in
-der DAB-Registry. Aktuell registriert sind 26 Objekte aus dem Schema <code>dbo</code>:
+der DAB-Registry. Aktuell registriert sind 27 Objekte aus dem Schema <code>dbo</code>:
 Kernentitäten (<code>ADRESSEN</code>, <code>ARTIK</code>, <code>BUCH_UMSATZ</code>, <code>KUNDE</code>, <code>PROJEKT</code>, <code>_FIRMA</code>),
 Codetabellen (<code>ARTIK_WG1</code>, <code>ARTIK_WG2</code>, <code>ARTIK_KATWERTE</code>, <code>KUNDE_GRP1</code>,
 <code>KUNDE_GRP2</code>, <code>VERTR</code>), ein CRM-Bereich (<code>CRM_LEAD</code>, <code>CRM_ACTIVITIES</code>,
 <code>CRM_PROMPT_TEMPLATE</code>), <code>KONTAKTE</code>, die Aufgabenverwaltung (<code>WFLOW</code>,
 <code>WFLOW_FOLDERS</code>, <code>WFLOW_INVOICINGUNIT</code>), die Rezeptabrechnung (<code>REZ</code>, <code>REZ_POS</code>,
-<code>REZ_ABRECH</code>, <code>REZ_ABRECH_POS</code>, <code>KUNDE_UNTERKONTO</code>) sowie zwei Objekte der
-API-Infrastruktur selbst: die Metadaten-Tabelle
+<code>REZ_ABRECH</code>, <code>REZ_ABRECH_POS</code>, <code>REZ_ABRECHNUNGSSTELLE</code>, <code>KUNDE_UNTERKONTO</code>)
+sowie zwei Objekte der API-Infrastruktur selbst: die Metadaten-Tabelle
 <a href="../SYS_DAB_METADATA/">SYS_DAB_METADATA</a> und die gespeicherte Prozedur
 <a href="../kon_dab_checkentityvalue/">kon_dab_checkentityvalue</a>. Der aktuelle Stand
 liegt als Rohquelle unter <code>../../raw/dab_registry.md</code>.</p>
+<p>Die Rezeptabrechnungs-Tabellen wurden zwischen dem 2026-08-14 und 2026-08-15
+mehrfach nachexportiert, mit teils erheblichen Schema-Erweiterungen und
+zwischenzeitlich einer schwankenden Beziehung (registriert → verschwunden →
+wieder registriert). Seit dem Export vom 2026-08-15 (15:41) ist der Stand
+stabil und vollständig verknüpft — siehe <a href="../../10-Tabellen/">10-Tabellen</a>,
+Abschnitt „Rezeptabrechnung", für die Entwicklungshistorie.</p>
 <p><code>CRM_LEAD_CONFIG</code> war bis zum Export vom 2026-08-02 registriert und fehlt seit
 2026-08-14 — die Registry ist damit nicht monoton wachsend, Entitäten können auch
 wieder verschwinden. Die Wiki-Seite bleibt als historische Referenz erhalten

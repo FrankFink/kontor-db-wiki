@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Unterkonten eines Kunden für Praxen mit mehreren Ärzten (unterschiedliche LANR/BSNR-Kombinationen); Registry-Schema war zunächst unvollständiger als die Fachquelle, PK-Feld Id inzwischen nachregistriert.">
+        <meta name="description" content="Unterkonten eines Kunden für Praxen mit mehreren Ärzten (unterschiedliche LANR/BSNR-Kombinationen).">
       
       
       
@@ -1106,24 +1106,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    KUNDE_UNTERKONTO
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1140,47 +1122,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#uber-die-registry-abrufbare-felder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Über die Registry abrufbare Felder
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#weiterhin-fehlende-felder-laut-fachquelle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Weiterhin fehlende Felder laut Fachquelle
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1258,6 +1199,34 @@
     
   
     REZ_ABRECH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
   
 
     
@@ -1672,36 +1641,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#uber-die-registry-abrufbare-felder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Über die Registry abrufbare Felder
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#weiterhin-fehlende-felder-laut-fachquelle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Weiterhin fehlende Felder laut Fachquelle
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1725,13 +1664,7 @@ unterscheiden. Damit ist die Tabelle für die korrekte Zuordnung von Rezepten un
 Rezeptpositionen zum jeweiligen Arzt bzw. zur jeweiligen Betriebsstätte relevant.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
-<p><strong>Abweichung zwischen Registry und Fachquelle — teilweise behoben.</strong> Die
-DAB-Registry listete zunächst (Export bis 2026-08-14 10:06) nur 5 Felder ohne
-Primärschlüssel. Im Export vom selben Tag, 10:46 Uhr, ist <code>Id</code> als sechstes Feld
-und PK hinzugekommen — deckt sich jetzt mit der Fachquelle. Fünf von der
-Fachquelle beschriebene Felder fehlen aber weiterhin in der Registry.</p>
-<p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>, seit 2026-08-14 10:46 registriert)</p>
-<h2 id="uber-die-registry-abrufbare-felder">Über die Registry abrufbare Felder</h2>
+<p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>)</p>
 <table>
 <thead>
 <tr>
@@ -1746,7 +1679,7 @@ Fachquelle beschriebene Felder fehlen aber weiterhin in der Registry.</p>
 <td>Id</td>
 <td>uniqueidentifier</td>
 <td>no</td>
-<td>PK — seit 2026-08-14 (10:46) registriert, vorher fehlte sie in der Registry</td>
+<td>PK</td>
 </tr>
 <tr>
 <td>Kundennr</td>
@@ -1764,7 +1697,7 @@ Fachquelle beschriebene Felder fehlen aber weiterhin in der Registry.</p>
 <td>Bez</td>
 <td>nvarchar(200)</td>
 <td>yes</td>
-<td>Bezeichnung des Unterkontos</td>
+<td>Registriertes Feld; von der Fachquelle nicht (mehr) beschrieben — Bedeutung „Bezeichnung des Unterkontos" ist Vermutung aus dem Feldnamen</td>
 </tr>
 <tr>
 <td>Betriebsnummer</td>
@@ -1780,37 +1713,13 @@ Fachquelle beschriebene Felder fehlen aber weiterhin in der Registry.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="weiterhin-fehlende-felder-laut-fachquelle">Weiterhin fehlende Felder laut Fachquelle</h2>
-<table>
-<thead>
-<tr>
-<th>Feld</th>
-<th>Bedeutung laut Fachquelle</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Verwendung</code></td>
-<td>Kennung für die Verwendung des Unterkontos</td>
-</tr>
-<tr>
-<td><code>Adressid</code></td>
-<td>ID einer dem Unterkonto zugeordneten Adresse (vermutlich <a href="../ADRESSEN/">ADRESSEN</a>.<code>Id</code>)</td>
-</tr>
-<tr>
-<td><code>Kundennrkk</code></td>
-<td>Kundennummer der zugeordneten Krankenkasse</td>
-</tr>
-<tr>
-<td><code>Deaktiviert</code></td>
-<td>Kennzeichen, ob das Unterkonto deaktiviert ist</td>
-</tr>
-<tr>
-<td><code>Info</code></td>
-<td>Zusätzliches Informationsfeld</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Versionshinweis:</strong> Frühere Registry-Exporte (bis 2026-08-14 10:06) hatten nur
+5 Felder ohne Primärschlüssel; <code>Id</code> kam am 10:46 als PK hinzu. Die Fachquelle
+beschrieb zwischenzeitlich zusätzlich <code>Verwendung</code>, <code>Adressid</code>, <code>Kundennrkk</code>,
+<code>Deaktiviert</code> und <code>Info</code> — keines davon war je in der Registry enthalten. Mit
+dem Quellenstand vom 2026-08-15 sind diese fünf Felder aus der Fachquelle wieder
+entfernt worden; sie werden hier nicht mehr als offene Diskrepanz geführt, da
+nicht mehr behauptet wird, dass sie existieren.</p>
 <h1 id="bedeutung-fur-die-rezeptabrechnung">Bedeutung für die Rezeptabrechnung</h1>
 <p>Reicht die allgemeine Kundennummer allein nicht aus, um ein Rezept eindeutig dem
 richtigen Arzt bzw. der richtigen Betriebsstätte zuzuordnen (mehrere Ärzte je
@@ -1819,8 +1728,10 @@ Praxis), greifen die Unterkonten. Relevant sind dabei laut Fachquelle:</p>
 <li><code>Kundennr</code> — Zuordnung zur Praxis/zum Hauptkunden</li>
 <li><code>Lanr</code> — Zuordnung des jeweiligen Arztes</li>
 <li><code>Betriebsnummer</code> — Zuordnung der jeweiligen Betriebsstätte</li>
-<li><code>Kundennrkk</code> — Zuordnung der Krankenkasse</li>
 </ul>
+<p>Die Krankenkassen-Zuordnung läuft für Rezepte direkt über <a href="../REZ/">REZ</a>.<code>Kundennrkk</code>
+(FK auf <code>KUNDE</code>), nicht über ein Feld dieser Tabelle — die Fachquelle nannte
+<code>Kundennrkk</code> hier in einer früheren Fassung, dieser Bezug wurde seither entfernt.</p>
 <p>Im einfachen Fall (nur ein Arzt/eine Betriebsstätte) genügen vermutlich die direkt
 auf <a href="../KUNDE/">KUNDE</a> liegenden Felder <code>Lanr</code>/<code>Betriebsnummer</code> — Unterkonten
 kommen erst bei mehreren Kombinationen je Kunde zum Einsatz. Diese Lesart ist eine
@@ -1845,6 +1756,9 @@ Interpretation, keine belegte Tatsache.</p>
 </tbody>
 </table>
 <p>Seit dem Registry-Export vom 2026-08-14 (10:46) registriert.</p>
+<p><a href="../REZ/">REZ</a> referenziert diese Tabelle über die registrierte Relation
+<code>REZ_KUNDE_UNTERKONTO_Unterkontoid</code> (<code>Unterkontoid : Id</code>, seit 2026-08-15) —
+konkreter Arzt/Betriebsstätte je Rezept.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>

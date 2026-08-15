@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Erzeugte Abrechnungen der Rezeptabrechnung — ein Datensatz je Abrechnung.">
+        <meta name="description" content="Erzeugte Abrechnungen der Rezeptabrechnung — ein Datensatz je Abrechnung; am 2026-08-14 (11:47) von 6 auf 19 Felder erweitert um Zeitraum-, Versand- und Storno-Angaben.">
       
       
       
@@ -14,7 +14,7 @@
         <link rel="prev" href="../REZ/">
       
       
-        <link rel="next" href="../REZ_ABRECH_POS/">
+        <link rel="next" href="../REZ_ABRECHNUNGSSTELLE/">
       
       
         
@@ -1219,6 +1219,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1629,7 +1657,11 @@
 
 
 <p>Tabelle <code>dbo.REZ_ABRECH</code> — enthält die erzeugten Abrechnungen. Für jede Abrechnung
-wird ein eigener Datensatz mit eindeutiger <code>Abrechnungsid</code> angelegt.</p>
+wird ein eigener Datensatz mit eindeutiger <code>Abrechnungsid</code> angelegt. Seit dem
+Export vom 2026-08-14 (11:47) deutlich erweitert: neben Kunden-/Krankenkassenbezug
+jetzt auch Zeitraum, Positions-/Rezeptzähler, Rechnungsbetrag sowie Versand- und
+Storno-Angaben — die Tabelle bildet damit einen vollständigen Abrechnungslauf ab,
+nicht mehr nur einen Grunddatensatz.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
 <p><strong>Primärschlüssel:</strong> <code>Abrechnungsid</code> (<code>uniqueidentifier</code>)</p>
@@ -1659,7 +1691,7 @@ wird ein eigener Datensatz mit eindeutiger <code>Abrechnungsid</code> angelegt.<
 <td>Kundennrkk</td>
 <td>nvarchar(15)</td>
 <td>yes</td>
-<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> — Krankenkasse (registriert). <strong>Bestätigt</strong> damit, dass Krankenkassen als eigene <code>KUNDE</code>-Datensätze geführt werden, vgl. <a href="../REZ/">REZ</a>.<code>Kundennrkk</code> (dort nicht registriert)</td>
+<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> — Krankenkasse (registriert). Bestätigt, dass Krankenkassen als eigene <code>KUNDE</code>-Datensätze geführt werden; <a href="../REZ/">REZ</a>.<code>Kundennrkk</code> hat seit 2026-08-15 dieselbe Relation</td>
 </tr>
 <tr>
 <td>Datum</td>
@@ -1675,12 +1707,94 @@ wird ein eigener Datensatz mit eindeutiger <code>Abrechnungsid</code> angelegt.<
 </tr>
 <tr>
 <td>Abrechnungsstelle</td>
-<td>nvarchar(50)</td>
+<td>—</td>
 <td>yes</td>
-<td>Kennung der Abrechnungsstelle, über die abgewickelt wird</td>
+<td><strong>Typ von der Registry nicht ermittelbar</strong> (zeigt „—"); vermutlich Altfeld, abgelöst durch <code>Abrechnungsstelleid</code></td>
+</tr>
+<tr>
+<td>Nummer</td>
+<td>int</td>
+<td>yes</td>
+<td>Laufende Nummer der Abrechnung</td>
+</tr>
+<tr>
+<td>Abrechnungsstelleid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>FK auf <a href="../REZ_ABRECHNUNGSSTELLE/">REZ_ABRECHNUNGSSTELLE</a>.<code>Id</code> (seit 2026-08-15 registriert)</td>
+</tr>
+<tr>
+<td>Zeitraumvon</td>
+<td>date</td>
+<td>yes</td>
+<td>Beginn des Abrechnungszeitraums</td>
+</tr>
+<tr>
+<td>Zeitraumbis</td>
+<td>date</td>
+<td>yes</td>
+<td>Ende des Abrechnungszeitraums</td>
+</tr>
+<tr>
+<td>Anzahlrezepte</td>
+<td>int</td>
+<td>yes</td>
+<td>Anzahl der in dieser Abrechnung enthaltenen Rezepte</td>
+</tr>
+<tr>
+<td>Anzahlpositionen</td>
+<td>int</td>
+<td>yes</td>
+<td>Anzahl der enthaltenen Rezeptpositionen</td>
+</tr>
+<tr>
+<td>Betrag</td>
+<td>money</td>
+<td>yes</td>
+<td>Abrechnungsbetrag gesamt</td>
+</tr>
+<tr>
+<td>Dateiname</td>
+<td>nvarchar(200)</td>
+<td>yes</td>
+<td>Name der erzeugten Abrechnungsdatei</td>
+</tr>
+<tr>
+<td>Versanddatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Datum des Versands an die Abrechnungsstelle</td>
+</tr>
+<tr>
+<td>Versandempfaenger</td>
+<td>nvarchar(200)</td>
+<td>yes</td>
+<td>Empfänger des Versands</td>
+</tr>
+<tr>
+<td>Stornodatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Datum einer Stornierung</td>
+</tr>
+<tr>
+<td>Stornogrund</td>
+<td>nvarchar(200)</td>
+<td>yes</td>
+<td>Grund der Stornierung</td>
+</tr>
+<tr>
+<td>Stornouserid</td>
+<td>nvarchar(3)</td>
+<td>yes</td>
+<td>Benutzer-ID, der storniert hat</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Auffällig:</strong> <code>Abrechnungsstelle</code> (Alt) und <code>Abrechnungsstelleid</code> (neu) existieren
+parallel. Vermutlich Migration von einem freien Textfeld zu einem FK auf die neue
+Code-Tabelle <a href="../REZ_ABRECHNUNGSSTELLE/">REZ_ABRECHNUNGSSTELLE</a> — der neue
+Verweis ist seit 2026-08-15 auch als DAB-Relation registriert (siehe unten).</p>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
 <thead>
@@ -1704,13 +1818,21 @@ wird ein eigener Datensatz mit eindeutiger <code>Abrechnungsid</code> angelegt.<
 <td><a href="../KUNDE/">KUNDE</a></td>
 <td><code>Kundennrkk : Kundennr</code></td>
 </tr>
+<tr>
+<td>REZ_ABRECH_REZ_ABRECHNUNGSSTELLE_Abrechnungsstelleid</td>
+<td>one</td>
+<td><a href="../REZ_ABRECHNUNGSSTELLE/">REZ_ABRECHNUNGSSTELLE</a></td>
+<td><code>Abrechnungsstelleid : Id</code></td>
+</tr>
 </tbody>
 </table>
-<p>Beide seit dem Registry-Export vom 2026-08-14 (10:46) registriert.</p>
+<p>Die ersten beiden seit dem Registry-Export vom 2026-08-14 (10:46), die dritte
+seit dem Export vom 2026-08-15 (15:41) registriert.</p>
 <p><a href="../REZ_POS/">REZ_POS</a> referenziert diese Tabelle über die registrierte Relation
-<code>REZ_POS_REZ_ABRECH_Abrechungsid</code> (<code>Abrechungsid : Abrechnungsid</code>).
-<a href="../REZ_ABRECH_POS/">REZ_ABRECH_POS</a> referenziert diese Tabelle ebenfalls über
-eine registrierte Relation (<code>Abrechungsid : Abrechnungsid</code>, seit 10:52).</p>
+<code>REZ_POS_REZ_ABRECH_Abrechnungsid</code> (<code>Abrechnungsid : Abrechnungsid</code>).
+<a href="../REZ_ABRECH_POS/">REZ_ABRECH_POS</a> referenziert diese Tabelle ebenfalls —
+seit 2026-08-15 durchgehend korrekt als <code>Abrechnungsid</code> geschrieben, die
+vorherige Tippfehler-Inkonsistenz (<code>Abrechungsid</code>) ist behoben.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
@@ -1771,13 +1893,13 @@ eine registrierte Relation (<code>Abrechungsid : Abrechnungsid</code>, seit 10:5
         
         
           
-          <a href="../REZ_ABRECH_POS/" class="md-footer__link md-footer__link--next" aria-label="Weiter: REZ_ABRECH_POS">
+          <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-footer__link md-footer__link--next" aria-label="Weiter: REZ_ABRECHNUNGSSTELLE">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Weiter
               </span>
               <div class="md-ellipsis">
-                REZ_ABRECH_POS
+                REZ_ABRECHNUNGSSTELLE
               </div>
             </div>
             <div class="md-footer__button md-icon">

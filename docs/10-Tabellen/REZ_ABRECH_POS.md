@@ -3,7 +3,7 @@ type: Entität
 title: REZ_ABRECH_POS
 description: Zuordnungstabelle zwischen einer Abrechnung (REZ_ABRECH) und den darin enthaltenen Rezeptpositionen (REZ_POS).
 tags: [tabelle, rezeptabrechnung, plugin, zuordnung]
-timestamp: 2026-08-14
+timestamp: 2026-08-15
 ---
 
 Tabelle `dbo.REZ_ABRECH_POS` — reine Zuordnungstabelle zwischen einer Abrechnung aus
@@ -19,19 +19,21 @@ Registriert im [Kontor API Service](<../00-Allgemeines/kontor-api-service.md>).
 | Feld | Typ | Nullable | Anmerkung |
 |------|-----|----------|-----------|
 | Id | uniqueidentifier | no | PK; Default vermutlich `newid()` |
-| Abrechungsid | uniqueidentifier | yes | FK auf [REZ_ABRECH](<REZ_ABRECH.md>).`Abrechnungsid` (registriert) |
 | Posguid | uniqueidentifier | yes | FK auf [REZ_POS](<REZ_POS.md>).`Id` (registriert) |
+| Abrechnungsid | uniqueidentifier | yes | FK auf [REZ_ABRECH](<REZ_ABRECH.md>).`Abrechnungsid` (registriert) |
 
 # Beziehungen
 
 | Name | Kardinalität | Ziel | Mapping |
 |------|--------------|------|---------|
 | REZ_ABRECH_POS_REZ_POS_Posguid | one | [REZ_POS](<REZ_POS.md>) | `Posguid : Id` |
-| REZ_ABRECH_POS_REZ_ABRECH_Abrechungsid | one | [REZ_ABRECH](<REZ_ABRECH.md>) | `Abrechungsid : Abrechnungsid` |
+| REZ_ABRECH_POS_REZ_ABRECH_Abrechnungsid | one | [REZ_ABRECH](<REZ_ABRECH.md>) | `Abrechnungsid : Abrechnungsid` |
 
-Beide seit dem Registry-Export vom 2026-08-14 registriert — `Posguid` seit 10:46,
-`Abrechungsid` seit 10:52. Damit sind beide fachlich zentralen Verknüpfungen dieser
-reinen Zuordnungstabelle jetzt vollständig registriert.
+Beide fachlich zentralen Verknüpfungen dieser reinen Zuordnungstabelle sind
+registriert. Historie: Am 2026-08-14 schwankte die `Posguid`-Relation mehrfach
+(registriert → verschwunden), und der Relationsname zu `REZ_ABRECH` trug bis dahin
+den Tippfehler `Abrechungsid`. Seit dem Registry-Export vom 2026-08-15 (15:41)
+sind beide Relationen stabil und einheitlich als `Abrechnungsid` benannt.
 
 # Citations
 

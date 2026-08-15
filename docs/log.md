@@ -2,6 +2,116 @@
 
 Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.
 
+## 2026-08-15 (Update 15:50 / 17:52)
+
+**Update** — Zwei Rohquellen geändert:
+
+1. `raw/dab_registry.md` (Export 15:50, weiterhin 27 Entitäten): `ARTIK` bekommt
+   neues Feld `Aktiv` (bit, 28→29 Felder). Alle übrigen Entitäten unverändert
+   gegenüber dem Export von 15:41. `ARTIK.md` entsprechend ergänzt.
+
+2. `raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md` (bearbeitet,
+   13592→12857 Bytes): Die Feldbeschreibungen für `KUNDE_UNTERKONTO.Verwendung`,
+   `.Adressid`, `.Kundennrkk`, `.Deaktiviert`, `.Info` sind entfernt — das sind
+   genau die fünf Felder, die nie in der DAB-Registry existierten. Damit ist
+   die zuvor dokumentierte Diskrepanz zwischen Registry und Fachquelle für diese
+   Tabelle aufgelöst, allerdings von der Quellenseite her (Text korrigiert),
+   nicht durch eine Schema-Änderung. Nebenwirkung: Die Bearbeitung hat auch die
+   Beschreibung des Felds `Bez` entfernt, obwohl `Bez` tatsächlich registriert
+   ist — neue, kleinere Lücke (fehlende Beschreibung statt fehlendes Feld).
+   Ebenso ist der `Kundennrkk`-Punkt aus der Aufzählung „Bedeutung für die
+   Rezeptabrechnung" verschwunden.
+
+`KUNDE_UNTERKONTO.md` komplett überarbeitet: Abschnitt „Weiterhin fehlende
+Felder" entfernt (Diskrepanz aufgelöst), Hinweis auf die fehlende `Bez`-
+Beschreibung ergänzt, Versionshistorie in einem Absatz zusammengefasst statt in
+separaten Tabellen. `10-Tabellen/index.md` und
+`00-Allgemeines/datenbank-ueberblick.md` entsprechend nachgezogen — die
+Rezeptabrechnungs-Domäne gilt jetzt als vollständig deckungsgleich zwischen
+Registry und Fachquelle (bis auf die eine fehlende Feldbeschreibung).
+
+## 2026-08-15 (Update 15:41)
+
+**Update** — `raw/dab_registry.md` erneut exportiert (15:41, weiterhin 27
+Entitäten). Dieses Update schließt alle am 2026-08-14 offen gebliebenen Punkte
+der Rezeptabrechnungs-Domäne:
+
+- **REZ** bekommt drei neue Relationen: `REZ_REZ_POS_Rezeptid` (many →
+  `REZ_POS`), `REZ_KUNDE_UNTERKONTO_Unterkontoid` (→ `KUNDE_UNTERKONTO`,
+  bestätigt die zuvor nur vermutete Zuordnung) und `REZ_KUNDE_Kundennrkk` (→
+  `KUNDE`, schließt die Asymmetrie zu `REZ_ABRECH.Kundennrkk`). Neues Feld
+  `Reznr` (bigint, vermutlich fortlaufende Rezeptnummer neben der `Rezeptid`-GUID).
+- **REZ_ABRECH** bekommt die Relation
+  `REZ_ABRECH_REZ_ABRECHNUNGSSTELLE_Abrechnungsstelleid` → `REZ_ABRECHNUNGSSTELLE`
+  — der zuvor unregistrierte FK-Kandidat ist jetzt bestätigt.
+- **REZ_ABRECH_POS** hat wieder beide Relationen (zu `REZ_ABRECH` und zu
+  `REZ_POS` über `Posguid`), diesmal stabil, und die Tippfehler-Inkonsistenz
+  zwischen Feldname (`Abrechnungsid`) und Relationsname (`Abrechungsid`) ist
+  behoben — beide heißen jetzt einheitlich `Abrechnungsid`.
+
+Damit ist die gesamte Rezeptabrechnungs-Domäne durchgehend registriert verknüpft;
+einzige verbleibende Diskrepanz ist `KUNDE_UNTERKONTO`, wo weiterhin 5 von der
+Fachquelle beschriebene Felder in der Registry fehlen.
+
+Aktualisiert: `REZ.md`, `REZ_ABRECH.md`, `REZ_ABRECH_POS.md` (komplett neu
+geschrieben, deutlich vereinfacht, da keine Widersprüche mehr zu dokumentieren
+sind), `KUNDE_UNTERKONTO.md`, `REZ_ABRECHNUNGSSTELLE.md`. Übersichten
+`10-Tabellen/index.md` (Entwicklungshistorie der Domäne zusammengefasst),
+`00-Allgemeines/datenbank-ueberblick.md` (Beziehungsgrafik ohne gestrichelte
+Linien, da nichts mehr rein fachlich ist) und `kontor-api-service.md`
+(Instabilitäts-Hinweis auf „jetzt stabil" aktualisiert) nachgezogen.
+
+## 2026-08-14 (Update 11:47)
+
+**Update** — `raw/dab_registry.md` erneut exportiert (11:47, 26 → 27 Entitäten).
+Zwischenzeitlich lag ein Export mit nur 25 Entitäten vor, in dem `REZ` und
+`REZ_POS` komplett fehlten — dieser Zwischenstand wurde noch nicht ins Wiki
+übernommen (die Bearbeitung wurde unterbrochen, bevor Edits geschrieben wurden).
+Der aktuelle Export zeigt: `REZ` und `REZ_POS` sind **nicht** dauerhaft entfernt
+worden, sondern mit deutlich mehr Feldern zurück — das Verschwinden war
+offenbar ein kurzzeitiger Übergangszustand während einer Schema-Migration auf
+Seiten der Quelle, kein endgültiger Wegfall.
+
+Schema-Erweiterungen in der Rezeptabrechnungs-Domäne:
+
+- **REZ**: 9 → 15 Felder. Neu: `Status`, `Unterkontoid` (vermutlich FK auf
+  `KUNDE_UNTERKONTO.Id`, nicht registriert), `Formularid`, `Erfasser`,
+  `Bemerkung`, `Aenderungsdatum`.
+- **REZ_POS**: 15 → 25 Felder. Zehn neue Preiskalkulationsfelder
+  (`Rezeptbez`, `Preisbasis`, `Preisstichtag`, `Basispreis`, `Faktor`,
+  `Zuschlag`, `Einzelpreis`, `Gesamtpreis`, `Preisregelid`, `Taxdatum`) — die
+  Tabelle trägt jetzt die vollständige Taxierung. Feld `Abrechungsid` in
+  `Abrechnungsid` umbenannt (Tippfehler korrigiert), Relationsname entsprechend
+  nachgezogen (`REZ_POS_REZ_ABRECH_Abrechnungsid`).
+- **REZ_ABRECH**: 6 → 19 Felder. Neu: `Nummer`, `Abrechnungsstelleid`,
+  `Zeitraumvon`, `Zeitraumbis`, `Anzahlrezepte`, `Anzahlpositionen`, `Betrag`,
+  `Dateiname`, `Versanddatum`, `Versandempfaenger`, `Stornodatum`,
+  `Stornogrund`, `Stornouserid` — die Tabelle bildet jetzt einen vollständigen
+  Abrechnungslauf ab. Auffällig: das alte Feld `Abrechnungsstelle` hat in der
+  Registry keinen ermittelbaren Typ mehr (zeigt „—"), vermutlich Altfeld,
+  abgelöst durch das neue `Abrechnungsstelleid`.
+- **Neu: REZ_ABRECHNUNGSSTELLE** — Code-Tabelle der Abrechnungsstellen
+  (`Id`, `Kuerzel`, `Bez`, `Email`, `Ik`, `Csvprofil`, `Aktiv`). Trotz
+  `REZ_ABRECH.Abrechnungsstelleid` als klarem FK-Kandidaten keine registrierte
+  Beziehung dorthin.
+
+**Beobachtete Registry-Instabilität:** `REZ_ABRECH_POS` hatte im Export von
+10:52 zwei Relationen (zu `REZ_ABRECH` und zu `REZ_POS` über `Posguid`); im
+aktuellen Export (11:47) ist die `REZ_POS`-Relation wieder verschwunden, obwohl
+`REZ_POS` selbst existiert. Zusätzlich trägt die verbleibende Relation
+weiterhin den alten Tippfehler `Abrechungsid` im Namen, obwohl das zugrunde
+liegende Feld korrekt zu `Abrechnungsid` umbenannt wurde. Als Beobachtung
+festgehalten statt als stabilen Fakt behandelt.
+
+Aktualisiert: `REZ.md`, `REZ_POS.md`, `REZ_ABRECH.md`, `REZ_ABRECH_POS.md`,
+`KUNDE_UNTERKONTO.md` (neuer Querverweis von `REZ.Unterkontoid`). Neue Seite:
+`REZ_ABRECHNUNGSSTELLE.md`. Übersichten `10-Tabellen/index.md`,
+`00-Allgemeines/datenbank-ueberblick.md` (Beziehungsgrafik mit gestrichelten
+Linien für unregistrierte Verweise ergänzt), `kontor-api-service.md` und
+`wiki/index.md` auf 27 Entitäten nachgezogen; Warnhinweis in
+`kontor-api-service.md` ergänzt, dass diese Domäne sich aktuell schnell
+verändert und Entwickler den Live-Stand prüfen sollten.
+
 ## 2026-08-14 (Update 10:52)
 
 **Update** — `raw/dab_registry.md` erneut exportiert (10:52, weiterhin 26

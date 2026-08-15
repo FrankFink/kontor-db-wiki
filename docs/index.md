@@ -28,7 +28,7 @@ den HTTP-Zugriff (REST + GraphQL).
 
 # Dokumentierter Ausschnitt
 
-26 über den Kontor API Service exponierte Entitäten: sechs Kernentitäten mit
+27 über den Kontor API Service exponierte Entitäten: sechs Kernentitäten mit
 `BUCH_UMSATZ` als zentralem Bewegungsdatensatz, sechs Codetabellen für
 Warengruppen, Kategorien, Kundengruppen und Vertreter, ein CRM-Bereich, die
 Notiztabelle `KONTAKTE`, die Aufgabenverwaltung (`WFLOW`), die
@@ -39,7 +39,7 @@ Rezeptabrechnung (`REZ`) sowie zwei Objekte der API-Infrastruktur selbst.
 - CRM: [CRM_LEAD](<10-Tabellen/CRM_LEAD.md>) · [CRM_ACTIVITIES](<10-Tabellen/CRM_ACTIVITIES.md>) · [CRM_PROMPT_TEMPLATE](<10-Tabellen/CRM_PROMPT_TEMPLATE.md>) · [CRM_LEAD_CONFIG](<10-Tabellen/CRM_LEAD_CONFIG.md>) (nicht mehr registriert)
 - Notizen: [KONTAKTE](<10-Tabellen/KONTAKTE.md>)
 - Aufgabenverwaltung: [WFLOW](<10-Tabellen/WFLOW.md>) · [WFLOW_FOLDERS](<10-Tabellen/WFLOW_FOLDERS.md>) · [WFLOW_INVOICINGUNIT](<10-Tabellen/WFLOW_INVOICINGUNIT.md>)
-- Rezeptabrechnung: [REZ](<10-Tabellen/REZ.md>) · [REZ_POS](<10-Tabellen/REZ_POS.md>) · [REZ_ABRECH](<10-Tabellen/REZ_ABRECH.md>) · [REZ_ABRECH_POS](<10-Tabellen/REZ_ABRECH_POS.md>) · [KUNDE_UNTERKONTO](<10-Tabellen/KUNDE_UNTERKONTO.md>)
+- Rezeptabrechnung: [REZ](<10-Tabellen/REZ.md>) · [REZ_POS](<10-Tabellen/REZ_POS.md>) · [REZ_ABRECH](<10-Tabellen/REZ_ABRECH.md>) · [REZ_ABRECH_POS](<10-Tabellen/REZ_ABRECH_POS.md>) · [REZ_ABRECHNUNGSSTELLE](<10-Tabellen/REZ_ABRECHNUNGSSTELLE.md>) · [KUNDE_UNTERKONTO](<10-Tabellen/KUNDE_UNTERKONTO.md>)
 - API-Infrastruktur: [SYS_DAB_METADATA](<00-Allgemeines/SYS_DAB_METADATA.md>) · [kon_dab_checkentityvalue](<00-Allgemeines/kon_dab_checkentityvalue.md>)
 
 Beziehungsgrafik siehe [Datenbank-Überblick](<00-Allgemeines/datenbank-ueberblick.md>).

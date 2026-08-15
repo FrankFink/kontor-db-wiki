@@ -1322,6 +1322,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../10-Tabellen/REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../10-Tabellen/REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1809,9 +1837,9 @@
 (codegarden software GmbH). Sie liegt im Standard-Schema <code>dbo</code> einer
 SQL-Server-Instanz.</p>
 <h1 id="aktueller-wiki-ausschnitt">Aktueller Wiki-Ausschnitt</h1>
-<p>Dokumentiert sind bislang 24 fachliche Tabellen sowie zwei Objekte der
+<p>Dokumentiert sind bislang 25 fachliche Tabellen sowie zwei Objekte der
 API-Infrastruktur selbst (<code>SYS_DAB_METADATA</code>, <code>kon_dab_checkentityvalue</code>) — zusammen
-26 über den <a href="../kontor-api-service/">Kontor API Service</a> freigegebene Entitäten
+27 über den <a href="../kontor-api-service/">Kontor API Service</a> freigegebene Entitäten
 (zzgl. <code>CRM_LEAD_CONFIG</code> als nicht mehr registrierte Altseite). Die Datenbank
 enthält darüber hinaus zahlreiche weitere Tabellen und Views; sie werden hier
 aufgenommen, sobald Quellen dazu vorliegen.</p>
@@ -1962,15 +1990,19 @@ DAB-Relation deklariert.</p>
 </tr>
 <tr>
 <td><a href="../../10-Tabellen/REZ_POS/">REZ_POS</a></td>
-<td>Einzelne Rezeptposition</td>
+<td>Rezeptposition inkl. vollständiger Preiskalkulation</td>
 </tr>
 <tr>
 <td><a href="../../10-Tabellen/REZ_ABRECH/">REZ_ABRECH</a></td>
-<td>Erzeugte Abrechnung</td>
+<td>Abrechnungslauf: Zeitraum, Zähler, Betrag, Versand, Storno</td>
 </tr>
 <tr>
 <td><a href="../../10-Tabellen/REZ_ABRECH_POS/">REZ_ABRECH_POS</a></td>
 <td>Zuordnung Abrechnung ↔ Position</td>
+</tr>
+<tr>
+<td><a href="../../10-Tabellen/REZ_ABRECHNUNGSSTELLE/">REZ_ABRECHNUNGSSTELLE</a></td>
+<td>Code-Tabelle der Abrechnungsstellen</td>
 </tr>
 <tr>
 <td><a href="../../10-Tabellen/KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a></td>
@@ -1978,10 +2010,12 @@ DAB-Relation deklariert.</p>
 </tr>
 </tbody>
 </table>
-<p>Tabellen des Plugins „Rezeptabrechnung". <strong>Update 2026-08-14:</strong> Diese Domäne,
-ursprünglich um 10:06 ohne jede registrierte Beziehung dokumentiert, ist bis 10:52
-vollständig angebunden worden — zu <code>KUNDE</code>, <code>ARTIK</code> und untereinander (siehe
-Beziehungsgrafik unten).</p>
+<p>Tabellen des Plugins „Rezeptabrechnung". Diese Domäne wurde ab dem 2026-08-14 in
+mehreren Schritten ausgebaut (Erstdokumentation ohne Beziehungen → Anbindung an
+<code>KUNDE</code>/<code>ARTIK</code> → Schema-Erweiterung um <code>REZ_ABRECHNUNGSSTELLE</code> und
+Preiskalkulationsfelder, mit einer kurzzeitig schwankenden Relation) und ist seit
+dem Export vom 2026-08-15 (15:41) vollständig verknüpft — siehe Beziehungsgrafik
+unten und <a href="../../10-Tabellen/">10-Tabellen</a> für die Historie im Detail.</p>
 <h1 id="beziehungen-im-dokumentierten-ausschnitt">Beziehungen im dokumentierten Ausschnitt</h1>
 <p><code>BUCH_UMSATZ</code> liegt im Zentrum der Bewegungsdaten und verweist auf <code>ARTIK</code> und
 <code>KUNDE</code>. <code>KUNDE</code> verweist seinerseits auf zwei Adressen in <code>ADRESSEN</code>
@@ -2006,19 +2040,21 @@ registriert. <code>PROJEKT.Kundennr</code> → <code>KUNDE</code> ist inzwischen
 <code>uniqueidentifier</code> wie in <code>ADRESSEN</code>/<code>KUNDE</code> (siehe <a href="../../10-Tabellen/PROJEKT/">PROJEKT</a>).</p>
 <p>Der CRM-Bereich (<code>CRM_LEAD</code>, <code>CRM_ACTIVITIES</code>, <code>CRM_PROMPT_TEMPLATE</code>) steht separat
 und ohne registrierte Verbindung zum übrigen Schema.</p>
-<p>Die Rezeptabrechnungs-Domäne ist seit 2026-08-14 (10:52) vollständig angebunden:</p>
-<pre><code>                    ┌──▶ KUNDE  ◀── REZ_ABRECH.Kundennrkk
+<p>Die Rezeptabrechnungs-Domäne (Stand 2026-08-15, 15:41) — vollständig verknüpft:</p>
+<pre><code>                    ┌──▶ KUNDE  ◀── REZ_ABRECH.Kundennrkk, REZ.Kundennrkk
                     │            (bestätigt: Krankenkassen als KUNDE-Datensätze)
 ARTIK ◀── REZ_POS ──┼──▶ REZ ──▶ KUNDE
+             ▲       │    │
+             │       │    └──▶ KUNDE_UNTERKONTO ──▶ KUNDE
              │       └──▶ REZ_ABRECH ──▶ KUNDE (Kundennr + Kundennrkk)
-             │
-             └──◀── REZ_ABRECH_POS ──▶ REZ_ABRECH
-
-KUNDE_UNTERKONTO ──▶ KUNDE   (Id jetzt als PK registriert)
+             │                  │
+             └── REZ_ABRECH_POS ┴──▶ REZ_ABRECHNUNGSSTELLE
 </code></pre>
-<p>Alle Pfeile sind registrierte DAB-Relationen. <code>KUNDE_UNTERKONTO</code> hat weiterhin 5
-von der Fachquelle beschriebene Felder, die in der Registry fehlen (<code>Verwendung</code>,
-<code>Adressid</code>, <code>Kundennrkk</code>, <code>Deaktiviert</code>, <code>Info</code>), siehe
+<p>Alle Pfeile sind registrierte DAB-Relationen. <code>KUNDE_UNTERKONTO</code> und die
+Fachquelle sind seit 2026-08-15 deckungsgleich (je 6 Felder) — die zuvor
+zusätzlich beschriebenen Felder <code>Verwendung</code>, <code>Adressid</code>, <code>Kundennrkk</code>,
+<code>Deaktiviert</code>, <code>Info</code> sind aus der Fachquelle entfernt worden. Dabei ging auch
+die Beschreibung des Felds <code>Bez</code> verloren, siehe
 <a href="../../10-Tabellen/KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a>.</p>
 <p><code>WFLOW.Projektnr</code> → <code>PROJEKT.Projektnr</code> → <code>PROJEKT.Kundennr</code> → <code>KUNDE</code> ist
 durchgehend als DAB-Relation registriert:</p>
@@ -2037,7 +2073,7 @@ vermuteter Zusammenhang (<code>SYS_DAB_METADATA.Hasproccheck</code> → Aufruf d
 nicht in der Registry belegt.</p>
 <h1 id="citations">Citations</h1>
 <ul>
-<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-14, 10:52 Uhr (26 Entitäten)</li>
+<li><code>../../raw/dab_registry.md</code> — DAB-Registry-Export vom 2026-08-15, 15:50 Uhr (27 Entitäten)</li>
 <li><code>../../raw/Informationen_Tabelle_Kontakte.md</code></li>
 <li><code>../../raw/# Tabellen der Aufgabenverwaltung W.md</code></li>
 <li><code>../../raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md</code></li>
