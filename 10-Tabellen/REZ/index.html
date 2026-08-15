@@ -1219,6 +1219,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1660,7 +1688,7 @@ gleichzeitig der Dokumenten-ID, unter der der Scan des Rezepts gespeichert ist.<
 <td>Kundennrkk</td>
 <td>nvarchar(15)</td>
 <td>yes</td>
-<td>Kundennummer der zugeordneten Krankenkasse. Für diese Tabelle <strong>nicht</strong> als eigene Relation registriert (anders als bei <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Kundennrkk</code>, das explizit auf <code>KUNDE</code> verweist) — vermutlich dennoch dasselbe Muster: Krankenkassen als eigene <code>KUNDE</code>-Datensätze geführt</td>
+<td>FK auf <a href="../KUNDE/">KUNDE</a>.<code>Kundennr</code> — Krankenkasse (seit 2026-08-15 registriert; bestätigt endgültig das Muster: Krankenkassen als eigene <code>KUNDE</code>-Datensätze)</td>
 </tr>
 <tr>
 <td>Datum</td>
@@ -1698,6 +1726,48 @@ gleichzeitig der Dokumenten-ID, unter der der Scan des Rezepts gespeichert ist.<
 <td>yes</td>
 <td>Kürzel für ein Template, das das Formular-Format beschreibt</td>
 </tr>
+<tr>
+<td>Status</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Bearbeitungsstatus des Rezepts (Werte ungeklärt)</td>
+</tr>
+<tr>
+<td>Unterkontoid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>FK auf <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a>.<code>Id</code> (seit 2026-08-15 registriert) — konkreter Arzt/Betriebsstätte bei Praxen mit mehreren Kombinationen</td>
+</tr>
+<tr>
+<td>Formularid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>Vermutlich Verweis auf eine (noch nicht dokumentierte) Formular-/Template-Tabelle, vgl. <code>Rezeptformat</code></td>
+</tr>
+<tr>
+<td>Erfasser</td>
+<td>nvarchar(3)</td>
+<td>yes</td>
+<td>Kürzel des erfassenden Benutzers</td>
+</tr>
+<tr>
+<td>Bemerkung</td>
+<td>nvarchar(500)</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Aenderungsdatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Datum der letzten Änderung</td>
+</tr>
+<tr>
+<td>Reznr</td>
+<td>bigint</td>
+<td>yes</td>
+<td>Vermutlich fortlaufende, lesbare Rezeptnummer, zusätzlich zur technischen <code>Rezeptid</code> (GUID)</td>
+</tr>
 </tbody>
 </table>
 <h1 id="zuordnung">Zuordnung</h1>
@@ -1707,8 +1777,8 @@ werden. Siehe <a href="../REZ_POS/">REZ_POS</a> und die Gesamtübersicht in
 <a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a> (Abschnitt „Bedeutung für die
 Rezeptabrechnung").</p>
 <pre><code>REZ ──▶ REZ_POS ──▶ REZ_ABRECH_POS ──▶ REZ_ABRECH
- (alle vier Pfeile registriert, Stand 2026-08-14 10:52 — die letzte Lücke,
-  REZ_ABRECH_POS→REZ_ABRECH, wurde um 10:52 geschlossen)
+ (alle Pfeile registriert; seit 2026-08-15 zusätzlich REZ ──▶ REZ_POS direkt,
+  REZ ──▶ KUNDE_UNTERKONTO und REZ ──▶ KUNDE (Kundennrkk))
 </code></pre>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
@@ -1727,13 +1797,33 @@ Rezeptabrechnung").</p>
 <td><a href="../KUNDE/">KUNDE</a></td>
 <td><code>Kundennr : Kundennr</code></td>
 </tr>
+<tr>
+<td>REZ_REZ_POS_Rezeptid</td>
+<td>many</td>
+<td><a href="../REZ_POS/">REZ_POS</a></td>
+<td><code>Rezeptid : Rezeptid</code></td>
+</tr>
+<tr>
+<td>REZ_KUNDE_UNTERKONTO_Unterkontoid</td>
+<td>one</td>
+<td><a href="../KUNDE_UNTERKONTO/">KUNDE_UNTERKONTO</a></td>
+<td><code>Unterkontoid : Id</code></td>
+</tr>
+<tr>
+<td>REZ_KUNDE_Kundennrkk</td>
+<td>one</td>
+<td><a href="../KUNDE/">KUNDE</a></td>
+<td><code>Kundennrkk : Kundennr</code></td>
+</tr>
 </tbody>
 </table>
-<p>Seit dem Registry-Export vom 2026-08-14 (10:46) registriert — zuvor hatte diese
-Tabelle keine deklarierten Beziehungen. <code>Lanr</code>/<code>Bsnr</code>/<code>Kundennrkk</code> bleiben ohne
-eigene Relation.</p>
-<p><a href="../REZ_POS/">REZ_POS</a> referenziert diese Tabelle über die registrierte Relation
-<code>REZ_POS_REZ_Rezeptid</code> (<code>Rezeptid : Rezeptid</code>).</p>
+<p><code>Kundennr</code> seit 10:46 registriert; die übrigen drei Relationen seit dem
+Registry-Export vom 2026-08-15 (15:41) neu — damit sind alle zuvor als
+„fachlich vermutet" markierten Verweise dieser Tabelle jetzt registriert.
+<code>Lanr</code>/<code>Bsnr</code>/<code>Formularid</code> bleiben ohne eigene Relation.</p>
+<p><a href="../REZ_POS/">REZ_POS</a> referenziert diese Tabelle zusätzlich über die eigene
+registrierte Relation <code>REZ_POS_REZ_Rezeptid</code> (<code>Rezeptid : Rezeptid</code>) — die
+Beziehung ist damit von beiden Seiten deklariert.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>

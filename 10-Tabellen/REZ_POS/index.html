@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Erfassungstabelle einzelner Rezeptpositionen; über Rezeptid zu einem Rezept zusammengefasst, über Abrechungsid einer Abrechnung zugeordnet.">
+        <meta name="description" content="Erfassungstabelle einzelner Rezeptpositionen inkl. Preiskalkulation (Taxierung); über Rezeptid zu einem Rezept zusammengefasst, über Abrechnungsid einer Abrechnung zugeordnet.">
       
       
       
@@ -1209,6 +1209,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1631,7 +1659,9 @@
 <p>Tabelle <code>dbo.REZ_POS</code> — Erfassungstabelle für einzelne Positionen, die ein Kunde
 erhalten hat. Auch wenn mehrere Positionen auf einem Rezept zusammengefasst werden
 können, wird jede Bestellposition separat gespeichert; die <code>Rezeptid</code> führt sie
-zusammen.</p>
+zusammen. Seit dem Export vom 2026-08-14 (11:47) um zehn Preiskalkulationsfelder
+erweitert (15 → 25 Felder) — die Tabelle trägt jetzt die vollständige Taxierung
+(Preisberechnung) je Position, nicht nur die Erfassung.</p>
 <p>Registriert im <a href="../../00-Allgemeines/kontor-api-service/">Kontor API Service</a>.</p>
 <h1 id="schema">Schema</h1>
 <p><strong>Primärschlüssel:</strong> <code>Id</code> (<code>uniqueidentifier</code>)</p>
@@ -1718,10 +1748,10 @@ zusammen.</p>
 <td>Betriebsstättennummer, dem Kunden bzw. Unterkonto zugeordnet</td>
 </tr>
 <tr>
-<td>Abrechungsid</td>
+<td>Abrechnungsid</td>
 <td>uniqueidentifier</td>
 <td>yes</td>
-<td>FK auf <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Abrechnungsid</code> (registriert) — gesetzt, sobald die Position abgerechnet wurde</td>
+<td>FK auf <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Abrechnungsid</code> (registriert) — gesetzt, sobald die Position abgerechnet wurde. Feldname seit 11:47 korrekt geschrieben (zuvor <code>Abrechungsid</code> ohne „n")</td>
 </tr>
 <tr>
 <td>Stornodatum</td>
@@ -1735,8 +1765,71 @@ zusammen.</p>
 <td>yes</td>
 <td>Vom Benutzer eingegebener Storno-Grund</td>
 </tr>
+<tr>
+<td>Rezeptbez</td>
+<td>nvarchar(100)</td>
+<td>yes</td>
+<td>Bezeichnung der Position für den Rezeptdruck; vgl. <a href="../ARTIK/">ARTIK</a>.<code>Rezeptbez1</code>/<code>Rezeptbez2</code></td>
+</tr>
+<tr>
+<td>Preisbasis</td>
+<td>nvarchar(15)</td>
+<td>yes</td>
+<td>Vermutlich Kennzeichen der Preisberechnungsgrundlage</td>
+</tr>
+<tr>
+<td>Preisstichtag</td>
+<td>date</td>
+<td>yes</td>
+<td>Stichtag, zu dem der Preis ermittelt wurde</td>
+</tr>
+<tr>
+<td>Basispreis</td>
+<td>money</td>
+<td>yes</td>
+<td>Ausgangspreis vor Faktor/Zuschlag</td>
+</tr>
+<tr>
+<td>Faktor</td>
+<td>decimal</td>
+<td>yes</td>
+<td>Preisfaktor; vgl. <a href="../ARTIK/">ARTIK</a>.<code>Abda_preisfaktor</code></td>
+</tr>
+<tr>
+<td>Zuschlag</td>
+<td>money</td>
+<td>yes</td>
+<td>Zuschlag auf den Basispreis</td>
+</tr>
+<tr>
+<td>Einzelpreis</td>
+<td>money</td>
+<td>yes</td>
+<td>Berechneter Preis je Einheit</td>
+</tr>
+<tr>
+<td>Gesamtpreis</td>
+<td>money</td>
+<td>yes</td>
+<td>Berechneter Gesamtpreis der Position</td>
+</tr>
+<tr>
+<td>Preisregelid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>Vermutlich Verweis auf eine (noch nicht dokumentierte) Preisregel-Tabelle</td>
+</tr>
+<tr>
+<td>Taxdatum</td>
+<td>datetime</td>
+<td>yes</td>
+<td>Vermutlich Zeitpunkt der Taxierung (Preisberechnung), Fachbegriff aus der Apothekenabrechnung</td>
+</tr>
 </tbody>
 </table>
+<p><strong>Ungeklärt:</strong> genaues Zusammenspiel von <code>Preisbasis</code>, <code>Basispreis</code>, <code>Faktor</code>,
+<code>Zuschlag</code>, <code>Einzelpreis</code>, <code>Gesamtpreis</code> (Berechnungsreihenfolge); Zieltabelle von
+<code>Preisregelid</code>.</p>
 <h1 id="beziehungen">Beziehungen</h1>
 <table>
 <thead>
@@ -1767,18 +1860,20 @@ zusammen.</p>
 <td><code>Rezeptid : Rezeptid</code></td>
 </tr>
 <tr>
-<td>REZ_POS_REZ_ABRECH_Abrechungsid</td>
+<td>REZ_POS_REZ_ABRECH_Abrechnungsid</td>
 <td>one</td>
 <td><a href="../REZ_ABRECH/">REZ_ABRECH</a></td>
-<td><code>Abrechungsid : Abrechnungsid</code></td>
+<td><code>Abrechnungsid : Abrechnungsid</code></td>
 </tr>
 </tbody>
 </table>
-<p>Alle vier seit dem Registry-Export vom 2026-08-14 (10:46) registriert — zuvor
-hatte diese Tabelle keine deklarierten Beziehungen. <code>Lanr</code>/<code>Bsnr</code> bleiben ohne
-eigene Relation.</p>
-<p><a href="../REZ_ABRECH_POS/">REZ_ABRECH_POS</a> referenziert diese Tabelle über die
-registrierte Relation <code>REZ_ABRECH_POS_REZ_POS_Posguid</code> (<code>Posguid : Id</code>).</p>
+<p>Alle vier seit dem Registry-Export vom 2026-08-14 (10:46) registriert; der Name
+der letzten Relation wurde seit 11:47 korrekt geschrieben (zuvor
+<code>REZ_POS_REZ_ABRECH_Abrechungsid</code>). <code>Lanr</code>/<code>Bsnr</code>/die neuen Preisfelder bleiben
+ohne eigene Relation.</p>
+<p><a href="../REZ_ABRECH_POS/">REZ_ABRECH_POS</a>.<code>Posguid</code> zeigt fachlich auf <code>Id</code> dieser
+Tabelle, ist aber im aktuellen Export (11:47) <strong>nicht</strong> als Relation registriert
+(schwankte bereits zwischen den Exporten desselben Tages, siehe dort).</p>
 <p>Siehe <a href="../REZ/">REZ</a> für die Gesamtübersicht der Rezeptabrechnungs-Domäne.</p>
 <h1 id="citations">Citations</h1>
 <ul>

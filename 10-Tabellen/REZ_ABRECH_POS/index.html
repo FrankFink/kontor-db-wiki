@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="../REZ_ABRECH/">
+        <link rel="prev" href="../REZ_ABRECHNUNGSSTELLE/">
       
       
         <link rel="next" href="../REZ_POS/">
@@ -1206,6 +1206,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1651,16 +1679,16 @@
 <td>PK; Default vermutlich <code>newid()</code></td>
 </tr>
 <tr>
-<td>Abrechungsid</td>
-<td>uniqueidentifier</td>
-<td>yes</td>
-<td>FK auf <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Abrechnungsid</code> (registriert)</td>
-</tr>
-<tr>
 <td>Posguid</td>
 <td>uniqueidentifier</td>
 <td>yes</td>
 <td>FK auf <a href="../REZ_POS/">REZ_POS</a>.<code>Id</code> (registriert)</td>
+</tr>
+<tr>
+<td>Abrechnungsid</td>
+<td>uniqueidentifier</td>
+<td>yes</td>
+<td>FK auf <a href="../REZ_ABRECH/">REZ_ABRECH</a>.<code>Abrechnungsid</code> (registriert)</td>
 </tr>
 </tbody>
 </table>
@@ -1682,16 +1710,18 @@
 <td><code>Posguid : Id</code></td>
 </tr>
 <tr>
-<td>REZ_ABRECH_POS_REZ_ABRECH_Abrechungsid</td>
+<td>REZ_ABRECH_POS_REZ_ABRECH_Abrechnungsid</td>
 <td>one</td>
 <td><a href="../REZ_ABRECH/">REZ_ABRECH</a></td>
-<td><code>Abrechungsid : Abrechnungsid</code></td>
+<td><code>Abrechnungsid : Abrechnungsid</code></td>
 </tr>
 </tbody>
 </table>
-<p>Beide seit dem Registry-Export vom 2026-08-14 registriert — <code>Posguid</code> seit 10:46,
-<code>Abrechungsid</code> seit 10:52. Damit sind beide fachlich zentralen Verknüpfungen dieser
-reinen Zuordnungstabelle jetzt vollständig registriert.</p>
+<p>Beide fachlich zentralen Verknüpfungen dieser reinen Zuordnungstabelle sind
+registriert. Historie: Am 2026-08-14 schwankte die <code>Posguid</code>-Relation mehrfach
+(registriert → verschwunden), und der Relationsname zu <code>REZ_ABRECH</code> trug bis dahin
+den Tippfehler <code>Abrechungsid</code>. Seit dem Registry-Export vom 2026-08-15 (15:41)
+sind beide Relationen stabil und einheitlich als <code>Abrechnungsid</code> benannt.</p>
 <h1 id="citations">Citations</h1>
 <ul>
 <li><code>../../raw/dab_registry.md</code></li>
@@ -1735,7 +1765,7 @@ reinen Zuordnungstabelle jetzt vollständig registriert.</p>
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../REZ_ABRECH/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: REZ_ABRECH">
+          <a href="../REZ_ABRECHNUNGSSTELLE/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: REZ_ABRECHNUNGSSTELLE">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1745,7 +1775,7 @@ reinen Zuordnungstabelle jetzt vollständig registriert.</p>
                 Zurück
               </span>
               <div class="md-ellipsis">
-                REZ_ABRECH
+                REZ_ABRECHNUNGSSTELLE
               </div>
             </div>
           </a>

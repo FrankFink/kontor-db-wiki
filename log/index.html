@@ -450,6 +450,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-08-15-update-1550-1752" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-15 (Update 15:50 / 17:52)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-15-update-1541" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-15 (Update 15:41)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-14-update-1147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-14 (Update 11:47)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-08-14-update-1052" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1350,6 +1383,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../10-Tabellen/REZ_ABRECHNUNGSSTELLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REZ_ABRECHNUNGSSTELLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../10-Tabellen/REZ_ABRECH_POS/" class="md-nav__link">
         
   
@@ -1751,6 +1812,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-08-15-update-1550-1752" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-15 (Update 15:50 / 17:52)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-15-update-1541" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-15 (Update 15:41)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-14-update-1147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-14 (Update 11:47)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-08-14-update-1052" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1868,6 +1962,110 @@
 
 <h1 id="log">Log</h1>
 <p>Chronologisches Änderungsprotokoll des Wikis. Neueste Einträge zuerst.</p>
+<h2 id="2026-08-15-update-1550-1752">2026-08-15 (Update 15:50 / 17:52)</h2>
+<p><strong>Update</strong> — Zwei Rohquellen geändert:</p>
+<ol>
+<li>
+<p><code>raw/dab_registry.md</code> (Export 15:50, weiterhin 27 Entitäten): <code>ARTIK</code> bekommt
+   neues Feld <code>Aktiv</code> (bit, 28→29 Felder). Alle übrigen Entitäten unverändert
+   gegenüber dem Export von 15:41. <code>ARTIK.md</code> entsprechend ergänzt.</p>
+</li>
+<li>
+<p><code>raw/# Wichtige Datenbanktabellen rezeptabrechnungs-plugin.md</code> (bearbeitet,
+   13592→12857 Bytes): Die Feldbeschreibungen für <code>KUNDE_UNTERKONTO.Verwendung</code>,
+   <code>.Adressid</code>, <code>.Kundennrkk</code>, <code>.Deaktiviert</code>, <code>.Info</code> sind entfernt — das sind
+   genau die fünf Felder, die nie in der DAB-Registry existierten. Damit ist
+   die zuvor dokumentierte Diskrepanz zwischen Registry und Fachquelle für diese
+   Tabelle aufgelöst, allerdings von der Quellenseite her (Text korrigiert),
+   nicht durch eine Schema-Änderung. Nebenwirkung: Die Bearbeitung hat auch die
+   Beschreibung des Felds <code>Bez</code> entfernt, obwohl <code>Bez</code> tatsächlich registriert
+   ist — neue, kleinere Lücke (fehlende Beschreibung statt fehlendes Feld).
+   Ebenso ist der <code>Kundennrkk</code>-Punkt aus der Aufzählung „Bedeutung für die
+   Rezeptabrechnung" verschwunden.</p>
+</li>
+</ol>
+<p><code>KUNDE_UNTERKONTO.md</code> komplett überarbeitet: Abschnitt „Weiterhin fehlende
+Felder" entfernt (Diskrepanz aufgelöst), Hinweis auf die fehlende <code>Bez</code>-
+Beschreibung ergänzt, Versionshistorie in einem Absatz zusammengefasst statt in
+separaten Tabellen. <code>10-Tabellen/index.md</code> und
+<code>00-Allgemeines/datenbank-ueberblick.md</code> entsprechend nachgezogen — die
+Rezeptabrechnungs-Domäne gilt jetzt als vollständig deckungsgleich zwischen
+Registry und Fachquelle (bis auf die eine fehlende Feldbeschreibung).</p>
+<h2 id="2026-08-15-update-1541">2026-08-15 (Update 15:41)</h2>
+<p><strong>Update</strong> — <code>raw/dab_registry.md</code> erneut exportiert (15:41, weiterhin 27
+Entitäten). Dieses Update schließt alle am 2026-08-14 offen gebliebenen Punkte
+der Rezeptabrechnungs-Domäne:</p>
+<ul>
+<li><strong>REZ</strong> bekommt drei neue Relationen: <code>REZ_REZ_POS_Rezeptid</code> (many →
+  <code>REZ_POS</code>), <code>REZ_KUNDE_UNTERKONTO_Unterkontoid</code> (→ <code>KUNDE_UNTERKONTO</code>,
+  bestätigt die zuvor nur vermutete Zuordnung) und <code>REZ_KUNDE_Kundennrkk</code> (→
+  <code>KUNDE</code>, schließt die Asymmetrie zu <code>REZ_ABRECH.Kundennrkk</code>). Neues Feld
+  <code>Reznr</code> (bigint, vermutlich fortlaufende Rezeptnummer neben der <code>Rezeptid</code>-GUID).</li>
+<li><strong>REZ_ABRECH</strong> bekommt die Relation
+  <code>REZ_ABRECH_REZ_ABRECHNUNGSSTELLE_Abrechnungsstelleid</code> → <code>REZ_ABRECHNUNGSSTELLE</code>
+  — der zuvor unregistrierte FK-Kandidat ist jetzt bestätigt.</li>
+<li><strong>REZ_ABRECH_POS</strong> hat wieder beide Relationen (zu <code>REZ_ABRECH</code> und zu
+  <code>REZ_POS</code> über <code>Posguid</code>), diesmal stabil, und die Tippfehler-Inkonsistenz
+  zwischen Feldname (<code>Abrechnungsid</code>) und Relationsname (<code>Abrechungsid</code>) ist
+  behoben — beide heißen jetzt einheitlich <code>Abrechnungsid</code>.</li>
+</ul>
+<p>Damit ist die gesamte Rezeptabrechnungs-Domäne durchgehend registriert verknüpft;
+einzige verbleibende Diskrepanz ist <code>KUNDE_UNTERKONTO</code>, wo weiterhin 5 von der
+Fachquelle beschriebene Felder in der Registry fehlen.</p>
+<p>Aktualisiert: <code>REZ.md</code>, <code>REZ_ABRECH.md</code>, <code>REZ_ABRECH_POS.md</code> (komplett neu
+geschrieben, deutlich vereinfacht, da keine Widersprüche mehr zu dokumentieren
+sind), <code>KUNDE_UNTERKONTO.md</code>, <code>REZ_ABRECHNUNGSSTELLE.md</code>. Übersichten
+<code>10-Tabellen/index.md</code> (Entwicklungshistorie der Domäne zusammengefasst),
+<code>00-Allgemeines/datenbank-ueberblick.md</code> (Beziehungsgrafik ohne gestrichelte
+Linien, da nichts mehr rein fachlich ist) und <code>kontor-api-service.md</code>
+(Instabilitäts-Hinweis auf „jetzt stabil" aktualisiert) nachgezogen.</p>
+<h2 id="2026-08-14-update-1147">2026-08-14 (Update 11:47)</h2>
+<p><strong>Update</strong> — <code>raw/dab_registry.md</code> erneut exportiert (11:47, 26 → 27 Entitäten).
+Zwischenzeitlich lag ein Export mit nur 25 Entitäten vor, in dem <code>REZ</code> und
+<code>REZ_POS</code> komplett fehlten — dieser Zwischenstand wurde noch nicht ins Wiki
+übernommen (die Bearbeitung wurde unterbrochen, bevor Edits geschrieben wurden).
+Der aktuelle Export zeigt: <code>REZ</code> und <code>REZ_POS</code> sind <strong>nicht</strong> dauerhaft entfernt
+worden, sondern mit deutlich mehr Feldern zurück — das Verschwinden war
+offenbar ein kurzzeitiger Übergangszustand während einer Schema-Migration auf
+Seiten der Quelle, kein endgültiger Wegfall.</p>
+<p>Schema-Erweiterungen in der Rezeptabrechnungs-Domäne:</p>
+<ul>
+<li><strong>REZ</strong>: 9 → 15 Felder. Neu: <code>Status</code>, <code>Unterkontoid</code> (vermutlich FK auf
+  <code>KUNDE_UNTERKONTO.Id</code>, nicht registriert), <code>Formularid</code>, <code>Erfasser</code>,
+  <code>Bemerkung</code>, <code>Aenderungsdatum</code>.</li>
+<li><strong>REZ_POS</strong>: 15 → 25 Felder. Zehn neue Preiskalkulationsfelder
+  (<code>Rezeptbez</code>, <code>Preisbasis</code>, <code>Preisstichtag</code>, <code>Basispreis</code>, <code>Faktor</code>,
+  <code>Zuschlag</code>, <code>Einzelpreis</code>, <code>Gesamtpreis</code>, <code>Preisregelid</code>, <code>Taxdatum</code>) — die
+  Tabelle trägt jetzt die vollständige Taxierung. Feld <code>Abrechungsid</code> in
+  <code>Abrechnungsid</code> umbenannt (Tippfehler korrigiert), Relationsname entsprechend
+  nachgezogen (<code>REZ_POS_REZ_ABRECH_Abrechnungsid</code>).</li>
+<li><strong>REZ_ABRECH</strong>: 6 → 19 Felder. Neu: <code>Nummer</code>, <code>Abrechnungsstelleid</code>,
+  <code>Zeitraumvon</code>, <code>Zeitraumbis</code>, <code>Anzahlrezepte</code>, <code>Anzahlpositionen</code>, <code>Betrag</code>,
+  <code>Dateiname</code>, <code>Versanddatum</code>, <code>Versandempfaenger</code>, <code>Stornodatum</code>,
+  <code>Stornogrund</code>, <code>Stornouserid</code> — die Tabelle bildet jetzt einen vollständigen
+  Abrechnungslauf ab. Auffällig: das alte Feld <code>Abrechnungsstelle</code> hat in der
+  Registry keinen ermittelbaren Typ mehr (zeigt „—"), vermutlich Altfeld,
+  abgelöst durch das neue <code>Abrechnungsstelleid</code>.</li>
+<li><strong>Neu: REZ_ABRECHNUNGSSTELLE</strong> — Code-Tabelle der Abrechnungsstellen
+  (<code>Id</code>, <code>Kuerzel</code>, <code>Bez</code>, <code>Email</code>, <code>Ik</code>, <code>Csvprofil</code>, <code>Aktiv</code>). Trotz
+  <code>REZ_ABRECH.Abrechnungsstelleid</code> als klarem FK-Kandidaten keine registrierte
+  Beziehung dorthin.</li>
+</ul>
+<p><strong>Beobachtete Registry-Instabilität:</strong> <code>REZ_ABRECH_POS</code> hatte im Export von
+10:52 zwei Relationen (zu <code>REZ_ABRECH</code> und zu <code>REZ_POS</code> über <code>Posguid</code>); im
+aktuellen Export (11:47) ist die <code>REZ_POS</code>-Relation wieder verschwunden, obwohl
+<code>REZ_POS</code> selbst existiert. Zusätzlich trägt die verbleibende Relation
+weiterhin den alten Tippfehler <code>Abrechungsid</code> im Namen, obwohl das zugrunde
+liegende Feld korrekt zu <code>Abrechnungsid</code> umbenannt wurde. Als Beobachtung
+festgehalten statt als stabilen Fakt behandelt.</p>
+<p>Aktualisiert: <code>REZ.md</code>, <code>REZ_POS.md</code>, <code>REZ_ABRECH.md</code>, <code>REZ_ABRECH_POS.md</code>,
+<code>KUNDE_UNTERKONTO.md</code> (neuer Querverweis von <code>REZ.Unterkontoid</code>). Neue Seite:
+<code>REZ_ABRECHNUNGSSTELLE.md</code>. Übersichten <code>10-Tabellen/index.md</code>,
+<code>00-Allgemeines/datenbank-ueberblick.md</code> (Beziehungsgrafik mit gestrichelten
+Linien für unregistrierte Verweise ergänzt), <code>kontor-api-service.md</code> und
+<code>wiki/index.md</code> auf 27 Entitäten nachgezogen; Warnhinweis in
+<code>kontor-api-service.md</code> ergänzt, dass diese Domäne sich aktuell schnell
+verändert und Entwickler den Live-Stand prüfen sollten.</p>
 <h2 id="2026-08-14-update-1052">2026-08-14 (Update 10:52)</h2>
 <p><strong>Update</strong> — <code>raw/dab_registry.md</code> erneut exportiert (10:52, weiterhin 26
 Entitäten). Genau die eine verbleibende Lücke aus dem 10:46-Update ist
